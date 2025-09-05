@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>stancfhole</title>
+  <meta name="description" content="stancfhole.com — a free site hosted on GitHub Pages.">
+  <meta property="og:title" content="stancfhole">
+  <meta property="og:description" content="stancfhole.com — a free site hosted on GitHub Pages.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/favicon.svg">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="container nav">
+      <a class="brand" href="/">stancfhole</a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="about.html">About</a>
+        <a class="btn" href="mailto:contact@stancfhole.com">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Welcome 👋</h1>
+      <p>This site is served via <strong>GitHub Pages</strong> with automatic <strong>HTTPS</strong> using the custom domain <code>stancfhole.com</code>.</p>
+      <div class="cta-row">
+        <a class="btn" href="https://github.com/ocdeez/ocdeez.github.io">View repository</a>
+        <a class="btn ghost" href="#about">Learn more</a>
+      </div>
+    </section>
+
+    <section id="about" class="card-grid">
+      <article class="card">
+        <h2>Free Hosting</h2>
+        <p>Static HTML/CSS, fast CDN, and no ads. Push changes with Git.</p>
+      </article>
+      <article class="card">
+        <h2>Custom Domain</h2>
+        <p>Configured for <strong>stancfhole.com</strong>. DNS notes are in the README.</p>
+      </article>
+      <article class="card">
+        <h2>Easy to Edit</h2>
+        <p>Use any text editor. Add more pages like <code>about.html</code>.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> stancfhole.com</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

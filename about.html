@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About • stancfhole</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="container nav">
+      <a class="brand" href="/">stancfhole</a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a class="btn" href="mailto:contact@stancfhole.com">Contact</a>
+      </div>
+    </nav>
+  </header>
+  <main class="container">
+    <h1>About</h1>
+    <p>This is a simple static site hosted on GitHub Pages and mapped to <code>stancfhole.com</code>.</p>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> stancfhole.com</p>
+    </div>
+  </footer>
+  <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+</body>
+</html>
