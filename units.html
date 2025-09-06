@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Units — OCEMS</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header>
+  <div class="container">
+    <h1>OCEMS — Unit Statuses</h1>
+    <nav>
+      <a href="./units.html">Units</a>
+      <a href="./current-cfs.html">Current CFS</a>
+    </nav>
+
+    <div class="controls">
+      <label>Proxy
+        <input id="proxyBase" class="wide" value="https://zuercher-proxy-1.onrender.com" />
+      </label>
+      <label>Poll
+        <select id="pollMs">
+          <option value="5000" selected>5s</option>
+          <option value="10000">10s</option>
+          <option value="15000">15s</option>
+        </select>
+      </label>
+      <label><input type="checkbox" id="useLast3" checked /> CFS last 3</label>
+      <button id="apply">Apply</button>
+      <button id="refreshNow">Refresh now</button>
+    </div>
+
+    <div class="meta">
+      <span id="lastUpdated">Last updated: —</span>
+      <span id="error" class="error" hidden></span>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <table>
+    <thead>
+      <tr>
+        <th>CAD Unit</th>
+        <th>Status</th>
+        <th>Details</th>
+        <th>CFS #</th>
+        <th>Location</th>
+      </tr>
+    </thead>
+    <tbody id="tbody">
+      <tr><td colspan="5" class="muted">Waiting for data…</td></tr>
+    </tbody>
+  </table>
+</main>
+
+<script>
+/* ------------------------ CONFIG / CONSTANTS ------------------------ */
+
+// Units that must ALWAYS appear.
+const STICKY_UNITS = [
+  'M931','M932','M933','M934','M935','M936','M937','M938','M939'
+];
+
+// Allowed units (only these may appear). (All STICKY_UNITS are included.)
+const ALLOW_UNITS = new Set([
+  ...STICKY_UNITS,
+  '93','93HLD','905','906','907','908','909','911','912','913','914','915','917','918','919','920','921','922',
+  '924','925','926','927','928','929','940','941','943','947','956',
+  '9301','9302','9303','9304','9305','9306','9307','9308','9309','9310','9311','9312','9313','9314','9315','9316','9317',
+  '9320','9321','9322','9323','9324','9325','9326','9327','9328','9329','9330','9331','9332','9333','9334','9335','9336','9337','9338','9339',
+  '9340','9341','9342','9343','9344','9345','9346','9347','9348','9349',
+  '9350','9351','9352','9353','9354','9355','9356',
+  '9383','9391','9392'
+]);
+
+// UI state
+const $ = s => document.querySelector(s);
+const state = {
+  proxyBase: localStorage.getItem('units_proxyBase') || 'https://zuercher-proxy-1.onrender.com',
+  pollMs: +(localStorage.getItem('units_pollMs') || 5000),
+  useLast3: (localStorage.getItem('units_useLast3') || '1') === '1',
+  timer: null,
+  statusMap: null // optional unit_statuses.json
+};
+
+// Init controls
+$('#proxyBase').value = state.proxyBase;
+$('#pollMs').value = String(state.pollMs);
+$('#useLast3').checked = state.useLast3;
+$('#apply').onclick = () => {
+  state.proxyBase = $('#proxyBase').value.trim();
+  state.pollMs = +$('#pollMs').value;
+  state.useLast3 = $('#useLast3').checked;
+  localStorage.setItem('units_proxyBase', state.proxyBase);
+  localStorage.setItem('units_pollMs', String(state.pollMs));
+  localStorage.setItem('units_useLast3', state.useLast3 ? '1':'0');
+  restart();
+};
+$('#refreshNow').onclick = () => fetchAndRender(true);
+
+/* ------------------------ HELPERS ------------------------ */
+
+function esc(s=''){return String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'","&#39;');}
+function last3(v){ const m=String(v??'').match(/(\d{3})$/); return m?m[1]:String(v??''); }
+function naturalAZ(a,b){ return a.localeCompare(b, undefined, {numeric:true, sensitivity:'base'}); }
+function isOffDuty(text=''){ return text.toLowerCase().replace(/\s+/g,'') === 'offduty'; }
+
+async function loadStatusMap(){
+  // Optional: if unit_statuses.json is present (from your CSV), use it to expand short codes → full text
+  try {
+    const r = await fetch('./unit_statuses.json', {cache:'no-store'});
+    if (r.ok) state.statusMap = await r.json();
+  } catch(_) {}
+}
+function mapStatus(text){
+  if (!text) return '';
+  if (!state.statusMap) return String(text);
+  const raw = String(text);
+  return state.statusMap[raw]?.text
+      || state.statusMap[raw.toUpperCase?.()]?.text
+      || raw;
+}
+
+/* ------------------------ DATA FETCH ------------------------ */
+
+async function fetchUnits(force=false){
+  const url = state.proxyBase.replace(/\/$/,'') + '/units' + (force?`?t=${Date.now()}`:'');
+  const r = await fetch(url, {cache:'no-store'});
+  if (!r.ok) throw new Error(`HTTP ${r.status}`);
+  return await r.json();
+}
+
+/* ------------------------ FILTER/SORT/RENDER ------------------------ */
+
+function normalize(records){
+  return Array.isArray(records?.records) ? records.records : [];
+}
+
+function applyRules(rows){
+  // Build map by unit for quick lookup
+  const byUnit = new Map();
+  for (const r of rows){
+    const unit = String(r.cad_unit || '');
+    if (!ALLOW_UNITS.has(unit)) continue; // ignore everything not on the list
+    const statusText = mapStatus(r.status || '');
+    // For non-sticky allowed units, drop if Off Duty
+    if (!STICKY_UNITS.includes(unit) && isOffDuty(statusText)) continue;
+    byUnit.set(unit, { ...r, _statusText: statusText });
+  }
+
+  // Ensure all sticky units are present (even if absent or Off Duty)
+  for (const unit of STICKY_UNITS){
+    if (!byUnit.has(unit)){
+      byUnit.set(unit, {
+        cad_unit: unit,
+        status: '',
+        _statusText: '',     // blank means unknown/not reported
+        details: '',
+        cfs_num: '',
+        location: ''
+      });
+    }
+  }
+
+  // Sort naturally by CAD Unit
+  return Array.from(byUnit.values()).sort((a,b) =>
+    naturalAZ(String(a.cad_unit||''), String(b.cad_unit||'')));
+}
+
+function render(rows){
+  const tb = $('#tbody'); tb.innerHTML = '';
+  for (const r of rows){
+    const cfs = state.useLast3 ? last3(r.cfs_num) : (r.cfs_num ?? '');
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td class="code nowrap">${esc(r.cad_unit)}</td>
+      <td>${esc(r._statusText || '')}</td>
+      <td class="wrap">${esc(r.details ?? '')}</td>
+      <td class="code nowrap">${esc(cfs)}</td>
+      <td class="wrap">${esc(r.location ?? '')}</td>
+    `;
+    tb.appendChild(tr);
+  }
+}
+
+async function fetchAndRender(force=false){
+  try{
+    $('#error').hidden = true;
+    const payload = await fetchUnits(force);
+    const rows = applyRules(normalize(payload));
+    render(rows);
+    $('#lastUpdated').textContent = 'Last updated: ' + new Date().toLocaleTimeString();
+  }catch(e){
+    $('#error').hidden = false;
+    $('#error').textContent = 'Error: ' + e.message;
+  }
+}
+
+/* ------------------------ LIFECYCLE ------------------------ */
+
+async function start(){
+  await loadStatusMap();
+  await fetchAndRender(true);
+  state.timer = setInterval(fetchAndRender, state.pollMs);
+}
+function stop(){ if (state.timer){ clearInterval(state.timer); state.timer = null; } }
+function restart(){ stop(); start(); }
+start();
+</script>
+</body>
+</html>
