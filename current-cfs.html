@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Current CFS — OCEMS</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header>
+  <div class="container">
+    <h1>OCEMS — Current CFS</h1>
+    <nav>
+      <a href="./units.html">Units</a>
+      <a href="./current-cfs.html">Current CFS</a>
+    </nav>
+    <div class="controls">
+      <label>Proxy
+        <input id="proxyBase" class="wide" value="https://zuercher-proxy-1.onrender.com" />
+      </label>
+      <label>Poll
+        <select id="pollMs">
+          <option value="5000" selected>5s</option>
+          <option value="10000">10s</option>
+          <option value="15000">15s</option>
+        </select>
+      </label>
+      <button id="apply">Apply</button>
+      <button id="refreshNow">Refresh now</button>
+    </div>
+    <div class="meta">
+      <span id="lastUpdated">Last updated: —</span>
+      <span id="error" class="error" hidden></span>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <table>
+    <thead>
+      <tr>
+        <th>Incident</th>
+        <th>Status</th>
+        <th>Units Assigned</th>
+        <th>Units Stacked</th>
+        <th>Location</th>
+        <th>Incident #</th>
+      </tr>
+    </thead>
+    <tbody id="tbody">
+      <tr><td colspan="6" class="muted">Waiting for data…</td></tr>
+    </tbody>
+  </table>
+</main>
+
+<script>
+const $ = s => document.querySelector(s);
+const state = {
+  proxyBase: localStorage.getItem('cfs_proxyBase') || 'https://zuercher-proxy-1.onrender.com',
+  pollMs: +(localStorage.getItem('cfs_pollMs') || 5000),
+  timer: null,
+  incidentMap: null, // optional incident_codes.json
+};
+
+$('#proxyBase').value = state.proxyBase;
+$('#pollMs').value = String(state.pollMs);
+
+$('#apply').onclick = () => {
+  state.proxyBase = $('#proxyBase').value.trim();
+  state.pollMs = +$('#pollMs').value;
+  localStorage.setItem('cfs_proxyBase', state.proxyBase);
+  localStorage.setItem('cfs_pollMs', String(state.pollMs));
+  restart();
+};
+$('#refreshNow').onclick = () => fetchAndRender(true);
+
+function esc(s=''){return String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'","&#39;');}
+function naturalAZ(a,b){ return a.localeCompare(b, undefined, {numeric:true, sensitivity:'base'}); }
+
+async function loadIncidentMap(){
+  // Optional: if incident_codes.json exists next to this file, use it to expand short codes → full descriptions (fallback)
+  try{
+    const r = await fetch('./incident_codes.json', {cache:'no-store'});
+    if (r.ok) state.incidentMap = await r.json();
+  }catch(_){}
+}
+function mapIncidentDesc(code, desc){
+  // Prefer the portal's full description field if present
+  if (desc && String(desc).trim()) return String(desc);
+  // fallback to our mapping if only a short code exists
+  if (!code || !state.incidentMap) return '';
+  const k = String(code).trim();
+  return state.incidentMap[k] || state.incidentMap[k.toUpperCase?.()] || '';
+}
+
+async function fetchCfs(force=false){
+  const url = state.proxyBase.replace(/\/$/,'') + '/current-cfs' + (force?`?t=${Date.now()}`:'');
+  const r = await fetch(url, {cache:'no-store'});
+  if (!r.ok) throw new Error(`HTTP ${r.status}`);
+  return await r.json();
+}
+
+function normalize(records){
+  const rows = Array.isArray(records?.records) ? records.records : [];
+  // Be tolerant of field names; prefer *_desc when present
+  return rows.map(r => ({
+    incident: mapIncidentDesc(r.incident_code, r.incident_code_desc),
+    status: r.status_desc ?? r.status ?? '',
+    units_assigned: Array.isArray(r.units_assigned) ? r.units_assigned.join(', ') : (r.units_assigned ?? ''),
+    units_stacked: Array.isArray(r.units_stacked) ? r.units_stacked.join(', ') : (r.units_stacked ?? ''),
+    location: r.incident_location ?? r.location ?? '',
+    incidentname: r.incidentname ?? r.cfs_num ?? ''
+  }));
+}
+
+function sortRows(rows){
+  // default: alphabetical by Incident # for stability; tweak later if you want priority sorting
+  return rows.sort((a,b)=> naturalAZ(String(a.incidentname||''), String(b.incidentname||'')));
+}
+
+function render(rows){
+  const tb = $('#tbody'); tb.innerHTML = '';
+  for (const r of rows){
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td class="wrap">${esc(r.incident)}</td>
+      <td>${esc(r.status)}</td>
+      <td class="wrap">${esc(r.units_assigned)}</td>
+      <td class="wrap">${esc(r.units_stacked)}</td>
+      <td class="wrap">${esc(r.location)}</td>
+      <td class="code nowrap">${esc(r.incidentname)}</td>
+    `;
+    tb.appendChild(tr);
+  }
+}
+
+async function fetchAndRender(force=false){
+  try{
+    $('#error').hidden = true;
+    const payload = await fetchCfs(force);
+    const rows = sortRows(normalize(payload));
+    render(rows);
+    $('#lastUpdated').textContent = 'Last updated: ' + new Date().toLocaleTimeString();
+  }catch(e){
+    $('#error').hidden = false;
+    $('#error').textContent = 'Error: ' + e.message;
+  }
+}
+
+async function start(){
+  await loadIncidentMap();
+  await fetchAndRender(true);
+  state.timer = setInterval(fetchAndRender, state.pollMs);
+}
+function stop(){ if (state.timer){ clearInterval(state.timer); state.timer = null; } }
+function restart(){ stop(); start(); }
+
+start();
+</script>
+</body>
+</html>
