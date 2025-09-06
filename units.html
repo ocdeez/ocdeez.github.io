@@ -2,17 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Units — OCEMS</title>
   <link rel="stylesheet" href="styles.css" />
   <style>
-    /* TV / fullscreen tweaks layered on top of your styles.css */
-    body{font-size:20px}
+    :root{ --rowPad:.9rem }
+    body{font-size:22px}
     header .container{padding:1rem 2rem}
-    h1{font-size:1.4rem}
-    table{font-size:1.05rem}
-    thead th{padding:.75rem}
-    tbody td{padding:.8rem}
+    h1{font-size:1.5rem}
+    table{font-size:1.1rem}
+    thead th{padding:var(--rowPad)}
+    tbody td{padding:var(--rowPad)}
     .code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
     .nowrap{white-space:nowrap}
     .wrap{white-space:normal;word-break:break-word}
@@ -37,13 +39,13 @@
 <main class="container">
   <table>
     <thead>
-      <tr>
-        <th>CAD Unit</th>
-        <th>Status</th>
-        <th>Details</th>
-        <th>CFS #</th>
-        <th>Location</th>
-      </tr>
+    <tr>
+      <th>CAD Unit</th>
+      <th>Status</th>
+      <th>Details</th>
+      <th>CFS #</th>
+      <th>Location</th>
+    </tr>
     </thead>
     <tbody id="tbody">
       <tr><td colspan="5" class="muted">Loading…</td></tr>
@@ -52,13 +54,32 @@
 </main>
 
 <script>
-/* ------------ CONFIG ------------ */
-const PROXY = 'https://zuercher-proxy-1.onrender.com'; // change if your proxy URL changes
+/* error overlay (shows any crash on screen) */
+(function(){
+  function showErr(label, detail){
+    let el = document.getElementById('error');
+    if (!el) {
+      el = document.createElement('pre');
+      el.id = 'error';
+      el.style.color = '#ff6b6b';
+      el.style.padding = '1rem';
+      el.style.whiteSpace = 'pre-wrap';
+      document.body.prepend(el);
+    }
+    el.hidden = false;
+    el.textContent = '['+label+'] ' + (detail?.message || detail || '');
+  }
+  window.addEventListener('error', e => showErr('JS Error', e.error || e.message));
+  window.addEventListener('unhandledrejection', e => showErr('Promise Rejection', e.reason));
+})();
 
-// Sticky units — ALWAYS shown (even if absent or Off Duty)
+/* ---------- CONFIG ---------- */
+const PROXY = 'https://api.stancfhole.com'; // your domain
+
+// Sticky units — ALWAYS shown
 const STICKY_UNITS = ['M931','M932','M933','M934','M935','M936','M937','M938','M939'];
 
-// Allowed units (only these can appear). Non-sticky units hidden if Off Duty.
+// Only these units are allowed to appear; non-sticky hidden if Off Duty.
 const ALLOW_UNITS = new Set([
   ...STICKY_UNITS,
   '93','93HLD','905','906','907','908','909','911','912','913','914','915','917','918','919','920','921','922',
@@ -70,54 +91,59 @@ const ALLOW_UNITS = new Set([
   '9383','9391','9392'
 ]);
 
-/* ------------ HELPERS ------------ */
+/* ---------- helpers ---------- */
 const $ = s => document.querySelector(s);
-function esc(s=''){return String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'","&#39;');}
+function esc(s){ s = s==null? '' : String(s);
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+          .replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
 function naturalAZ(a,b){ return String(a).localeCompare(String(b), undefined, {numeric:true, sensitivity:'base'}); }
-function isOffDuty(text=''){ return String(text).toLowerCase().replace(/\s+/g,'') === 'offduty'; }
+function normalizeUnit(u){ return String(u||'').replace(/[^A-Za-z0-9]/g,''); } // strip decoration like "~"
+function isOffDuty(text){ return String(text||'').toLowerCase().replace(/\s+/g,'') === 'offduty'; }
 
-/* Optional: status code → full text mapping if unit_statuses.json exists */
-let STATUS_MAP = null;
+/* optional local mapping (if you drop unit_statuses.json in the repo root) */
+let STATUS_MAP=null;
 async function loadStatusMap(){
-  try { const r = await fetch('/unit_statuses.json', {cache:'no-store'}); if (r.ok) STATUS_MAP = await r.json(); } catch {}
+  try { const r=await fetch('/unit_statuses.json',{cache:'no-store'}); if(r.ok) STATUS_MAP=await r.json(); } catch{}
 }
-function mapStatus(s, sDesc){
-  // Prefer API's full text if provided (status_desc)
-  if (sDesc && String(sDesc).trim()) return String(sDesc);
-  if (!s || !STATUS_MAP) return String(s||'');
-  const raw = String(s);
-  return STATUS_MAP[raw]?.text || STATUS_MAP[raw.toUpperCase?.()]?.text || raw;
+function mapStatus(code, desc){
+  if (desc && String(desc).trim()) return String(desc);
+  if (!code || !STATUS_MAP) return String(code||'');
+  const k = String(code);
+  return STATUS_MAP[k]?.text || STATUS_MAP[k.toUpperCase?.()]?.text || k;
 }
 
-/* ------------ FETCH + RENDER ------------ */
+/* ---------- fetch + render ---------- */
 async function fetchUnits(){
   const url = PROXY.replace(/\/$/,'') + '/units?t=' + Date.now();
-  const r = await fetch(url, {cache:'no-store'});
-  if (!r.ok) throw new Error('HTTP '+r.status);
+  const r = await fetch(url, { cache: 'no-store' });
+  if(!r.ok) throw new Error('HTTP '+r.status);
   return await r.json();
 }
 
 function normalize(payload){
   const rows = Array.isArray(payload?.records) ? payload.records : [];
-  // Build map of latest row per allowed unit
   const byUnit = new Map();
   for (const rec of rows){
-    const unit = String(rec.cad_unit || '');
+    const unitRaw = String(rec.cad_unit || '');
+    const unit = normalizeUnit(unitRaw);
     if (!ALLOW_UNITS.has(unit)) continue;
+
     const statusText = mapStatus(rec.status, rec.status_desc);
-    if (!STICKY_UNITS.includes(unit) && isOffDuty(statusText)) continue; // hide Off Duty for non-sticky
+    if (!STICKY_UNITS.includes(unit) && isOffDuty(statusText)) continue;
+
     byUnit.set(unit, {
+      cad_unit_raw: unitRaw || unit,
       cad_unit: unit,
       statusText,
       details: rec.details ?? '',
-      cfs_num: rec.cfs_num ?? '',
-      location: rec.location ?? ''
+      cfs_num: rec.cfs_num ?? rec.incidentname ?? '',
+      location: rec.location ?? rec.incident_location ?? ''
     });
   }
-  // Ensure sticky units always appear (even if absent)
-  for (const unit of STICKY_UNITS){
-    if (!byUnit.has(unit)){
-      byUnit.set(unit, { cad_unit: unit, statusText: '', details: '', cfs_num: '', location: '' });
+
+  for (const u of STICKY_UNITS){
+    if (!byUnit.has(u)){
+      byUnit.set(u, { cad_unit_raw: u, cad_unit: u, statusText:'', details:'', cfs_num:'', location:'' });
     }
   }
   return Array.from(byUnit.values()).sort((a,b)=>naturalAZ(a.cad_unit,b.cad_unit));
@@ -125,19 +151,15 @@ function normalize(payload){
 
 function render(rows){
   const tb = $('#tbody'); tb.innerHTML = '';
-  if (!rows.length){
-    tb.innerHTML = '<tr><td colspan="5" class="muted">No data</td></tr>';
-    return;
-  }
+  if (!rows.length){ tb.innerHTML = '<tr><td colspan="5" class="muted">No data</td></tr>'; return; }
   for (const r of rows){
     const tr = document.createElement('tr');
     tr.innerHTML = `
-      <td class="code nowrap">${esc(r.cad_unit)}</td>
+      <td class="code nowrap">${esc(r.cad_unit_raw)}</td>
       <td>${esc(r.statusText)}</td>
       <td class="wrap">${esc(r.details)}</td>
       <td class="code nowrap">${esc(r.cfs_num)}</td>
-      <td class="wrap">${esc(r.location)}</td>
-    `;
+      <td class="wrap">${esc(r.location)}</td>`;
     tb.appendChild(tr);
   }
 }
@@ -150,14 +172,14 @@ async function tick(){
     $('#lastUpdated').textContent = 'Last updated: ' + new Date().toLocaleTimeString();
   }catch(e){
     $('#error').hidden = false;
-    $('#error').textContent = 'Error: ' + e.message;
+    $('#error').textContent = 'Error: ' + (e.message || e);
   }
 }
 
 (async function start(){
-  await loadStatusMap();       // harmless if file not present
+  await loadStatusMap();  // harmless if file missing
   await tick();
-  setInterval(tick, 5000);     // 5s auto-refresh
+  setInterval(tick, 5000);
 })();
 </script>
 </body>
