@@ -55,7 +55,7 @@
 </main>
 
 <script>
-/* error overlay */
+/* Error overlay */
 (function(){
   function showErr(label, detail){
     let el = document.getElementById('error');
@@ -98,7 +98,7 @@ function mapIncidentDesc(code, desc){
 
 async function fetchCfs(){
   const url = PROXY.replace(/\/$/,'') + '/current-cfs?t=' + Date.now();
-  const r = await fetch(url, { cache: 'no-store' });
+  const r = await fetch(url, { cache: 'no-store', mode: 'cors' });
   if(!r.ok) throw new Error('HTTP '+r.status);
   return await r.json();
 }
