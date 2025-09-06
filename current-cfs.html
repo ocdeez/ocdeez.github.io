@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Current CFS — OCEMS</title>
   <link rel="stylesheet" href="styles.css" />
   <style>
-    /* TV / fullscreen tweaks layered on top of your styles.css */
-    :root{ --rowPad: .9rem; }
+    :root{ --rowPad:.9rem }
     body{font-size:22px}
     header .container{padding:1rem 2rem}
     h1{font-size:1.5rem}
@@ -38,14 +39,14 @@
 <main class="container">
   <table>
     <thead>
-      <tr>
-        <th>Incident</th>
-        <th>Status</th>
-        <th>Units Assigned</th>
-        <th>Units Stacked</th>
-        <th>Location</th>
-        <th>Incident #</th>
-      </tr>
+    <tr>
+      <th>Incident</th>
+      <th>Status</th>
+      <th>Units Assigned</th>
+      <th>Units Stacked</th>
+      <th>Location</th>
+      <th>Incident #</th>
+    </tr>
     </thead>
     <tbody id="tbody">
       <tr><td colspan="6" class="muted">Loading…</td></tr>
@@ -54,21 +55,41 @@
 </main>
 
 <script>
-/* ------------ CONFIG (edit if proxy URL changes) ------------ */
-const PROXY = 'https://zuercher-proxy-1.onrender.com';
+/* error overlay */
+(function(){
+  function showErr(label, detail){
+    let el = document.getElementById('error');
+    if (!el) {
+      el = document.createElement('pre');
+      el.id = 'error';
+      el.style.color = '#ff6b6b';
+      el.style.padding = '1rem';
+      el.style.whiteSpace = 'pre-wrap';
+      document.body.prepend(el);
+    }
+    el.hidden = false;
+    el.textContent = '['+label+'] ' + (detail?.message || detail || '');
+  }
+  window.addEventListener('error', e => showErr('JS Error', e.error || e.message));
+  window.addEventListener('unhandledrejection', e => showErr('Promise Rejection', e.reason));
+})();
 
-/* Optional: incident code → full description mapping if incident_codes.json exists */
-let INCIDENT_MAP = null;
+/* ---------- CONFIG ---------- */
+const PROXY = 'https://api.stancfhole.com';
+
+/* optional incident code → full description map if you add /incident_codes.json */
+let INCIDENT_MAP=null;
 async function loadIncidentMap(){
-  try { const r = await fetch('/incident_codes.json', {cache:'no-store'}); if (r.ok) INCIDENT_MAP = await r.json(); } catch {}
+  try { const r=await fetch('/incident_codes.json',{cache:'no-store'}); if(r.ok) INCIDENT_MAP=await r.json(); } catch{}
 }
 
 const $ = s => document.querySelector(s);
-function esc(s=''){return String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'","&#39;');}
+function esc(s){ s = s==null? '' : String(s);
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+          .replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
 function naturalAZ(a,b){ return String(a).localeCompare(String(b), undefined, {numeric:true, sensitivity:'base'}); }
 
 function mapIncidentDesc(code, desc){
-  // Prefer portal's full description
   if (desc && String(desc).trim()) return String(desc);
   if (!code || !INCIDENT_MAP) return '';
   const k = String(code).trim();
@@ -77,15 +98,62 @@ function mapIncidentDesc(code, desc){
 
 async function fetchCfs(){
   const url = PROXY.replace(/\/$/,'') + '/current-cfs?t=' + Date.now();
-  const r = await fetch(url, {cache:'no-store'});
-  if (!r.ok) throw new Error('HTTP '+r.status);
+  const r = await fetch(url, { cache: 'no-store' });
+  if(!r.ok) throw new Error('HTTP '+r.status);
   return await r.json();
 }
 
 function normalize(payload){
   const rows = Array.isArray(payload?.records) ? payload.records : [];
-  return rows.map(r => {
-    const incident = mapIncidentDesc(r.incident_code, r.incident_code_desc);
-    const status = r.status_desc ?? r.status ?? '';
-    const units_assigned = Array.isArray(r.units_assigned) ? r.units_assigned.join(', ') : (r.units_assigned ?? '');
-    const units_stacked  = Array.isArray(r.units_stacked)  ? r.units_stacked.join(_
+  return rows.map(r => ({
+    incident: mapIncidentDesc(r.incident_code, r.incident_code_desc),
+    status: r.status_desc ?? r.status ?? '',
+    units_assigned: Array.isArray(r.units_assigned) ? r.units_assigned.join(', ') : (r.units_assigned ?? ''),
+    units_stacked:  Array.isArray(r.units_stacked)  ? r.units_stacked.join(', ')  : (r.units_stacked  ?? ''),
+    location: r.incident_location ?? r.location ?? '',
+    incidentname: r.incidentname ?? r.cfs_num ?? '',
+    bg: r.priority_color || null,
+    fg: r.text_color || null
+  }));
+}
+
+function sortRows(rows){ return rows.sort((a,b)=> naturalAZ(a.incidentname,b.incidentname)); }
+
+function render(rows){
+  const tb = $('#tbody'); tb.innerHTML = '';
+  if (!rows.length){ tb.innerHTML = '<tr><td colspan="6" class="muted">No active incidents</td></tr>'; return; }
+  for (const r of rows){
+    const tr = document.createElement('tr');
+    if (r.bg) tr.style.background = r.bg;
+    if (r.fg) tr.style.color = r.fg;
+    tr.innerHTML = `
+      <td class="wrap">${esc(r.incident)}</td>
+      <td>${esc(r.status)}</td>
+      <td class="wrap">${esc(r.units_assigned)}</td>
+      <td class="wrap">${esc(r.units_stacked)}</td>
+      <td class="wrap">${esc(r.location)}</td>
+      <td class="code nowrap">${esc(r.incidentname)}</td>`;
+    tb.appendChild(tr);
+  }
+}
+
+async function tick(){
+  try{
+    $('#error').hidden = true;
+    const payload = await fetchCfs();
+    render(sortRows(normalize(payload)));
+    $('#lastUpdated').textContent = 'Last updated: ' + new Date().toLocaleTimeString();
+  }catch(e){
+    $('#error').hidden = false;
+    $('#error').textContent = 'Error: ' + (e.message || e);
+  }
+}
+
+(async function start(){
+  await loadIncidentMap(); // harmless if file absent
+  await tick();
+  setInterval(tick, 5000);
+})();
+</script>
+</body>
+</html>
