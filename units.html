@@ -54,7 +54,7 @@
 </main>
 
 <script>
-/* show any error on screen */
+/* Error overlay */
 (function(){
   function showErr(label, detail){
     let el = document.getElementById('error');
@@ -74,12 +74,10 @@
 })();
 
 /* ---------- CONFIG ---------- */
-const PROXY = 'https://api.stancfhole.com'; // <- your custom API domain
+const PROXY = 'https://api.stancfhole.com';
 
-// Sticky units — ALWAYS shown (even if not present)
+/* Sticky + allowed lists */
 const STICKY_UNITS = ['M931','M932','M933','M934','M935','M936','M937','M938','M939'];
-
-// Allowed units; non-sticky hidden if "Off Duty"
 const ALLOW_UNITS = new Set([
   ...STICKY_UNITS,
   '93','93HLD','905','906','907','908','909','911','912','913','914','915','917','918','919','920','921','922',
@@ -97,7 +95,7 @@ function esc(s){ s = s==null? '' : String(s);
   return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
           .replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
 function naturalAZ(a,b){ return String(a).localeCompare(String(b), undefined, {numeric:true, sensitivity:'base'}); }
-function normalizeUnit(u){ return String(u||'').replace(/[^A-Za-z0-9]/g,''); } // strip "~" etc.
+function normalizeUnit(u){ return String(u||'').replace(/[^A-Za-z0-9]/g,''); }
 function isOffDuty(text){ return String(text||'').toLowerCase().replace(/\s+/g,'') === 'offduty'; }
 
 /* optional local status mapping if unit_statuses.json exists */
@@ -115,7 +113,7 @@ function mapStatus(code, desc){
 /* ---------- fetch + render ---------- */
 async function fetchUnits(){
   const url = PROXY.replace(/\/$/,'') + '/units?t=' + Date.now();
-  const r = await fetch(url, { cache: 'no-store' });
+  const r = await fetch(url, { cache: 'no-store', mode: 'cors' });
   if(!r.ok) throw new Error('HTTP '+r.status);
   return await r.json();
 }
