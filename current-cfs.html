@@ -7,12 +7,13 @@
   <link rel="stylesheet" href="styles.css" />
   <style>
     /* TV / fullscreen tweaks layered on top of your styles.css */
-    body{font-size:20px}
+    :root{ --rowPad: .9rem; }
+    body{font-size:22px}
     header .container{padding:1rem 2rem}
-    h1{font-size:1.4rem}
-    table{font-size:1.05rem}
-    thead th{padding:.75rem}
-    tbody td{padding:.8rem}
+    h1{font-size:1.5rem}
+    table{font-size:1.1rem}
+    thead th{padding:var(--rowPad)}
+    tbody td{padding:var(--rowPad)}
     .code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
     .nowrap{white-space:nowrap}
     .wrap{white-space:normal;word-break:break-word}
@@ -53,8 +54,8 @@
 </main>
 
 <script>
-/* ------------ CONFIG ------------ */
-const PROXY = 'https://zuercher-proxy-1.onrender.com'; // change if your proxy URL changes
+/* ------------ CONFIG (edit if proxy URL changes) ------------ */
+const PROXY = 'https://zuercher-proxy-1.onrender.com';
 
 /* Optional: incident code → full description mapping if incident_codes.json exists */
 let INCIDENT_MAP = null;
@@ -67,7 +68,7 @@ function esc(s=''){return String(s).replaceAll('&','&amp;').replaceAll('<','&lt;
 function naturalAZ(a,b){ return String(a).localeCompare(String(b), undefined, {numeric:true, sensitivity:'base'}); }
 
 function mapIncidentDesc(code, desc){
-  // Prefer API's full description when present
+  // Prefer portal's full description
   if (desc && String(desc).trim()) return String(desc);
   if (!code || !INCIDENT_MAP) return '';
   const k = String(code).trim();
@@ -83,59 +84,8 @@ async function fetchCfs(){
 
 function normalize(payload){
   const rows = Array.isArray(payload?.records) ? payload.records : [];
-  return rows.map(r => ({
-    incident: mapIncidentDesc(r.incident_code, r.incident_code_desc),
-    status: r.status_desc ?? r.status ?? '',
-    units_assigned: Array.isArray(r.units_assigned) ? r.units_assigned.join(', ') : (r.units_assigned ?? ''),
-    units_stacked: Array.isArray(r.units_stacked) ? r.units_stacked.join(', ') : (r.units_stacked ?? ''),
-    location: r.incident_location ?? r.location ?? '',
-    incidentname: r.incidentname ?? r.cfs_num ?? ''
-  }));
-}
-
-function sortRows(rows){
-  // Keep a stable, readable order (by Incident #/name)
-  return rows.sort((a,b)=> naturalAZ(a.incidentname, b.incidentname));
-}
-
-function render(rows){
-  const tb = $('#tbody'); tb.innerHTML = '';
-  if (!rows.length){
-    tb.innerHTML = '<tr><td colspan="6" class="muted">No active incidents</td></tr>';
-    return;
-  }
-  for (const r of rows){
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td class="wrap">${esc(r.incident)}</td>
-      <td>${esc(r.status)}</td>
-      <td class="wrap">${esc(r.units_assigned)}</td>
-      <td class="wrap">${esc(r.units_stacked)}</td>
-      <td class="wrap">${esc(r.location)}</td>
-      <td class="code nowrap">${esc(r.incidentname)}</td>
-    `;
-    tb.appendChild(tr);
-  }
-}
-
-async function tick(){
-  try{
-    $('#error').hidden = true;
-    const payload = await fetchCfs();
-    const rows = sortRows(normalize(payload));
-    render(rows);
-    $('#lastUpdated').textContent = 'Last updated: ' + new Date().toLocaleTimeString();
-  }catch(e){
-    $('#error').hidden = false;
-    $('#error').textContent = 'Error: ' + e.message;
-  }
-}
-
-(async function start(){
-  await loadIncidentMap();     // harmless if file not present
-  await tick();
-  setInterval(tick, 5000);     // 5s auto-refresh
-})();
-</script>
-</body>
-</html>
+  return rows.map(r => {
+    const incident = mapIncidentDesc(r.incident_code, r.incident_code_desc);
+    const status = r.status_desc ?? r.status ?? '';
+    const units_assigned = Array.isArray(r.units_assigned) ? r.units_assigned.join(', ') : (r.units_assigned ?? '');
+    const units_stacked  = Array.isArray(r.units_stacked)  ? r.units_stacked.join(_
