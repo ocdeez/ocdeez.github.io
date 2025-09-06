@@ -5,32 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Units — OCEMS</title>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* TV / fullscreen tweaks layered on top of your styles.css */
+    body{font-size:20px}
+    header .container{padding:1rem 2rem}
+    h1{font-size:1.4rem}
+    table{font-size:1.05rem}
+    thead th{padding:.75rem}
+    tbody td{padding:.8rem}
+    .code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+    .nowrap{white-space:nowrap}
+    .wrap{white-space:normal;word-break:break-word}
+  </style>
 </head>
 <body>
 <header>
   <div class="container">
     <h1>OCEMS — Unit Statuses</h1>
     <nav>
-      <a href="./units.html">Units</a>
-      <a href="./current-cfs.html">Current CFS</a>
+      <a href="/index.html">Home</a>
+      <a href="/units.html">Units</a>
+      <a href="/current-cfs.html">Current CFS</a>
     </nav>
-
-    <div class="controls">
-      <label>Proxy
-        <input id="proxyBase" class="wide" value="https://zuercher-proxy-1.onrender.com" />
-      </label>
-      <label>Poll
-        <select id="pollMs">
-          <option value="5000" selected>5s</option>
-          <option value="10000">10s</option>
-          <option value="15000">15s</option>
-        </select>
-      </label>
-      <label><input type="checkbox" id="useLast3" checked /> CFS last 3</label>
-      <button id="apply">Apply</button>
-      <button id="refreshNow">Refresh now</button>
-    </div>
-
     <div class="meta">
       <span id="lastUpdated">Last updated: —</span>
       <span id="error" class="error" hidden></span>
@@ -50,20 +46,19 @@
       </tr>
     </thead>
     <tbody id="tbody">
-      <tr><td colspan="5" class="muted">Waiting for data…</td></tr>
+      <tr><td colspan="5" class="muted">Loading…</td></tr>
     </tbody>
   </table>
 </main>
 
 <script>
-/* ------------------------ CONFIG / CONSTANTS ------------------------ */
+/* ------------ CONFIG ------------ */
+const PROXY = 'https://zuercher-proxy-1.onrender.com'; // change if your proxy URL changes
 
-// Units that must ALWAYS appear.
-const STICKY_UNITS = [
-  'M931','M932','M933','M934','M935','M936','M937','M938','M939'
-];
+// Sticky units — ALWAYS shown (even if absent or Off Duty)
+const STICKY_UNITS = ['M931','M932','M933','M934','M935','M936','M937','M938','M939'];
 
-// Allowed units (only these may appear). (All STICKY_UNITS are included.)
+// Allowed units (only these can appear). Non-sticky units hidden if Off Duty.
 const ALLOW_UNITS = new Set([
   ...STICKY_UNITS,
   '93','93HLD','905','906','907','908','909','911','912','913','914','915','917','918','919','920','921','922',
@@ -75,122 +70,83 @@ const ALLOW_UNITS = new Set([
   '9383','9391','9392'
 ]);
 
-// UI state
+/* ------------ HELPERS ------------ */
 const $ = s => document.querySelector(s);
-const state = {
-  proxyBase: localStorage.getItem('units_proxyBase') || 'https://zuercher-proxy-1.onrender.com',
-  pollMs: +(localStorage.getItem('units_pollMs') || 5000),
-  useLast3: (localStorage.getItem('units_useLast3') || '1') === '1',
-  timer: null,
-  statusMap: null // optional unit_statuses.json
-};
-
-// Init controls
-$('#proxyBase').value = state.proxyBase;
-$('#pollMs').value = String(state.pollMs);
-$('#useLast3').checked = state.useLast3;
-$('#apply').onclick = () => {
-  state.proxyBase = $('#proxyBase').value.trim();
-  state.pollMs = +$('#pollMs').value;
-  state.useLast3 = $('#useLast3').checked;
-  localStorage.setItem('units_proxyBase', state.proxyBase);
-  localStorage.setItem('units_pollMs', String(state.pollMs));
-  localStorage.setItem('units_useLast3', state.useLast3 ? '1':'0');
-  restart();
-};
-$('#refreshNow').onclick = () => fetchAndRender(true);
-
-/* ------------------------ HELPERS ------------------------ */
-
 function esc(s=''){return String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'","&#39;');}
-function last3(v){ const m=String(v??'').match(/(\d{3})$/); return m?m[1]:String(v??''); }
-function naturalAZ(a,b){ return a.localeCompare(b, undefined, {numeric:true, sensitivity:'base'}); }
-function isOffDuty(text=''){ return text.toLowerCase().replace(/\s+/g,'') === 'offduty'; }
+function naturalAZ(a,b){ return String(a).localeCompare(String(b), undefined, {numeric:true, sensitivity:'base'}); }
+function isOffDuty(text=''){ return String(text).toLowerCase().replace(/\s+/g,'') === 'offduty'; }
 
+/* Optional: status code → full text mapping if unit_statuses.json exists */
+let STATUS_MAP = null;
 async function loadStatusMap(){
-  // Optional: if unit_statuses.json is present (from your CSV), use it to expand short codes → full text
-  try {
-    const r = await fetch('./unit_statuses.json', {cache:'no-store'});
-    if (r.ok) state.statusMap = await r.json();
-  } catch(_) {}
+  try { const r = await fetch('/unit_statuses.json', {cache:'no-store'}); if (r.ok) STATUS_MAP = await r.json(); } catch {}
 }
-function mapStatus(text){
-  if (!text) return '';
-  if (!state.statusMap) return String(text);
-  const raw = String(text);
-  return state.statusMap[raw]?.text
-      || state.statusMap[raw.toUpperCase?.()]?.text
-      || raw;
+function mapStatus(s, sDesc){
+  // Prefer API's full text if provided (status_desc)
+  if (sDesc && String(sDesc).trim()) return String(sDesc);
+  if (!s || !STATUS_MAP) return String(s||'');
+  const raw = String(s);
+  return STATUS_MAP[raw]?.text || STATUS_MAP[raw.toUpperCase?.()]?.text || raw;
 }
 
-/* ------------------------ DATA FETCH ------------------------ */
-
-async function fetchUnits(force=false){
-  const url = state.proxyBase.replace(/\/$/,'') + '/units' + (force?`?t=${Date.now()}`:'');
+/* ------------ FETCH + RENDER ------------ */
+async function fetchUnits(){
+  const url = PROXY.replace(/\/$/,'') + '/units?t=' + Date.now();
   const r = await fetch(url, {cache:'no-store'});
-  if (!r.ok) throw new Error(`HTTP ${r.status}`);
+  if (!r.ok) throw new Error('HTTP '+r.status);
   return await r.json();
 }
 
-/* ------------------------ FILTER/SORT/RENDER ------------------------ */
-
-function normalize(records){
-  return Array.isArray(records?.records) ? records.records : [];
-}
-
-function applyRules(rows){
-  // Build map by unit for quick lookup
+function normalize(payload){
+  const rows = Array.isArray(payload?.records) ? payload.records : [];
+  // Build map of latest row per allowed unit
   const byUnit = new Map();
-  for (const r of rows){
-    const unit = String(r.cad_unit || '');
-    if (!ALLOW_UNITS.has(unit)) continue; // ignore everything not on the list
-    const statusText = mapStatus(r.status || '');
-    // For non-sticky allowed units, drop if Off Duty
-    if (!STICKY_UNITS.includes(unit) && isOffDuty(statusText)) continue;
-    byUnit.set(unit, { ...r, _statusText: statusText });
+  for (const rec of rows){
+    const unit = String(rec.cad_unit || '');
+    if (!ALLOW_UNITS.has(unit)) continue;
+    const statusText = mapStatus(rec.status, rec.status_desc);
+    if (!STICKY_UNITS.includes(unit) && isOffDuty(statusText)) continue; // hide Off Duty for non-sticky
+    byUnit.set(unit, {
+      cad_unit: unit,
+      statusText,
+      details: rec.details ?? '',
+      cfs_num: rec.cfs_num ?? '',
+      location: rec.location ?? ''
+    });
   }
-
-  // Ensure all sticky units are present (even if absent or Off Duty)
+  // Ensure sticky units always appear (even if absent)
   for (const unit of STICKY_UNITS){
     if (!byUnit.has(unit)){
-      byUnit.set(unit, {
-        cad_unit: unit,
-        status: '',
-        _statusText: '',     // blank means unknown/not reported
-        details: '',
-        cfs_num: '',
-        location: ''
-      });
+      byUnit.set(unit, { cad_unit: unit, statusText: '', details: '', cfs_num: '', location: '' });
     }
   }
-
-  // Sort naturally by CAD Unit
-  return Array.from(byUnit.values()).sort((a,b) =>
-    naturalAZ(String(a.cad_unit||''), String(b.cad_unit||'')));
+  return Array.from(byUnit.values()).sort((a,b)=>naturalAZ(a.cad_unit,b.cad_unit));
 }
 
 function render(rows){
   const tb = $('#tbody'); tb.innerHTML = '';
+  if (!rows.length){
+    tb.innerHTML = '<tr><td colspan="5" class="muted">No data</td></tr>';
+    return;
+  }
   for (const r of rows){
-    const cfs = state.useLast3 ? last3(r.cfs_num) : (r.cfs_num ?? '');
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td class="code nowrap">${esc(r.cad_unit)}</td>
-      <td>${esc(r._statusText || '')}</td>
-      <td class="wrap">${esc(r.details ?? '')}</td>
-      <td class="code nowrap">${esc(cfs)}</td>
-      <td class="wrap">${esc(r.location ?? '')}</td>
+      <td>${esc(r.statusText)}</td>
+      <td class="wrap">${esc(r.details)}</td>
+      <td class="code nowrap">${esc(r.cfs_num)}</td>
+      <td class="wrap">${esc(r.location)}</td>
     `;
     tb.appendChild(tr);
   }
 }
 
-async function fetchAndRender(force=false){
+async function tick(){
   try{
     $('#error').hidden = true;
-    const payload = await fetchUnits(force);
-    const rows = applyRules(normalize(payload));
-    render(rows);
+    const payload = await fetchUnits();
+    render(normalize(payload));
     $('#lastUpdated').textContent = 'Last updated: ' + new Date().toLocaleTimeString();
   }catch(e){
     $('#error').hidden = false;
@@ -198,16 +154,11 @@ async function fetchAndRender(force=false){
   }
 }
 
-/* ------------------------ LIFECYCLE ------------------------ */
-
-async function start(){
-  await loadStatusMap();
-  await fetchAndRender(true);
-  state.timer = setInterval(fetchAndRender, state.pollMs);
-}
-function stop(){ if (state.timer){ clearInterval(state.timer); state.timer = null; } }
-function restart(){ stop(); start(); }
-start();
+(async function start(){
+  await loadStatusMap();       // harmless if file not present
+  await tick();
+  setInterval(tick, 5000);     // 5s auto-refresh
+})();
 </script>
 </body>
 </html>
