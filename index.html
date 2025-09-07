@@ -5,19 +5,27 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>OCEMS — Home</title>
+  <title>OCEMS — Documents</title>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* page-local tweaks only (won't affect other pages) */
+    .docs-wrap{ display:grid; gap:1rem; }
+    .doc-card{ border:1px solid var(--border); border-radius:.9rem; background:#0a0a0a; padding:1rem; }
+    .doc-title{ margin:0 0 .35rem 0; font-size:1.05em; }
+    .doc-desc{ margin:.25rem 0 .5rem; color:var(--muted); }
+    .doc-meta{ font-size:.85em; color:var(--muted); display:flex; gap:1rem; flex-wrap:wrap; }
+    .filter-bar{ display:flex; gap:.5rem; flex-wrap:wrap; margin: 1rem 0; }
+    .filter-bar input{ background:#0c0c0c; border:1px solid var(--border); color:var(--text); border-radius:.6rem; padding:.55rem .7rem; min-width:240px; }
+    .chip{ border:1px solid var(--border); background:#0a0a0a; border-radius:999px; padding:.1rem .5rem; font-size:.85em; }
+  </style>
 </head>
 <body>
 <header>
   <div class="container">
-    <h1>OCEMS — Home</h1>
+    <h1>OCEMS — Documents</h1>
     <nav>
-      <a href="/index.html">Home</a>
-      <!-- Links intentionally removed:
-           <a href="/units.html">Units</a>
-           <a href="/current-cfs.html">Current CFS</a>
-      -->
+      <a href="/">Home</a>
+      <!-- No links to internal pages like Units or Current CFS -->
     </nav>
     <div class="meta">
       <span class="muted">Last updated: <span id="ts">—</span></span>
@@ -26,21 +34,91 @@
 </header>
 
 <main class="container">
-  <div class="cards">
-    <div class="card">
-      <h2 style="margin-top:0;">Welcome</h2>
-      <p class="muted">Public homepage. Internal views are not linked from here.</p>
-    </div>
-    <div class="card">
-      <h3 style="margin-top:0;">Status</h3>
-      <p class="muted">Site is online and updating normally.</p>
+  <div class="filter-bar">
+    <input id="q" type="search" placeholder="Search titles or descriptions…" aria-label="Search documents" />
+  </div>
+
+  <div id="docs" class="docs-wrap">
+    <div class="doc-card">
+      <div class="doc-desc">Loading documents…</div>
     </div>
   </div>
 </main>
 
 <script>
-  // simple timestamp for the header
-  document.getElementById('ts').textContent = new Date().toLocaleString();
+/* timestamp in header */
+document.getElementById('ts').textContent = new Date().toLocaleString();
+
+/* tiny in-page renderer for docs.json */
+const $ = s => document.querySelector(s);
+
+function esc(s){ s = s==null? '' : String(s);
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+          .replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+
+function render(list){
+  const wrap = $('#docs');
+  wrap.innerHTML = '';
+  if (!list.length){
+    wrap.innerHTML = `<div class="doc-card"><div class="doc-desc">No documents found.</div></div>`;
+    return;
+  }
+  for (const d of list){
+    const tags = Array.isArray(d.tags) ? d.tags : [];
+    const updated = d.updated ? new Date(d.updated).toLocaleString() : '';
+    const size = d.size || '';
+    const metaBits = [updated && `Updated: ${esc(updated)}`, size && `Size: ${esc(size)}`].filter(Boolean).join(' • ');
+
+    const el = document.createElement('div');
+    el.className = 'doc-card';
+    el.innerHTML = `
+      <h2 class="doc-title"><a href="${esc(d.url)}" target="_blank" rel="noopener">${esc(d.title || d.url)}</a></h2>
+      <div class="doc-desc">${esc(d.description || '')}</div>
+      <div class="doc-meta">
+        ${metaBits ? `<span>${metaBits}</span>` : ''}
+        ${tags.length ? `<span>Tags: ${tags.map(t => `<span class="chip">${esc(t)}</span>`).join(' ')}</span>` : ''}
+      </div>
+    `;
+    wrap.appendChild(el);
+  }
+}
+
+let ALL_DOCS = [];
+
+async function loadDocs(){
+  try{
+    const r = await fetch('/docs.json', {cache:'no-store'});
+    if (!r.ok) throw new Error('docs.json not found');
+    const json = await r.json();
+    const arr = Array.isArray(json) ? json : (Array.isArray(json.docs) ? json.docs : []);
+    ALL_DOCS = arr.map(x => ({
+      title: x.title || '',
+      description: x.description || '',
+      url: x.url || '#',
+      updated: x.updated || '',
+      size: x.size || '',
+      tags: Array.isArray(x.tags) ? x.tags : []
+    }));
+  }catch(e){
+    console.warn('Docs manifest load failed:', e);
+    ALL_DOCS = [];
+  }
+  applyFilter();
+}
+
+function applyFilter(){
+  const q = ($('#q').value || '').toLowerCase();
+  const filtered = !q ? ALL_DOCS : ALL_DOCS.filter(d =>
+    (d.title||'').toLowerCase().includes(q) ||
+    (d.description||'').toLowerCase().includes(q) ||
+    (d.tags||[]).some(t => String(t).toLowerCase().includes(q))
+  );
+  render(filtered);
+}
+
+$('#q').addEventListener('input', applyFilter);
+
+loadDocs();
 </script>
 </body>
 </html>
