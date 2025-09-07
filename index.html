@@ -5,7 +5,7 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>OCEMS — Documents</title>
+  <title>Oldham County Corruption, Simplified</title>
   <link rel="stylesheet" href="styles.css" />
   <style>
     /* page-local tweaks only (won't affect other pages) */
@@ -22,11 +22,7 @@
 <body>
 <header>
   <div class="container">
-    <h1>OCEMS — Documents</h1>
-    <nav>
-      <a href="/">Home</a>
-      <!-- No links to internal pages like Units or Current CFS -->
-    </nav>
+    <h1>Oldham County Corruption, Simplified</h1>
     <div class="meta">
       <span class="muted">Last updated: <span id="ts">—</span></span>
     </div>
@@ -46,79 +42,78 @@
 </main>
 
 <script>
-/* timestamp in header */
-document.getElementById('ts').textContent = new Date().toLocaleString();
+  // simple timestamp for the header
+  document.getElementById('ts').textContent = new Date().toLocaleString();
 
-/* tiny in-page renderer for docs.json */
-const $ = s => document.querySelector(s);
+  // tiny in-page renderer for docs.json
+  const $ = s => document.querySelector(s);
 
-function esc(s){ s = s==null? '' : String(s);
-  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-          .replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+  function esc(s){ s = s==null? '' : String(s);
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+            .replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
 
-function render(list){
-  const wrap = $('#docs');
-  wrap.innerHTML = '';
-  if (!list.length){
-    wrap.innerHTML = `<div class="doc-card"><div class="doc-desc">No documents found.</div></div>`;
-    return;
+  function render(list){
+    const wrap = $('#docs');
+    wrap.innerHTML = '';
+    if (!list.length){
+      wrap.innerHTML = `<div class="doc-card"><div class="doc-desc">No documents found.</div></div>`;
+      return;
+    }
+    for (const d of list){
+      const tags = Array.isArray(d.tags) ? d.tags : [];
+      const updated = d.updated ? new Date(d.updated).toLocaleString() : '';
+      const size = d.size || '';
+      const metaBits = [updated && `Updated: ${esc(updated)}`, size && `Size: ${esc(size)}`].filter(Boolean).join(' • ');
+
+      const el = document.createElement('div');
+      el.className = 'doc-card';
+      el.innerHTML = `
+        <h2 class="doc-title"><a href="${esc(d.url)}" target="_blank" rel="noopener">${esc(d.title || d.url)}</a></h2>
+        <div class="doc-desc">${esc(d.description || '')}</div>
+        <div class="doc-meta">
+          ${metaBits ? `<span>${metaBits}</span>` : ''}
+          ${tags.length ? `<span>Tags: ${tags.map(t => `<span class="chip">${esc(t)}</span>`).join(' ')}</span>` : ''}
+        </div>
+      `;
+      wrap.appendChild(el);
+    }
   }
-  for (const d of list){
-    const tags = Array.isArray(d.tags) ? d.tags : [];
-    const updated = d.updated ? new Date(d.updated).toLocaleString() : '';
-    const size = d.size || '';
-    const metaBits = [updated && `Updated: ${esc(updated)}`, size && `Size: ${esc(size)}`].filter(Boolean).join(' • ');
 
-    const el = document.createElement('div');
-    el.className = 'doc-card';
-    el.innerHTML = `
-      <h2 class="doc-title"><a href="${esc(d.url)}" target="_blank" rel="noopener">${esc(d.title || d.url)}</a></h2>
-      <div class="doc-desc">${esc(d.description || '')}</div>
-      <div class="doc-meta">
-        ${metaBits ? `<span>${metaBits}</span>` : ''}
-        ${tags.length ? `<span>Tags: ${tags.map(t => `<span class="chip">${esc(t)}</span>`).join(' ')}</span>` : ''}
-      </div>
-    `;
-    wrap.appendChild(el);
+  let ALL_DOCS = [];
+
+  async function loadDocs(){
+    try{
+      const r = await fetch('/docs.json', {cache:'no-store'});
+      if (!r.ok) throw new Error('docs.json not found');
+      const json = await r.json();
+      const arr = Array.isArray(json) ? json : (Array.isArray(json.docs) ? json.docs : []);
+      ALL_DOCS = arr.map(x => ({
+        title: x.title || '',
+        description: x.description || '',
+        url: x.url || '#',
+        updated: x.updated || '',
+        size: x.size || '',
+        tags: Array.isArray(x.tags) ? x.tags : []
+      }));
+    }catch(e){
+      console.warn('Docs manifest load failed:', e);
+      ALL_DOCS = [];
+    }
+    applyFilter();
   }
-}
 
-let ALL_DOCS = [];
-
-async function loadDocs(){
-  try{
-    const r = await fetch('/docs.json', {cache:'no-store'});
-    if (!r.ok) throw new Error('docs.json not found');
-    const json = await r.json();
-    const arr = Array.isArray(json) ? json : (Array.isArray(json.docs) ? json.docs : []);
-    ALL_DOCS = arr.map(x => ({
-      title: x.title || '',
-      description: x.description || '',
-      url: x.url || '#',
-      updated: x.updated || '',
-      size: x.size || '',
-      tags: Array.isArray(x.tags) ? x.tags : []
-    }));
-  }catch(e){
-    console.warn('Docs manifest load failed:', e);
-    ALL_DOCS = [];
+  function applyFilter(){
+    const q = ($('#q').value || '').toLowerCase();
+    const filtered = !q ? ALL_DOCS : ALL_DOCS.filter(d =>
+      (d.title||'').toLowerCase().includes(q) ||
+      (d.description||'').toLowerCase().includes(q) ||
+      (d.tags||[]).some(t => String(t).toLowerCase().includes(q))
+    );
+    render(filtered);
   }
-  applyFilter();
-}
 
-function applyFilter(){
-  const q = ($('#q').value || '').toLowerCase();
-  const filtered = !q ? ALL_DOCS : ALL_DOCS.filter(d =>
-    (d.title||'').toLowerCase().includes(q) ||
-    (d.description||'').toLowerCase().includes(q) ||
-    (d.tags||[]).some(t => String(t).toLowerCase().includes(q))
-  );
-  render(filtered);
-}
-
-$('#q').addEventListener('input', applyFilter);
-
-loadDocs();
+  $('#q').addEventListener('input', applyFilter);
+  loadDocs();
 </script>
 </body>
 </html>
