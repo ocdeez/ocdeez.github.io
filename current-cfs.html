@@ -7,18 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Current CFS — OCEMS</title>
   <link rel="stylesheet" href="styles.css" />
-  <style>
-    :root{ --rowPad:.9rem }
-    body{font-size:22px}
-    header .container{padding:1rem 2rem}
-    h1{font-size:1.5rem}
-    table{font-size:1.1rem}
-    thead th{padding:var(--rowPad)}
-    tbody td{padding:var(--rowPad)}
-    .code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
-    .nowrap{white-space:nowrap}
-    .wrap{white-space:normal;word-break:break-word}
-  </style>
 </head>
 <body>
 <header>
@@ -36,17 +24,26 @@
   </div>
 </header>
 
-<main class="container">
+<!-- Mobile cards -->
+<div class="container mobileOnly">
+  <div class="section">
+    <div class="section-hdr"><span class="count-pill" id="count">0</span><span>Active Incidents</span></div>
+    <div id="cards" class="cards"></div>
+  </div>
+</div>
+
+<!-- Desktop table -->
+<main class="container desktopOnly">
   <table>
     <thead>
-    <tr>
-      <th>Incident</th>
-      <th>Status</th>
-      <th>Units Assigned</th>
-      <th>Units Stacked</th>
-      <th>Location</th>
-      <th>Incident #</th>
-    </tr>
+      <tr>
+        <th>Incident</th>
+        <th>Status</th>
+        <th>Units Assigned</th>
+        <th>Units Stacked</th>
+        <th>Location</th>
+        <th>Incident #</th>
+      </tr>
     </thead>
     <tbody id="tbody">
       <tr><td colspan="6" class="muted">Loading…</td></tr>
@@ -55,7 +52,7 @@
 </main>
 
 <script>
-/* Error overlay */
+/* Error overlay (in-page, like Units) */
 (function(){
   function showErr(label, detail){
     let el = document.getElementById('error');
@@ -77,71 +74,220 @@
 /* ---------- CONFIG ---------- */
 const PROXY = 'https://api.stancfhole.com';
 
-/* optional incident code → full description map if you add /incident_codes.json */
-let INCIDENT_MAP=null;
-async function loadIncidentMap(){
-  try { const r=await fetch('/incident_codes.json',{cache:'no-store'}); if(r.ok) INCIDENT_MAP=await r.json(); } catch{}
-}
-
+/* ---------- helpers ---------- */
 const $ = s => document.querySelector(s);
 function esc(s){ s = s==null? '' : String(s);
   return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
           .replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+function str(x){ return x==null ? '' : String(x); }
 function naturalAZ(a,b){ return String(a).localeCompare(String(b), undefined, {numeric:true, sensitivity:'base'}); }
 
-function mapIncidentDesc(code, desc){
-  if (desc && String(desc).trim()) return String(desc);
-  if (!code || !INCIDENT_MAP) return '';
-  const k = String(code).trim();
-  return INCIDENT_MAP[k] || INCIDENT_MAP[k.toUpperCase?.()] || '';
+/* CSV parsing (robust enough for typical two-column files) */
+function parseCSV(text){
+  const rows = [];
+  let i=0, cur='', inQ=false, row=[];
+  while (i < text.length){
+    const c = text[i++];
+    if (inQ){
+      if (c === '"'){
+        if (text[i] === '"'){ cur += '"'; i++; }
+        else inQ = false;
+      } else cur += c;
+    } else {
+      if (c === '"') inQ = true;
+      else if (c === ','){ row.push(cur); cur=''; }
+      else if (c === '\n'){ row.push(cur); rows.push(row); row=[]; cur=''; }
+      else if (c === '\r'){ /* skip */ }
+      else cur += c;
+    }
+  }
+  row.push(cur); rows.push(row);
+  return rows.filter(r => r.length && r.some(x => x !== ''));
 }
 
-async function fetchCfs(){
+/* Incident code map (from Incident Codes.csv at site root) */
+let INCIDENT_MAP = null;
+
+async function loadIncidentMap(){
+  try{
+    const r = await fetch('/Incident%20Codes.csv', {cache:'no-store'});
+    if (!r.ok) throw new Error('CSV not found');
+    const text = await r.text();
+    const rows = parseCSV(text);
+    if (!rows.length) throw new Error('CSV empty');
+
+    const header = rows[0].map(h => h.trim().toLowerCase());
+    let codeIdx = header.findIndex(h => /^(code|incident ?code|short ?code)$/.test(h));
+    let descIdx = header.findIndex(h => /^(description|desc|full|long|incident ?description)$/.test(h));
+
+    // If headers unknown, assume first two columns: [code, description]
+    if (codeIdx === -1) codeIdx = 0;
+    if (descIdx === -1) descIdx = 1;
+
+    const map = {};
+    for (let i=1;i<rows.length;i++){
+      const r = rows[i];
+      const code = (r[codeIdx] ?? '').trim();
+      const desc = (r[descIdx] ?? '').trim();
+      if (!code) continue;
+      const key = code.toUpperCase().replace(/[^A-Z0-9]/g,'');
+      const full = desc ? `${code} : ${desc}` : code;
+      map[key] = { code, desc, full };
+    }
+    INCIDENT_MAP = map;
+  }catch(e){
+    console.warn('Incident map load failed:', e);
+    INCIDENT_MAP = {}; // keep going, but we’ll fall back
+  }
+}
+
+function fullIncidentText(incident_code, fallbackDesc){
+  const code = str(incident_code).trim();
+  const key = code.toUpperCase().replace(/[^A-Z0-9]/g,'');
+  if (code && INCIDENT_MAP && INCIDENT_MAP[key]) return INCIDENT_MAP[key].full;
+  // If we can’t map, use the feed’s long description if present
+  return str(fallbackDesc || code);
+}
+
+/* Status color palette (same family as Units) */
+function normStatus(s){ return str(s).trim().toLowerCase().replace(/[_-]/g,' ').replace(/\s+/g,' '); }
+const STATUS_COLORS = (() => {
+  const m = new Map();
+
+  // Incident-centric statuses
+  m.set('active', '#3B82F6');   // blue
+  m.set('open', '#3B82F6');
+  m.set('on scene', '#F59E0B'); // orange
+  m.set('enroute', '#60A5FA');  // lighter blue
+  m.set('assigned', '#60A5FA');
+  m.set('backup enroute', '#60A5FA');
+  m.set('transporting', '#A78BFA'); // purple family
+  m.set('to hospital', '#A78BFA');
+  m.set('at hospital', '#C084FC');
+  m.set('staged', '#FBBF24');   // yellow
+  m.set('stacked', '#FDE047');  // stack queue
+  m.set('in area', '#22D3EE');  // teal
+  m.set('cancelled', '#9CA3AF');
+  m.set('canceled',  '#9CA3AF');
+  m.set('closed',    '#9CA3AF');
+  m.set('cleared',   '#9CA3AF');
+  m.set('unknown',   '#E6E6E6');
+
+  return {
+    colorFor(text){
+      const n = normStatus(text);
+      return m.get(n) || '#E6E6E6';
+    }
+  };
+})();
+
+/* Fetch + normalize */
+async function fetchCFS(){
   const url = PROXY.replace(/\/$/,'') + '/current-cfs?t=' + Date.now();
   const r = await fetch(url, { cache: 'no-store', mode: 'cors' });
-  if(!r.ok) throw new Error('HTTP '+r.status);
+  if (!r.ok) throw new Error('HTTP '+r.status);
   return await r.json();
+}
+
+function toArray(x){
+  if (Array.isArray(x)) return x;
+  if (!x) return [];
+  const s = String(x);
+  // split by comma or whitespace
+  return s.split(/[,\s]+/).map(v => v.trim()).filter(Boolean);
 }
 
 function normalize(payload){
   const rows = Array.isArray(payload?.records) ? payload.records : [];
-  return rows.map(r => ({
-    incident: mapIncidentDesc(r.incident_code, r.incident_code_desc),
-    status: r.status_desc ?? r.status ?? '',
-    units_assigned: Array.isArray(r.units_assigned) ? r.units_assigned.join(', ') : (r.units_assigned ?? ''),
-    units_stacked:  Array.isArray(r.units_stacked)  ? r.units_stacked.join(', ')  : (r.units_stacked  ?? ''),
-    location: r.incident_location ?? r.location ?? '',
-    incidentname: r.incidentname ?? r.cfs_num ?? '',
-    bg: r.priority_color || null,
-    fg: r.text_color || null
-  }));
+  const out = [];
+
+  for (const rec of rows){
+    const cfs = str(rec.cfs_num || rec.cfs || rec.incidentnumber || rec.incident_number || rec.id);
+    const code = str(rec.incident_code || rec.code);
+    const codeDesc = str(rec.incident_code_desc || rec.incident || rec.description);
+    const status = str(rec.status || rec.incident_status || rec.state || 'Active');
+    const units = toArray(rec.units || rec.units_assigned || rec.cad_units || rec.unit_list);
+    const stacked = toArray(rec.units_stacked || rec.stacked_units || rec.unitsstacked || rec.stacked);
+    const location = str(rec.location || rec.incident_location || rec.address || '');
+
+    out.push({
+      cfs, status, units, stacked, location,
+      incidentText: fullIncidentText(code, codeDesc)
+    });
+  }
+
+  // Sort newest first by CFS (if numbers), else by text desc
+  out.sort((a,b) => b.cfs.localeCompare(a.cfs, undefined, {numeric:true, sensitivity:'base'}));
+  return out;
 }
 
-function sortRows(rows){ return rows.sort((a,b)=> naturalAZ(a.incidentname,b.incidentname)); }
-
-function render(rows){
+/* Desktop render */
+function renderTable(rows){
   const tb = $('#tbody'); tb.innerHTML = '';
   if (!rows.length){ tb.innerHTML = '<tr><td colspan="6" class="muted">No active incidents</td></tr>'; return; }
+
   for (const r of rows){
+    const color = STATUS_COLORS.colorFor(r.status);
+    const unitsHtml = r.units.map(u => `<span class="chip">${esc(u)}</span>`).join(' ');
+    const stackedHtml = r.stacked.map(u => `<span class="chip">${esc(u)}</span>`).join(' ');
+
     const tr = document.createElement('tr');
-    if (r.bg) tr.style.background = r.bg;
-    if (r.fg) tr.style.color = r.fg;
     tr.innerHTML = `
-      <td class="wrap">${esc(r.incident)}</td>
-      <td>${esc(r.status)}</td>
-      <td class="wrap">${esc(r.units_assigned)}</td>
-      <td class="wrap">${esc(r.units_stacked)}</td>
-      <td class="wrap">${esc(r.location)}</td>
-      <td class="code nowrap">${esc(r.incidentname)}</td>`;
+      <td class="wrap">${esc(r.incidentText)}</td>
+      <td><span style="color:${color}">${esc(r.status)}</span></td>
+      <td class="wrap"><div class="chips">${unitsHtml || '<span class="muted">—</span>'}</div></td>
+      <td class="wrap"><div class="chips">${stackedHtml || '<span class="muted">—</span>'}</div></td>
+      <td class="wrap">${esc(r.location || '')}</td>
+      <td class="code nowrap">${esc(r.cfs)}</td>
+    `;
     tb.appendChild(tr);
   }
 }
 
+/* Mobile render (simple card list, no grouping to keep it clean) */
+function renderCards(rows){
+  $('#count').textContent = rows.length;
+  const cards = $('#cards'); cards.innerHTML = '';
+  if (!rows.length){
+    cards.innerHTML = `<div class="card"><div class="line">No active incidents</div></div>`;
+    return;
+  }
+
+  for (const r of rows){
+    const color = STATUS_COLORS.colorFor(r.status);
+    const unitsHtml = r.units.map(u => `<span class="chip">${esc(u)}</span>`).join('');
+    const stackedHtml = r.stacked.map(u => `<span class="chip">${esc(u)}</span>`).join('');
+
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="cfs-line">
+        <span class="unit-id">${esc(r.incidentText)}</span>
+        <span class="cfs-id code small">${esc(r.cfs)}</span>
+      </div>
+      <div class="line" style="color:${color}">${esc(r.status)}</div>
+      <div class="line wrap">${esc(r.location || '')}</div>
+      <div class="line small">
+        <div><span class="muted">Units:</span></div>
+        <div class="chips">${unitsHtml || '<span class="muted">—</span>'}</div>
+      </div>
+      <div class="line small">
+        <div><span class="muted">Stacked:</span></div>
+        <div class="chips">${stackedHtml || '<span class="muted">—</span>'}</div>
+      </div>
+    `;
+    cards.appendChild(card);
+  }
+}
+
+/* Tick */
 async function tick(){
   try{
     $('#error').hidden = true;
-    const payload = await fetchCfs();
-    render(sortRows(normalize(payload)));
+    const payload = await fetchCFS();
+    const rows = normalize(payload);
+    renderTable(rows);
+    renderCards(rows);
     $('#lastUpdated').textContent = 'Last updated: ' + new Date().toLocaleTimeString();
   }catch(e){
     $('#error').hidden = false;
@@ -150,7 +296,7 @@ async function tick(){
 }
 
 (async function start(){
-  await loadIncidentMap(); // harmless if file absent
+  await loadIncidentMap();   // <- loads /Incident Codes.csv and builds map
   await tick();
   setInterval(tick, 5000);
 })();
