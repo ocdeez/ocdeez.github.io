@@ -106,7 +106,7 @@ function mapStatus(code, desc){
   return STATUS_MAP[k]?.text || STATUS_MAP[k.toUpperCase?.()]?.text || k;
 }
 
-/* Color palette for statuses (extendable; safe defaults for all we saw) */
+/* Color palette for statuses */
 const STATUS_COLORS = (() => {
   const m = new Map();
 
@@ -145,15 +145,9 @@ const STATUS_COLORS = (() => {
   // Events
   m.set('distress', '#EF4444');
   m.set('detained', '#E11D48');
-  m.set('k 9 deployed', '#22C55E'); // normalize: 'k-9 deployed' -> 'k 9 deployed'
+  m.set('k 9 deployed', '#22C55E');
   m.set('arrived at', '#22C55E');
   m.set('leaving scene to', '#38BDF8');
-
-  // 10-codes / misc
-  m.set('10 15', '#9CA3AF');
-  m.set('10 8/on cell phone', '#9CA3AF');
-  m.set('on call', '#6EE7B7');
-  m.set('vehicle search', '#0EA5E9');
 
   // Off duty left gray (hidden for non-sticky)
   m.set('off duty', '#6B7280');
@@ -166,11 +160,7 @@ const STATUS_COLORS = (() => {
   };
 })();
 
-/* Grouping: 
-   - "Available" group includes Available + On Air
-   - "Busy" group includes Busy + POC
-   - All other statuses become their own groups (title-cased)
-*/
+/* Grouping rules */
 function groupNameFor(statusText){
   const n = normStatus(statusText);
   if (n === 'available' || n === 'on air' || n === 'on-air' || n === 'onair') return 'Available';
@@ -221,15 +211,16 @@ function normalize(payload){
   return Array.from(byUnit.values()).sort((a,b)=>naturalAZ(a.cad_unit,b.cad_unit));
 }
 
-/* ---------- render: desktop table ---------- */
+/* ---------- render: desktop table (now with colored status) ---------- */
 function renderTable(rows){
   const tb = $('#tbody'); tb.innerHTML = '';
   if (!rows.length){ tb.innerHTML = '<tr><td colspan="5" class="muted">No data</td></tr>'; return; }
   for (const r of rows){
+    const color = STATUS_COLORS.colorFor(r.statusText);
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td class="code nowrap">${esc(r.cad_unit_raw)}</td>
-      <td>${esc(r.statusText)}</td>
+      <td><span style="color:${color}">${esc(r.statusText)}</span></td>
       <td class="wrap">${esc(r.details)}</td>
       <td class="code nowrap">${esc(r.cfs_num)}</td>
       <td class="wrap">${esc(r.location)}</td>`;
