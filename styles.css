@@ -1,4 +1,4 @@
-/* Global dark baseline + mobile cards for Units
+/* Global dark baseline + mobile cards for Units / CFS
    - True black background
    - High-contrast text
    - TV-friendly scaling, mobile-first behavior
@@ -87,7 +87,7 @@ tbody td{ padding:var(--rowPad) .75rem; vertical-align: top; }
 .nowrap{ white-space: nowrap; }
 .wrap{ white-space: normal; word-break: break-word; overflow-wrap: anywhere; }
 
-/* ---------- Mobile card view (Units) ---------- */
+/* ---------- Mobile card view (shared by Units & CFS) ---------- */
 .mobileOnly{ display:none; }
 .desktopOnly{ display:block; }
 
@@ -108,32 +108,40 @@ tbody td{ padding:var(--rowPad) .75rem; vertical-align: top; }
     overflow: hidden;
   }
 
-  /* FIX: make header non-sticky so it doesn't clip the first card */
+  /* Non-sticky to avoid clipping first card */
   .section-hdr{
     display:flex; align-items:center; gap:.6rem;
     color: var(--muted); font-weight:600; letter-spacing:.02em;
     padding: .75rem 1rem .25rem;
     background: var(--bg2);
-    position: static;   /* was sticky; removing overlap that hid first unit line */
+    position: static;
   }
   .count-pill{
     background: #0e1a20; color:#9be8ff; border:1px solid #123;
     border-radius: 999px; padding:.15rem .55rem; font-size:.8em;
   }
 
-  .cards{
-    display:flex; flex-direction:column; gap:.75rem;
-    padding: .6rem .75rem 1rem;  /* a bit more top padding below the header */
-  }
+  .cards{ display:flex; flex-direction:column; gap:.75rem; padding:.6rem .75rem 1rem; }
   .card{
     border:1px solid #141414; background:#0c0c0c; border-radius:.9rem; padding:.9rem 1rem;
   }
-  .unit-line{
+  .unit-line, .cfs-line{
     display:flex; align-items:baseline; justify-content:space-between;
     gap: 1rem; margin-bottom:.25rem;
   }
-  .unit-id{ font-weight:700; letter-spacing:.02em; }
+  .unit-id, .cfs-id{ font-weight:700; letter-spacing:.02em; }
   .status-badge{ font-size:.9em; opacity:.95; }
   .line{ color:var(--text); opacity:.92; margin-top:.2rem; }
   .small{ font-size:.85em; color:var(--muted); }
+}
+
+/* --- chips (used on Current CFS for unit lists). Harmless for Units --- */
+.chips{ display:flex; flex-wrap:wrap; gap:.35rem .5rem; margin-top:.2rem; }
+.chip{
+  border:1px solid var(--border);
+  background:#0a0a0a;
+  border-radius:999px;
+  padding:.1rem .5rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", "Roboto Mono", "Courier New", monospace;
+  font-size:.85em;
 }
