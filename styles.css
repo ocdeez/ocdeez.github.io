@@ -1,21 +1,26 @@
-/* Global dark TV/mobile baseline
+/* Global dark baseline + mobile cards for Units
    - True black background
    - High-contrast text
-   - Scales automatically to any screen (phones, TVs, desktops)
-   - No HTML changes required
+   - TV-friendly scaling, mobile-first behavior
+   - Safe-area padding for iPhone notches/home bar
 */
 
 :root{
-  color-scheme: dark;              /* tell browsers we’re dark */
-  --bg: #000000;                   /* true black */
-  --text: #E6E6E6;                 /* readable on black */
-  --muted: #A0A6AD;                /* secondary text */
-  --border: #222222;               /* subtle dividers */
-  --accent: #32D4FF;               /* link/accent color */
-  --rowPad: 0.9rem;                /* table cell vertical rhythm */
+  color-scheme: dark;
+  --bg: #000000;          /* true black */
+  --bg2:#0a0a0a;          /* card bg */
+  --text: #E6E6E6;        /* primary text */
+  --muted:#A0A6AD;        /* secondary text */
+  --border:#222222;       /* subtle dividers */
+  --accent:#32D4FF;       /* links, focus */
+  --rowPad:.9rem;
 
-  /* Zebra striping toggle: 0 = off (default), 0.03 = faint, 0.06 = stronger */
+  /* Zebra striping for desktop table (0 = off) */
   --zebra: 0;
+
+  /* safe-area insets */
+  --safe-top: env(safe-area-inset-top);
+  --safe-bottom: env(safe-area-inset-bottom);
 }
 
 *,
@@ -27,156 +32,104 @@ html, body {
   padding: 0;
   background: var(--bg);
   color: var(--text);
-  min-height: 100svh; /* fill the screen including mobile UI chrome */
+  min-height: 100svh;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue",
                "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji",
                "Segoe UI Emoji";
-  /* Responsive, distance-friendly text: grows on TVs, stays sane on phones */
   font-size: clamp(18px, 2.2vw, 26px);
   line-height: 1.35;
   -webkit-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
+  padding-bottom: var(--safe-bottom);
 }
 
-a {
-  color: var(--accent);
-  text-decoration: none;
-}
+a { color: var(--accent); text-decoration: none; }
 a:hover, a:focus { text-decoration: underline; }
 
-/* Layout containers */
-.container {
-  width: 100%;
-  max-width: 100%;
-  margin-inline: auto;
-  padding-inline: 1rem;
-}
+.container { width: 100%; max-width: 100%; margin-inline: auto; padding-inline: 1rem; }
 
 /* Header / top nav */
 header {
   background: var(--bg);
   border-bottom: 1px solid var(--border);
-  position: sticky; /* header stays visible when page scrolls */
+  position: sticky;
   top: 0;
   z-index: 10;
 }
 header .container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: .75rem;
-  padding: 1rem 2rem;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: .75rem; padding: calc(1rem + var(--safe-top)) 2rem 1rem;
 }
-h1 {
-  font-size: clamp(22px, 3vw, 34px);
-  margin: 0;
-}
-nav {
-  display: flex;
-  align-items: center;
-  gap: .75rem;
-}
-nav a {
-  display: inline-block;
-  padding: .25rem .6rem;
-  border-radius: .5rem;
-  border: 1px solid transparent;
-}
-nav a:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
+h1{ font-size: clamp(22px, 3vw, 34px); margin: 0; }
+nav { display:flex; align-items:center; gap:.75rem; }
+nav a{ display:inline-block; padding:.25rem .6rem; border-radius:.5rem; border:1px solid transparent; }
+nav a:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
 
 /* Meta (last updated / error) */
-.meta {
-  display: flex;
-  gap: .75rem;
-  align-items: center;
-  font-size: .85em;
-  color: var(--muted);
-}
-.error { color: #ff6b6b; }
+.meta{ display:flex; gap:.75rem; align-items:center; font-size:.85em; color:var(--muted); }
+.error{ color:#ff6b6b; }
 
-/* Main content area */
-main.container {
-  padding: 1rem 2rem;
-  /* If the table gets wider than the viewport, allow smooth horizontal scroll on mobile */
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior: contain;
+/* Desktop table area */
+main.container{ padding: 1rem 2rem; overflow-x: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
+table{ width:100%; border-collapse: collapse; table-layout: auto; }
+thead th{
+  text-align:left; font-weight:700; padding:var(--rowPad) .75rem;
+  border-bottom:1px solid var(--border); position:sticky; top:calc(1px + 0px);
+  background: var(--bg); z-index: 5;
 }
+tbody tr{ border-bottom:1px solid #111; background: rgba(255,255,255,var(--zebra)); }
+tbody tr:nth-child(even){ background: rgba(255,255,255,var(--zebra)); }
+tbody td{ padding:var(--rowPad) .75rem; vertical-align: top; }
 
-/* Tables */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  table-layout: auto; /* let columns size naturally */
-}
+/* Utilities */
+.muted{ color:var(--muted); }
+.code{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", "Roboto Mono", "Courier New", monospace; }
+.nowrap{ white-space: nowrap; }
+.wrap{ white-space: normal; word-break: break-word; overflow-wrap: anywhere; }
 
-thead th {
-  text-align: left;
-  font-weight: 700;
-  padding: var(--rowPad) .75rem;
-  border-bottom: 1px solid var(--border);
-  position: sticky;  /* keeps header visible when vertical scrolling */
-  top: calc(1px + 0px); /* slight nudge below the header border */
-  background: var(--bg);
-  z-index: 5;
-}
+/* ---------- Mobile card view (Units) ---------- */
+.mobileOnly{ display:none; }
+.desktopOnly{ display:block; }
 
-tbody tr {
-  border-bottom: 1px solid #111;
-  background: rgba(255,255,255,var(--zebra));
-}
-tbody tr:nth-child(even) {
-  background: rgba(255,255,255,var(--zebra)); /* enable by setting --zebra to e.g. 0.03 */
-}
+@media (max-width: 760px){
+  .mobileOnly{ display:block; }
+  .desktopOnly{ display:none; }
 
-tbody td {
-  padding: var(--rowPad) .75rem;
-  vertical-align: top;
-}
+  header .container{ padding: calc(.75rem + var(--safe-top)) 1rem .75rem; }
+  main.container{ padding: .75rem 1rem; }
 
-/* Utility classes already used in your HTML */
-.muted { color: var(--muted); }
-.code  { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono",
-         "Roboto Mono", "Courier New", monospace; }
-.nowrap { white-space: nowrap; }
-.wrap   { white-space: normal; word-break: break-word; overflow-wrap: anywhere; }
+  /* Section list */
+  .sections{ display:flex; flex-direction:column; gap: 1rem; }
 
-/* Make tables friendlier on narrow screens without changing HTML */
-@media (max-width: 900px) {
-  header .container { padding: .75rem 1rem; }
-  main.container { padding: .75rem 1rem; }
-  thead th, tbody td { padding: .7rem .6rem; }
-}
+  .section{
+    border:1px solid var(--border);
+    border-radius: 1rem;
+    background: var(--bg2);
+    overflow: hidden;
+  }
 
-@media (max-width: 640px) {
-  /* Slightly tighter padding and line-height for phones */
-  thead th, tbody td { padding: .6rem .5rem; }
-  html, body { line-height: 1.3; }
+  .section-hdr{
+    display:flex; align-items:center; gap:.6rem;
+    color: var(--muted); font-weight:600; letter-spacing:.02em;
+    padding: .75rem 1rem .25rem;
+    position: sticky; top: calc(56px + var(--safe-top)); /* sticks under header */
+    background: var(--bg2); z-index: 4;
+  }
+  .count-pill{
+    background: #0e1a20; color:#9be8ff; border:1px solid #123;
+    border-radius: 999px; padding:.15rem .55rem; font-size:.8em;
+  }
 
-  /* Let long tables scroll horizontally (already enabled on main.container).
-     Keep fonts legible rather than shrinking too small. */
+  .cards{ display:flex; flex-direction:column; gap:.75rem; padding:.25rem .75rem 1rem; }
+  .card{
+    border:1px solid #141414; background:#0c0c0c; border-radius:.9rem; padding:.9rem 1rem;
+  }
+  .unit-line{
+    display:flex; align-items:baseline; justify-content:space-between;
+    gap: 1rem; margin-bottom:.25rem;
+  }
+  .unit-id{ font-weight:700; letter-spacing:.02em; }
+  .status-badge{ font-size:.9em; opacity:.95; }
+  .line{ color:var(--text); opacity:.92; margin-top:.2rem; }
+  .small{ font-size:.85em; color:var(--muted); }
 }
-
-/* Optional focus styles for keyboard nav */
-:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
-
-/* Subtle card-style link blocks on the homepage (index.html) */
-.cards {
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-}
-.card {
-  border: 1px solid var(--border);
-  border-radius: .75rem;
-  background: #0a0a0a;
-  padding: 1rem;
-}
-.card a { color: inherit; display: block; }
