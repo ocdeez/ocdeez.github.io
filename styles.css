@@ -1,31 +1,182 @@
-/* Minimal, accessible, responsive styles */
+/* Global dark TV/mobile baseline
+   - True black background
+   - High-contrast text
+   - Scales automatically to any screen (phones, TVs, desktops)
+   - No HTML changes required
+*/
+
 :root{
-  --bg: #0b0b10; 
-  --fg: #eef0f4;
-  --muted:#b8c0cc;
-  --card:#12121a;
-  --border:#252538;
-  --btn:#2f80ed;
+  color-scheme: dark;              /* tell browsers we’re dark */
+  --bg: #000000;                   /* true black */
+  --text: #E6E6E6;                 /* readable on black */
+  --muted: #A0A6AD;                /* secondary text */
+  --border: #222222;               /* subtle dividers */
+  --accent: #32D4FF;               /* link/accent color */
+  --rowPad: 0.9rem;                /* table cell vertical rhythm */
+
+  /* Zebra striping toggle: 0 = off (default), 0.03 = faint, 0.06 = stronger */
+  --zebra: 0;
 }
-@media (prefers-color-scheme: light){
-  :root{
-    --bg:#ffffff; --fg:#0e1116; --muted:#5b6573; --card:#f5f7fb; --border:#e3e8ef; --btn:#2f80ed;
-  }
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100svh; /* fill the screen including mobile UI chrome */
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue",
+               "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji",
+               "Segoe UI Emoji";
+  /* Responsive, distance-friendly text: grows on TVs, stays sane on phones */
+  font-size: clamp(18px, 2.2vw, 26px);
+  line-height: 1.35;
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
 }
-*{box-sizing:border-box}
-html,body{height:100%}
-body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial}
-a{color:inherit;text-decoration:none}
-.container{max-width:960px;margin:0 auto;padding:1.25rem}
-.site-header{border-bottom:1px solid var(--border);backdrop-filter:saturate(140%) blur(8px);position:sticky;top:0;background:color-mix(in oklab, var(--bg) 92%, transparent)}
-.nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
-.brand{font-weight:700;letter-spacing:.2px}
-.nav-links{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
-.btn{display:inline-block;padding:.65rem 1rem;border-radius:.75rem;border:1px solid var(--btn);background:var(--btn);color:white;font-weight:600}
-.btn.ghost{background:transparent;color:var(--fg);border-color:var(--border)}
-.hero{padding:3rem 0 2rem}
-.hero h1{margin:0 0 .5rem;font-size:clamp(2rem,4vw,3rem)}
-.cta-row{display:flex;gap:.75rem;margin-top:1rem;flex-wrap:wrap}
-.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin:2rem 0}
-.card{background:var(--card);border:1px solid var(--border);border-radius:1rem;padding:1rem}
-.site-footer{border-top:1px solid var(--border);margin-top:3rem}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover, a:focus { text-decoration: underline; }
+
+/* Layout containers */
+.container {
+  width: 100%;
+  max-width: 100%;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+/* Header / top nav */
+header {
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  position: sticky; /* header stays visible when page scrolls */
+  top: 0;
+  z-index: 10;
+}
+header .container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  padding: 1rem 2rem;
+}
+h1 {
+  font-size: clamp(22px, 3vw, 34px);
+  margin: 0;
+}
+nav {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+}
+nav a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: .5rem;
+  border: 1px solid transparent;
+}
+nav a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Meta (last updated / error) */
+.meta {
+  display: flex;
+  gap: .75rem;
+  align-items: center;
+  font-size: .85em;
+  color: var(--muted);
+}
+.error { color: #ff6b6b; }
+
+/* Main content area */
+main.container {
+  padding: 1rem 2rem;
+  /* If the table gets wider than the viewport, allow smooth horizontal scroll on mobile */
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto; /* let columns size naturally */
+}
+
+thead th {
+  text-align: left;
+  font-weight: 700;
+  padding: var(--rowPad) .75rem;
+  border-bottom: 1px solid var(--border);
+  position: sticky;  /* keeps header visible when vertical scrolling */
+  top: calc(1px + 0px); /* slight nudge below the header border */
+  background: var(--bg);
+  z-index: 5;
+}
+
+tbody tr {
+  border-bottom: 1px solid #111;
+  background: rgba(255,255,255,var(--zebra));
+}
+tbody tr:nth-child(even) {
+  background: rgba(255,255,255,var(--zebra)); /* enable by setting --zebra to e.g. 0.03 */
+}
+
+tbody td {
+  padding: var(--rowPad) .75rem;
+  vertical-align: top;
+}
+
+/* Utility classes already used in your HTML */
+.muted { color: var(--muted); }
+.code  { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono",
+         "Roboto Mono", "Courier New", monospace; }
+.nowrap { white-space: nowrap; }
+.wrap   { white-space: normal; word-break: break-word; overflow-wrap: anywhere; }
+
+/* Make tables friendlier on narrow screens without changing HTML */
+@media (max-width: 900px) {
+  header .container { padding: .75rem 1rem; }
+  main.container { padding: .75rem 1rem; }
+  thead th, tbody td { padding: .7rem .6rem; }
+}
+
+@media (max-width: 640px) {
+  /* Slightly tighter padding and line-height for phones */
+  thead th, tbody td { padding: .6rem .5rem; }
+  html, body { line-height: 1.3; }
+
+  /* Let long tables scroll horizontally (already enabled on main.container).
+     Keep fonts legible rather than shrinking too small. */
+}
+
+/* Optional focus styles for keyboard nav */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Subtle card-style link blocks on the homepage (index.html) */
+.cards {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+.card {
+  border: 1px solid var(--border);
+  border-radius: .75rem;
+  background: #0a0a0a;
+  padding: 1rem;
+}
+.card a { color: inherit; display: block; }
