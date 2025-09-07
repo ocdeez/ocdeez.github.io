@@ -1,0 +1,26 @@
+[
+  {
+    "title": "2025 Protocol Update",
+    "description": "Official protocol changes effective Sept 2025.",
+    "url": "/docs/2025-protocol-update.pdf",
+    "updated": "2025-09-06T15:30:00-04:00",
+    "size": "1.2 MB",
+    "tags": ["protocol", "official"]
+  },
+  {
+    "title": "Vehicle Assignment Sheet",
+    "description": "Current vehicle/unit assignments.",
+    "url": "/docs/vehicle-assignments.xlsx",
+    "updated": "2025-09-01",
+    "size": "180 KB",
+    "tags": ["logistics"]
+  },
+  {
+    "title": "Radio Call Signs",
+    "description": "Reference sheet for radio identifiers.",
+    "url": "/docs/radio-callsigns.pdf",
+    "updated": "2025-08-15",
+    "size": "95 KB",
+    "tags": ["radio", "reference"]
+  }
+]
