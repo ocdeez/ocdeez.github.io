@@ -9,130 +9,103 @@
 <style>
   :root{
     color-scheme: dark;
-    --bg:#000; --text:#E6E6E6; --muted:#A0A6AD; --border:#222;
-    --padY:.45rem; --padX:.5rem;
-    --fz: clamp(16px, 1.8vw, 22px);
+    --bg:#000; --bg2:#0a0a0a; --bg3:#070707;
+    --text:#E6E6E6; --muted:#A0A6AD; --border:#1b1b1b;
+    --padY:.50rem; --padX:.65rem;
+    --fz: clamp(16px, 1.7vw, 22px);
   }
-  html,body{margin:0;background:var(--bg);color:var(--text);font:400 var(--fz)/1.25 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;overflow:hidden;}
-  #wrap{transform-origin: top left; width:100vw; }
-  .topbar{position:fixed;top:.4rem;right:.6rem;font-size:.85em;color:var(--muted);z-index:10}
+  html,body{
+    margin:0;background:var(--bg);color:var(--text);
+    font:400 var(--fz)/1.25 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+    overflow:hidden;
+  }
+  .topbar{position:fixed;top:.5rem;right:.8rem;font-size:.85em;color:var(--muted);z-index:10}
+  .panel{
+    margin:.8rem; padding:0;
+    border:1px solid var(--border);
+    border-radius:14px; background: var(--bg2);
+    box-shadow: 0 8px 24px rgba(0,0,0,.35);
+    overflow:hidden;
+  }
+  .panel .stripe{
+    height:3px;
+    background: linear-gradient(90deg,#0ea5e9, #22d3ee, #38bdf8);
+  }
+  #wrap{transform-origin: top left; width:calc(100vw - 1.6rem);}
   table{width:100%;border-collapse:collapse;table-layout:auto}
-  thead th{position:sticky;top:0;background:#000;border-bottom:1px solid var(--border);text-align:left;font-weight:700;padding:var(--padY) var(--padX)}
-  tbody td{padding:var(--padY) var(--padX);border-bottom:1px solid #111;vertical-align:top}
+  thead th{
+    position:sticky;top:0;background:var(--bg2);
+    border-bottom:1px solid var(--border);
+    text-align:left;font-weight:700;letter-spacing:.02em;
+    padding:var(--padY) var(--padX)
+  }
+  tbody tr:nth-child(odd){ background: var(--bg2); }
+  tbody tr:nth-child(even){ background: var(--bg3); }
+  tbody td{ padding:var(--padY) var(--padX); border-bottom:1px solid #111; vertical-align:top }
   .code{font-family: ui-monospace,SFMono-Regular,Menlo,Consolas,Roboto Mono,monospace}
+  .badge{
+    display:inline-block; padding:.05rem .5rem; border-radius:999px;
+    border:1px solid var(--bd, #333); color:var(--fg, #e6e6e6);
+    background: var(--bgc, transparent); font-weight:600;
+  }
 </style>
 </head>
 <body>
 <div class="topbar"><span id="updated">—</span></div>
-<div id="wrap">
-  <table>
-    <thead>
-      <tr>
-        <th>CAD Unit</th>
-        <th>Status</th>
-        <th>Details</th>
-        <th>CFS #</th>
-        <th>Location</th>
-      </tr>
-    </thead>
-    <tbody id="tbody"><tr><td colspan="5" style="color:#888">Loading…</td></tr></tbody>
-  </table>
+
+<div class="panel" id="panel">
+  <div class="stripe"></div>
+  <div id="wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>CAD Unit</th>
+          <th>Status</th>
+          <th>Details</th>
+          <th>CFS #</th>
+          <th>Location</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"><tr><td colspan="5" style="color:#888">Loading…</td></tr></tbody>
+    </table>
+  </div>
 </div>
+
 <script>
 /* ------- config ------- */
 const PROXY = 'https://api.stancfhole.com';
-const REFRESH_SEC = new URLSearchParams(location.search).get('refresh') ? Number(new URLSearchParams(location.search).get('refresh')) : 5;
+const REFRESH_SEC = Number(new URLSearchParams(location.search).get('refresh') || 5);
 
-/* sticky + allowed (same as main page) */
+/* sticky + allowed (same as your main page) */
 const STICKY_UNITS = ['M931','M932','M933','M934','M935','M936','M937','M938','M939'];
 const ALLOW_UNITS = new Set([
-  ...STICKY_UNITS,
-  '93','93HLD','905','906','907','908','909','911','912','913','914','915','917','918','919','920','921','922',
+  ...STICKY_UNITS,'93','93HLD','905','906','907','908','909','911','912','913','914','915','917','918','919','920','921','922',
   '924','925','926','927','928','929','940','941','943','947','956',
   '9301','9302','9303','9304','9305','9306','9307','9308','9309','9310','9311','9312','9313','9314','9315','9316','9317',
   '9320','9321','9322','9323','9324','9325','9326','9327','9328','9329','9330','9331','9332','9333','9334','9335','9336','9337','9338','9339',
-  '9340','9341','9342','9343','9344','9345','9346','9347','9348','9349',
-  '9350','9351','9352','9353','9354','9355','9356','9383','9391','9392'
+  '9340','9341','9342','9343','9344','9345','9346','9347','9348','9349','9350','9351','9352','9353','9354','9355','9356','9383','9391','9392'
 ]);
+
 /* helpers */
 const $ = s => document.querySelector(s);
 const esc = s => String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 const norm = s => String(s||'').trim().toLowerCase().replace(/[_-]/g,' ').replace(/\s+/g,' ');
-
-const STATUS_COLORS=(()=>{
-  const m = new Map();
-  m.set('available','#2ECC71'); m.set('on air','#34D399');
-  m.set('busy','#9CA3AF'); m.set('poc','#9CA3AF'); m.set('ems supervisor/poc','#9CA3AF');
-  m.set('enroute','#3B82F6'); m.set('assigned','#60A5FA'); m.set('backup enroute','#60A5FA');
-  m.set('on scene','#F59E0B');
-  m.set('transporting','#A78BFA'); m.set('to hospital','#A78BFA'); m.set('at hospital','#C084FC');
-  m.set('patient contact','#F97316'); m.set('staged','#FBBF24'); m.set('stacked','#FDE047'); m.set('in area','#22D3EE');
-  m.set('off duty','#6B7280');
-  return { colorFor:t => m.get(norm(t)) || '#E6E6E6' };
-})();
-
 function isOffDuty(s){ return norm(s)==='off duty'; }
 function normalizeUnit(u){ return String(u||'').replace(/[^A-Za-z0-9]/g,''); }
 
-async function fetchUnits(){
-  const r = await fetch(PROXY.replace(/\/$/,'')+'/units?t='+Date.now(), {cache:'no-store', mode:'cors'});
-  if(!r.ok) throw new Error('HTTP '+r.status);
-  return r.json();
-}
-function normalize(payload){
-  const rows = Array.isArray(payload?.records)?payload.records:[];
-  const by = new Map();
-  for(const rec of rows){
-    const raw = String(rec.cad_unit||''); const id = normalizeUnit(raw);
-    if(!ALLOW_UNITS.has(id)) continue;
-    const statusText = rec.status_desc || rec.status || '';
-    if(!STICKY_UNITS.includes(id) && isOffDuty(statusText)) continue;
-    by.set(id, {
-      idRaw: raw || id,
-      status: statusText,
-      details: rec.details ?? '',
-      cfs: rec.cfs_num ?? rec.incidentname ?? '',
-      loc: rec.location ?? rec.incident_location ?? ''
-    });
-  }
-  for(const u of STICKY_UNITS){ if(!by.has(u)) by.set(u,{idRaw:u,status:'',details:'',cfs:'',loc:''}); }
-  return Array.from(by.entries()).sort((a,b)=>a[0].localeCompare(b[0],undefined,{numeric:true})).map(([,v])=>v);
-}
-function render(rows){
-  const tb = $('#tbody'); tb.innerHTML='';
-  for(const r of rows){
-    const color = STATUS_COLORS.colorFor(r.status);
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td class="code">${esc(r.idRaw)}</td>
-      <td style="color:${color}">${esc(r.status)}</td>
-      <td>${esc(r.details)}</td>
-      <td class="code">${esc(r.cfs)}</td>
-      <td>${esc(r.loc)}</td>`;
-    tb.appendChild(tr);
-  }
-}
-
-/* auto fit to screen: scale down if content taller than viewport */
-function fitToScreen(){
-  const wrap = document.getElementById('wrap');
-  wrap.style.transform = 'scale(1)'; wrap.style.width = '100vw';
-  const need = wrap.scrollHeight, have = window.innerHeight;
-  const scale = Math.min(1, have / (need + 1));
-  wrap.style.transform = `scale(${scale})`;
-  wrap.style.width = (100/scale) + 'vw';
-}
-
-async function tick(){
-  const data = await fetchUnits();
-  const rows = normalize(data);
-  render(rows);
-  $('#updated').textContent = new Date().toLocaleTimeString();
-  fitToScreen();
-}
-tick().catch(console.error);
-setInterval(()=>tick().catch(console.error), (REFRESH_SEC||5)*1000);
-window.addEventListener('resize', fitToScreen);
-</script>
-</body>
-</html>
+/* status badge palette (fg,bg,border) */
+const STATUS_STYLE = (() => {
+  const s = new Map();
+  s.set('available',        {fg:'#34D399', bg:'rgba(52,211,153,.14)', bd:'#134e4a'});
+  s.set('on air',           {fg:'#34D399', bg:'rgba(52,211,153,.14)', bd:'#134e4a'});
+  s.set('busy',             {fg:'#9CA3AF', bg:'rgba(156,163,175,.12)', bd:'#374151'});
+  s.set('poc',              {fg:'#9CA3AF', bg:'rgba(156,163,175,.12)', bd:'#374151'});
+  s.set('ems supervisor/poc',{fg:'#9CA3AF', bg:'rgba(156,163,175,.12)', bd:'#374151'});
+  s.set('enroute',          {fg:'#60A5FA', bg:'rgba(96,165,250,.14)', bd:'#1e3a8a'});
+  s.set('assigned',         {fg:'#60A5FA', bg:'rgba(96,165,250,.14)', bd:'#1e3a8a'});
+  s.set('backup enroute',   {fg:'#60A5FA', bg:'rgba(96,165,250,.14)', bd:'#1e3a8a'});
+  s.set('on scene',         {fg:'#F59E0B', bg:'rgba(245,158,11,.16)',  bd:'#7c2d12'});
+  s.set('transporting',     {fg:'#A78BFA', bg:'rgba(167,139,250,.18)', bd:'#4c1d95'});
+  s.set('to hospital',      {fg:'#A78BFA', bg:'rgba(167,139,250,.18)', bd:'#4c1d95'});
+  s.set('at hospital',      {fg:'#C084FC', bg:'rgba(192,132,252,.18)', bd:'#5b21b6'});
+  s.set('patient contact',
