@@ -108,4 +108,75 @@ const STATUS_STYLE = (() => {
   s.set('transporting',     {fg:'#A78BFA', bg:'rgba(167,139,250,.18)', bd:'#4c1d95'});
   s.set('to hospital',      {fg:'#A78BFA', bg:'rgba(167,139,250,.18)', bd:'#4c1d95'});
   s.set('at hospital',      {fg:'#C084FC', bg:'rgba(192,132,252,.18)', bd:'#5b21b6'});
-  s.set('patient contact',
+  s.set('patient contact',  {fg:'#F97316', bg:'rgba(249,115,22,.16)',  bd:'#7c2d12'});
+  s.set('staged',           {fg:'#FBBF24', bg:'rgba(251,191,36,.16)',  bd:'#78350f'});
+  s.set('stacked',          {fg:'#FDE047', bg:'rgba(253,224,71,.12)',  bd:'#713f12'});
+  s.set('in area',          {fg:'#22D3EE', bg:'rgba(34,211,238,.16)',  bd:'#155e75'});
+  s.set('off duty',         {fg:'#6B7280', bg:'rgba(107,114,128,.10)', bd:'#374151'});
+  return { for:x => s.get(norm(x)) || {fg:'#E6E6E6', bg:'rgba(255,255,255,.06)', bd:'#333'} };
+})();
+
+async function fetchUnits(){
+  const r = await fetch(PROXY.replace(/\/$/,'')+'/units?t='+Date.now(), {cache:'no-store', mode:'cors'});
+  if(!r.ok) throw new Error('HTTP '+r.status);
+  return r.json();
+}
+function normalize(payload){
+  const rows = Array.isArray(payload?.records)?payload.records:[];
+  const by = new Map();
+  for(const rec of rows){
+    const raw = String(rec.cad_unit||''); const id = normalizeUnit(raw);
+    if(!ALLOW_UNITS.has(id)) continue;
+    const statusText = rec.status_desc || rec.status || '';
+    if(!STICKY_UNITS.includes(id) && isOffDuty(statusText)) continue;
+    by.set(id, {
+      idRaw: raw || id,
+      status: statusText,
+      details: rec.details ?? '',
+      cfs: rec.cfs_num ?? rec.incidentname ?? '',
+      loc: rec.location ?? rec.incident_location ?? ''
+    });
+  }
+  for(const u of STICKY_UNITS){ if(!by.has(u)) by.set(u,{idRaw:u,status:'',details:'',cfs:'',loc:''}); }
+  return Array.from(by.entries())
+    .sort((a,b)=>a[0].localeCompare(b[0],undefined,{numeric:true}))
+    .map(([,v])=>v);
+}
+function render(rows){
+  const tb = $('#tbody'); tb.innerHTML='';
+  for(const r of rows){
+    const st = STATUS_STYLE.for(r.status);
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td class="code">${esc(r.idRaw)}</td>
+      <td><span class="badge" style="--fg:${st.fg};--bd:${st.bd};--bgc:${st.bg}">${esc(r.status || '—')}</span></td>
+      <td>${esc(r.details)}</td>
+      <td class="code">${esc(r.cfs)}</td>
+      <td>${esc(r.loc)}</td>`;
+    tb.appendChild(tr);
+  }
+}
+
+/* scale to fit screen (no scrolling) */
+function fitToScreen(){
+  const wrap = document.getElementById('wrap');
+  wrap.style.transform='scale(1)'; wrap.style.width='calc(100vw - 1.6rem)';
+  const need = wrap.scrollHeight, have = window.innerHeight - 1.6*16; /* approx panel margins */
+  const scale = Math.min(1, have / (need + 2));
+  wrap.style.transform = `scale(${scale})`;
+  wrap.style.width = (100/scale) + 'vw';
+}
+
+async function tick(){
+  const data = await fetchUnits();
+  const rows = normalize(data);
+  render(rows);
+  document.getElementById('updated').textContent = new Date().toLocaleTimeString();
+  fitToScreen();
+}
+tick().catch(console.error);
+setInterval(()=>tick().catch(console.error), REFRESH_SEC*1000);
+window.addEventListener('resize', fitToScreen);
+</script>
+</body>
+</html>
