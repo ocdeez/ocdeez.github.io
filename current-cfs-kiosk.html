@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Current CFS — Kiosk</title>
+<style>
+  :root{
+    color-scheme: dark;
+    --bg:#000; --text:#E6E6E6; --muted:#A0A6AD; --border:#222;
+    --padY:.45rem; --padX:.5rem;
+    --fz: clamp(16px, 1.8vw, 22px);
+  }
+  html,body{margin:0;background:var(--bg);color:var(--text);font:400 var(--fz)/1.25 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;overflow:hidden;}
+  #wrap{transform-origin: top left; width:100vw; }
+  .topbar{position:fixed;top:.4rem;right:.6rem;font-size:.85em;color:var(--muted);z-index:10}
+  table{width:100%;border-collapse:collapse;table-layout:auto}
+  thead th{position:sticky;top:0;background:#000;border-bottom:1px solid var(--border);text-align:left;font-weight:700;padding:var(--padY) var(--padX)}
+  tbody td{padding:var(--padY) var(--padX);border-bottom:1px solid #111;vertical-align:top}
+  .chips{display:flex;flex-wrap:wrap;gap:.25rem .35rem}
+  .chip{border:1px solid var(--border);border-radius:999px;padding:.05rem .4rem;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,Roboto Mono,monospace;font-size:.9em}
+  .code{font-family: ui-monospace,SFMono-Regular,Menlo,Consolas,Roboto Mono,monospace}
+</style>
+</head>
+<body>
+<div class="topbar"><span id="updated">—</span></div>
+<div id="wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>Incident</th>
+        <th>Status</th>
+        <th>Units Assigned</th>
+        <th>Units Stacked</th>
+        <th>Location</th>
+        <th>Incident #</th>
+      </tr>
+    </thead>
+    <tbody id="tbody"><tr><td colspan="6" style="color:#888">Loading…</td></tr></tbody>
+  </table>
+</div>
+<script>
+/* ------- config ------- */
+const PROXY = 'https://api.stancfhole.com';
+const REFRESH_SEC = new URLSearchParams(location.search).get('refresh') ? Number(new URLSearchParams(location.search).get('refresh')) : 5;
+
+/* helpers */
+const $ = s => document.querySelector(s);
+const esc = s => String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const str = x => x==null ? '' : String(x);
+const norm = s => str(s).trim().toLowerCase().replace(/[_-]/g,' ').replace(/\s+/g,' ');
+function toArray(x){ if(Array.isArray(x)) return x; if(!x) return []; return String(x).split(/[,\s]+/).map(v=>v.trim()).filter(Boolean); }
+
+/* Incident code map from /Incident Codes.csv (same as main page) */
+let MAP=null;
+async function loadMap(){
+  try{
+    const r = await fetch('/Incident%20Codes.csv',{cache:'no-store'});
+    const text = await r.text();
+    const rows = parseCSV(text);
+    const head = rows[0].map(h=>h.trim().toLowerCase());
+    let ci=head.findIndex(h=>/^(code|incident ?code|short ?code)$/.test(h));
+    let di=head.findIndex(h=>/^(description|desc|full|long|incident ?description)$/.test(h));
+    if(ci<0) ci=0; if(di<0) di=1;
+    MAP={};
+    for(let i=1;i<rows.length;i++){
+      const row=rows[i], code=str(row[ci]).trim(), desc=str(row[di]).trim();
+      if(!code) continue;
+      const key=code.toUpperCase().replace(/[^A-Z0-9]/g,'');
+      MAP[key] = desc ? `${code} : ${desc}` : code;
+    }
+  }catch(e){ MAP={}; }
+}
+function parseCSV(t){
+  const rows=[]; let i=0,cur='',q=false,row=[];
+  while(i<t.length){ const c=t[i++]; if(q){ if(c=='"'){ if(t[i]=='"'){cur+='"';i++;} else q=false; } else cur+=c; }
+  else { if(c=='"') q=true; else if(c==','){row.push(cur);cur='';} else if(c=='\n'){row.push(cur);rows.push(row);row=[];cur='';}
+  else if(c=='\r'){} else cur+=c; } } row.push(cur); rows.push(row); return rows.filter(r=>r.length && r.some(x=>x!=='')); }
+function fullIncident(code, fallback){
+  const k=str(code).toUpperCase().replace(/[^A-Z0-9]/g,'');
+  return (MAP && MAP[k]) ? MAP[k] : str(fallback || code);
+}
+
+/* Status colors (same family) */
+const STATUS_COLORS=(()=>{
+  const m = new Map();
+  m.set('active','#3B82F6'); m.set('open','#3B82F6');
+  m.set('on scene','#F59E0B');
+  m.set('enroute','#60A5FA'); m.set('assigned','#60A5FA'); m.set('backup enroute','#60A5FA');
+  m.set('transporting','#A78BFA'); m.set('to hospital','#A78BFA'); m.set('at hospital','#C084FC');
+  m.set('staged','#FBBF24'); m.set('stacked','#FDE047'); m.set('in area','#22D3EE');
+  m.set('cancelled','#9CA3AF'); m.set('canceled','#9CA3AF'); m.set('closed','#9CA3AF'); m.set('cleared','#9CA3AF');
+  return { colorFor:t => m.get(norm(t)) || '#E6E6E6' };
+})();
+
+/* fetch + normalize */
+async function fetchCFS(){
+  const r = await fetch(PROXY.replace(/\/$/,'')+'/current-cfs?t='+Date.now(), {cache:'no-store', mode:'cors'});
+  if(!r.ok) throw new Error('HTTP '+r.status);
+  return r.json();
+}
+function normalize(payload){
+  const rows = Array.isArray(payload?.records)?payload.records:[];
+  const out=[];
+  for(const rec of rows){
+    out.push({
+      incident: fullIncident(rec.incident_code || rec.code, rec.incident_code_desc || rec.incident || rec.description),
+      status: str(rec.status || rec.incident_status || 'Active'),
+      units: toArray(rec.units || rec.units_assigned || rec.cad_units || rec.unit_list),
+      stacked: toArray(rec.units_stacked || rec.stacked_units || rec.unitsstacked || rec.stacked),
+      location: str(rec.location || rec.incident_location || rec.address || ''),
+      cfs: str(rec.cfs_num || rec.cfs || rec.incidentnumber || rec.id)
+    });
+  }
+  out.sort((a,b)=> b.cfs.localeCompare(a.cfs,undefined,{numeric:true,sensitivity:'base'}));
+  return out;
+}
+function render(rows){
+  const tb = $('#tbody'); tb.innerHTML='';
+  for(const r of rows){
+    const color = STATUS_COLORS.colorFor(r.status);
+    const unitsHtml = r.units.map(u=>`<span class="chip">${esc(u)}</span>`).join(' ');
+    const stackedHtml = r.stacked.map(u=>`<span class="chip">${esc(u)}</span>`).join(' ');
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${esc(r.incident)}</td>
+      <td style="color:${color}">${esc(r.status)}</td>
+      <td><div class="chips">${unitsHtml || '<span style="color:#888">—</span>'}</div></td>
+      <td><div class="chips">${stackedHtml || '<span style="color:#888">—</span>'}</div></td>
+      <td>${esc(r.location)}</td>
+      <td class="code">${esc(r.cfs)}</td>`;
+    tb.appendChild(tr);
+  }
+}
+
+/* scale to fit */
+function fitToScreen(){
+  const wrap = document.getElementById('wrap');
+  wrap.style.transform='scale(1)'; wrap.style.width='100vw';
+  const need = wrap.scrollHeight, have = window.innerHeight;
+  const scale = Math.min(1, have / (need + 1));
+  wrap.style.transform = `scale(${scale})`;
+  wrap.style.width = (100/scale) + 'vw';
+}
+
+async function tick(){
+  const data = await fetchCFS();
+  const rows = normalize(data);
+  render(rows);
+  $('#updated').textContent = new Date().toLocaleTimeString();
+  fitToScreen();
+}
+
+(async function start(){
+  await loadMap();
+  await tick();
+  setInterval(()=>tick().catch(console.error), (REFRESH_SEC||5)*1000);
+})();
+window.addEventListener('resize', fitToScreen);
+</script>
+</body>
+</html>
