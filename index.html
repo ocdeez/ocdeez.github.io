@@ -8,9 +8,15 @@
   <title>Oldham County Ambulance Taxing District Meeting Minutes</title>
   <link rel="stylesheet" href="styles.css" />
   <style>
-    /* page-local tweaks only (won't affect other pages) */
+    /* page-local polish; won't affect your other pages */
+    header { position: sticky; top: 0; background: linear-gradient(#000, rgba(0,0,0,.92)); border-bottom: 1px solid var(--border); z-index: 10; }
+    .brand { display:flex; align-items:baseline; gap:.75rem; }
+    .brand h1 { margin: .2rem 0 0; font-weight: 800; letter-spacing: .02em; }
+    nav { display:flex; gap:.75rem; flex-wrap:wrap; }
+    nav a { display:inline-block; padding:.45rem .7rem; border:1px solid var(--border); border-radius:10px; text-decoration:none; color:var(--text); background:#0a0a0a; }
+    nav a:hover { background:#0c0c0c; }
     .docs-wrap{ display:grid; gap:1rem; }
-    .doc-card{ border:1px solid var(--border); border-radius:.9rem; background:#0a0a0a; padding:1rem; }
+    .doc-card{ border:1px solid var(--border); border-radius:.9rem; background:#0a0a0a; padding:1rem; box-shadow:0 8px 24px rgba(0,0,0,.35); }
     .doc-title{ margin:0 0 .35rem 0; font-size:1.05em; }
     .doc-desc{ margin:.25rem 0 .5rem; color:var(--muted); }
     .doc-meta{ font-size:.85em; color:var(--muted); display:flex; gap:1rem; flex-wrap:wrap; }
@@ -21,11 +27,17 @@
 </head>
 <body>
 <header>
-  <div class="container">
-    <h1>Oldham County Ambulance Taxing District Meeting Minutes</h1>
-    <div class="meta">
+  <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:1rem;">
+    <div class="brand">
+      <h1>Oldham County Ambulance Taxing District Meeting Minutes</h1>
       <span class="muted">Last updated: <span id="ts">—</span></span>
     </div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/units.html">Units</a>
+      <a href="/current-cfs.html">Current CFS</a>
+      <a href="/recent-unit-activity.html">Recent Unit Activity</a>
+    </nav>
   </div>
 </header>
 
@@ -42,7 +54,7 @@
 </main>
 
 <script>
-  // simple timestamp for the header
+  // timestamp in header
   document.getElementById('ts').textContent = new Date().toLocaleString();
 
   // tiny in-page renderer for docs.json
