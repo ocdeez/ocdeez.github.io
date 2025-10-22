@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Recent Unit Activity</title>
+<style>
+  :root{
+    color-scheme: dark;
+    --bg:#000; --panel:#0a0a0a; --panel2:#070707; --border:#1b1b1b;
+    --text:#e8e8e8; --muted:#a0a6ad; --accent:#38bdf8;
+    --pad: .75rem; --radius: 14px; --gap: .9rem;
+    --fz: clamp(15px, 1.7vw, 20px);
+  }
+  html,body{margin:0;background:var(--bg);color:var(--text);
+    font: 400 var(--fz)/1.35 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;}
+  header{position:sticky;top:0;background:linear-gradient(#000, rgba(0,0,0,.85));
+    border-bottom:1px solid var(--border);z-index:5}
+  .container{max-width:1300px;margin:0 auto;padding:1rem;}
+  h1{margin:.2rem 0 0;font-weight:800;letter-spacing:.02em}
+  .sub{color:var(--muted);font-size:.9em;margin:.25rem 0 0}
+  .controls{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.75rem}
+  input,button{background:#0c0c0c;border:1px solid var(--border);color:var(--text);
+    border-radius:10px;padding:.55rem .7rem}
+  input[type="search"]{min-width:260px}
+  button{cursor:pointer}
+  main{max-width:1300px;margin:0 auto;padding:1rem;display:grid;gap:var(--gap)}
+  .panel{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:0 8px 24px rgba(0,0,0,.35); overflow:hidden}
+  .stripe{height:3px;background:linear-gradient(90deg,#0ea5e9,#22d3ee,#38bdf8)}
+  .head{display:flex;justify-content:space-between;align-items:center;padding:var(--pad)}
+  .head h2{margin:0;font-size:1.05em}
+  .muted{color:var(--muted)}
+  .kv{display:grid;grid-template-columns:240px 1fr}
+  .kv div{padding:.55rem .7rem;border-top:1px solid #111}
+  .kv .k{color:var(--muted);background:var(--panel2)}
+  .table-wrap{overflow:auto;border-top:1px solid #111}
+  table{width:100%;border-collapse:collapse;font-size:1em}
+  thead th{position:sticky;top:0;background:var(--panel);border-bottom:1px solid var(--border);
+    text-align:left;padding:.55rem .7rem;font-weight:700}
+  tbody td{padding:.55rem .7rem;border-bottom:1px solid #111;vertical-align:top}
+  tbody tr:nth-child(even){background:var(--panel2)}
+  details{border-top:1px solid #111}
+  details[open] .head{border-bottom:1px solid #111}
+  .status{font-size:.9em;color:var(--muted)}
+  .bad{color:#f87171}
+  .ok{color:#34d399}
+  .pill{display:inline-block;border:1px solid #333;border-radius:999px;padding:.05rem .5rem;background:#0e0e0e}
+  .code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,Roboto Mono,monospace}
+</style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <h1>Recent Unit Activity</h1>
+    <div class="sub">
+      Source: <span id="src" class="code"></span> &nbsp; • &nbsp;
+      Last updated: <span id="ts">—</span> &nbsp; • &nbsp;
+      Status: <span id="status" class="status">Loading…</span>
+    </div>
+    <div class="controls">
+      <input id="search" type="search" placeholder="Filter rows (matches any cell)"/>
+      <button id="refreshBtn">Refresh</button>
+    </div>
+  </div>
+</header>
+
+<main id="root">
+  <div class="panel"><div class="stripe"></div><div class="head"><h2>Loading…</h2></div></div>
+</main>
+
+<script>
+/* ------- configuration ------- */
+const params = new URLSearchParams(location.search);
+const DEFAULT_SRC = "https://oldham-911-ky.zuercherportal.com/interfaces/ocems.json?username=OCEMS&password=OCEMS";
+const SRC = decodeURIComponent(params.get("src") || DEFAULT_SRC);
+const REFRESH_SEC = Number(params.get("refresh") || 10);
+
+/* ------- utilities ------- */
+const $ = s => document.querySelector(s);
+const esc = s => String(s??'').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const isObj = v => Object.prototype.toString.call(v) === '[object Object]';
+const isArr = Array.isArray;
+
+function setStatus(ok, msg){
+  const el = $('#status');
+  el.textContent = msg;
+  el.className = 'status ' + (ok ? 'ok' : 'bad');
+}
+function flatKeys(arr){
+  const set = new Set();
+  for(const row of arr){ if(isObj(row)){ Object.keys(row).forEach(k => set.add(k)); } }
+  return Array.from(set);
+}
+function toArray(x){ return Array.isArray(x) ? x : (x==null ? [] : [x]); }
+
+/* ------- renderers ------- */
+function renderObjectKV(obj){
+  const frag = document.createElement('div');
+  frag.className = 'kv';
+  for(const [k,v] of Object.entries(obj)){
+    const kd = document.createElement('div');
+    kd.className = 'k';
+    kd.innerHTML = esc(k);
+    const vd = document.createElement('div');
+    vd.innerHTML = formatCell(v);
+    frag.appendChild(kd); frag.appendChild(vd);
+  }
+  return frag;
+}
+function formatCell(v){
+  if(v == null) return '<span class="muted">—</span>';
+  if(typeof v === 'string' || typeof v === 'number' || typeof v === 'boolean'){
+    return `<span>${esc(v)}</span>`;
+  }
+  if(Array.isArray(v)){
+    if(v.length === 0) return '<span class="muted">[]</span>';
+    if(v.every(x => (typeof x !== 'object' || x === null))){
+      return v.map(x => `<span class="pill">${esc(x)}</span>`).join(' ');
+    }
+    const cols = flatKeys(v);
+    return `
+      <div class="table-wrap"><table>
+        <thead><tr>${cols.map(c=>`<th>${esc(c)}</th>`).join('')}</tr></thead>
+        <tbody>
+          ${v.map(row => `<tr>${cols.map(c => `<td>${formatCell(row?.[c])}</td>`).join('')}</tr>`).join('')}
+        </tbody>
+      </table></div>
+    `;
+  }
+  if(isObj(v)){
+    const tmp = document.createElement('div');
+    tmp.appendChild(renderObjectKV(v));
+    return tmp.innerHTML;
+  }
+  return `<span>${esc(String(v))}</span>`;
+}
+function renderArrayTable(title, arr, filterText){
+  const panel = document.createElement('details');
+  panel.open = true;
+  panel.className = 'panel';
+  panel.innerHTML = `<div class="stripe"></div>
+    <summary class="head"><h2>${esc(title)}</h2><div class="muted">${arr.length} item(s)</div></summary>`;
+  const cols = flatKeys(arr);
+  const body = document.createElement('div');
+  body.innerHTML = `
+    <div class="table-wrap">
+      <table>
+        <thead><tr>${cols.map(c=>`<th>${esc(c)}</th>`).join('')}</tr></thead>
+        <tbody>${arr.map(row =>
+          `<tr>${cols.map(c => `<td>${formatCell(row?.[c])}</td>`).join('')}</tr>`
+        ).join('')}</tbody>
+      </table>
+    </div>`;
+  panel.appendChild(body);
+  if(filterText){
+    const t = filterText.toLowerCase();
+    body.querySelectorAll('tbody tr').forEach(tr=>{
+      tr.style.display = tr.textContent.toLowerCase().includes(t) ? '' : 'none';
+    });
+  }
+  return panel;
+}
+function renderObjectPanel(title, obj){
+  const panel = document.createElement('details');
+  panel.open = true;
+  panel.className = 'panel';
+  panel.innerHTML = `<div class="stripe"></div>
+    <summary class="head"><h2>${esc(title)}</h2></summary>`;
+  panel.appendChild(renderObjectKV(obj));
+  return panel;
+}
+function renderUnknown(title, val){
+  const panel = document.createElement('details');
+  panel.open = true;
+  panel.className = 'panel';
+  panel.innerHTML = `<div class="stripe"></div>
+    <summary class="head"><h2>${esc(title)}</h2></summary>`;
+  const box = document.createElement('div');
+  box.style.padding = 'var(--pad)';
+  box.innerHTML = `<pre class="code" style="white-space:pre-wrap">${esc(JSON.stringify(val,null,2))}</pre>`;
+  panel.appendChild(box);
+  return panel;
+}
+
+/* ------- fetch + paint ------- */
+async function loadJSON(){
+  const res = await fetch(SRC, {cache:'no-store', mode:'cors'}).catch(e=>({ok:false,statusText:String(e)}));
+  if(!res || !res.ok){
+    setStatus(false, 'Fetch failed' + (res?.status ? ` (HTTP ${res.status})` : ''));
+    throw new Error('Fetch failed');
+  }
+  const data = await res.json();
+  setStatus(true, 'OK');
+  return data;
+}
+function renderAll(data){
+  document.getElementById('ts').textContent = new Date().toLocaleString();
+  document.getElementById('src').textContent = SRC;
+  const filterText = (document.getElementById('search').value || '').trim();
+  const root = document.getElementById('root');
+  root.innerHTML = '';
+
+  if(Array.isArray(data)){
+    root.appendChild(renderArrayTable('Data', data, filterText));
+    return;
+  }
+  if(isObj(data)){
+    for(const [key,val] of Object.entries(data)){
+      if(Array.isArray(val)) root.appendChild(renderArrayTable(key, val, filterText));
+      else if(isObj(val)) root.appendChild(renderObjectPanel(key, val));
+      else root.appendChild(renderUnknown(key, val));
+    }
+    return;
+  }
+  root.appendChild(renderUnknown('Response', data));
+}
+
+/* ------- wiring ------- */
+let timer = null;
+async function tick(){
+  try{
+    const data = await loadJSON();
+    renderAll(data);
+  }catch(e){ console.error(e); }
+}
+document.getElementById('refreshBtn').addEventListener('click', tick);
+document.getElementById('search').addEventListener('input', ()=>tick());
+
+(async function start(){
+  document.getElementById('src').textContent = SRC;
+  await tick();
+  timer = setInterval(tick, Math.max(REFRESH_SEC, 3)*1000);
+})();
+</script>
+</body>
+</html>
