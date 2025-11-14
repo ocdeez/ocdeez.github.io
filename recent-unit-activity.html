@@ -43,6 +43,14 @@
       padding: 0.35rem 0.8rem;
       font-size: 0.9rem;
       cursor: pointer;
+      border-radius: 4px;
+      border: 1px solid #444;
+      background: #222;
+      color: #eee;
+    }
+
+    button:hover {
+      background: #333;
     }
 
     table {
@@ -67,6 +75,7 @@
       background: #141414;
     }
 
+    /* Command coloring similar to your other dashboards */
     .cmd-available td.command {
       color: #4caf50;
       font-weight: 600;
@@ -120,10 +129,7 @@
 
   <p class="meta">
     <span class="label">Source:</span>
-    <a href="https://oldham-911-ky.zuercherportal.com/interfaces/ocems.json?username=OCEMS&password=OCEMS"
-       target="_blank" rel="noopener noreferrer">
-      ocems.json
-    </a>
+    OCEMS Zuercher (via proxy)
     &nbsp;•&nbsp;
     <span class="label">Last updated:</span>
     <span id="lastUpdated">—</span>
@@ -152,8 +158,9 @@
   </table>
 
   <script>
-    const FEED_URL =
-      "https://oldham-911-ky.zuercherportal.com/interfaces/ocems.json?username=OCEMS&password=OCEMS";
+    // 🔧 CHANGE THIS to match your Render service URL if it's different
+    // Example: "https://ocems-activity-proxy.onrender.com/ocems-activity"
+    const FEED_URL = "https://ocems-activity-proxy.onrender.com/ocems-activity";
 
     const REFRESH_MS = 10000; // 10 seconds
     const MAX_ROWS = 150;
@@ -245,7 +252,7 @@
 
       } catch (err) {
         console.error(err);
-        statusEl.textContent = "Error loading data";
+        statusEl.textContent = "Fetch failed";
         tbody.innerHTML = "<tr><td colspan=\"5\">Error loading data.</td></tr>";
       }
     }
