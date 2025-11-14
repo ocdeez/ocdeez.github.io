@@ -144,10 +144,10 @@
     <thead>
       <tr>
         <th style="width: 14%;">Time</th>
-        <th style="width: 9%;">Unit</th>
+        <th style="width: 20%;">Dispatcher</th>
+        <th style="width: 10%;">Unit</th>
         <th style="width: 18%;">Command</th>
-        <th style="width: 20%;">Message</th>
-        <th style="width: 39%;">Details</th>
+        <th style="width: 38%;">Message</th>
       </tr>
     </thead>
     <tbody id="activityBody">
@@ -224,6 +224,9 @@
           const tdTime = document.createElement("td");
           tdTime.textContent = rec.Time || "";
 
+          const tdDispatcher = document.createElement("td");
+          tdDispatcher.textContent = rec.Operator || "";
+
           const tdUnit = document.createElement("td");
           tdUnit.textContent = rec.Units || "";
 
@@ -234,14 +237,12 @@
           const tdMessage = document.createElement("td");
           tdMessage.textContent = rec.Message || "";
 
-          const tdDetails = document.createElement("td");
-          tdDetails.textContent = rec.Details || "";
-
+          // Append in order: Time, Dispatcher, Unit, Command, Message
           tr.appendChild(tdTime);
+          tr.appendChild(tdDispatcher);
           tr.appendChild(tdUnit);
           tr.appendChild(tdCommand);
           tr.appendChild(tdMessage);
-          tr.appendChild(tdDetails);
 
           tbody.appendChild(tr);
         });
