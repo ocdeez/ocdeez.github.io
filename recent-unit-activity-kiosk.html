@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Recent Unit Activity — Kiosk</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg: #000;
+      --bg-card: #111;
+      --bg-alt: #151515;
+      --border: #333;
+      --text: #f5f5f5;
+      --muted: #888;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      overflow: hidden; /* keep it clean for kiosk */
+    }
+
+    .wrap {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      padding: 0.75rem 1rem 1rem;
+    }
+
+    .header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+
+    .title {
+      font-size: 1.6rem;
+      font-weight: 600;
+    }
+
+    .meta {
+      text-align: right;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    .meta span.label {
+      color: var(--muted);
+    }
+
+    .hint {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .table-container {
+      flex: 1;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      overflow-y: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.98rem;
+    }
+
+    th, td {
+      padding: 0.5rem 0.6rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+      white-space: nowrap;
+    }
+
+    th {
+      position: sticky;
+      top: 0;
+      background: #181818;
+      z-index: 1;
+      text-align: left;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    td.message {
+      white-space: normal;
+    }
+
+    tbody tr:nth-child(even) {
+      background: var(--bg-alt);
+    }
+
+    /* Command coloring, kiosk-friendly */
+    .cmd-available td.command {
+      color: #4caf50;
+      font-weight: 600;
+    }
+    .cmd-dispatch td.command,
+    .cmd-enroute td.command {
+      color: #ffb74d;
+      font-weight: 600;
+    }
+    .cmd-onscene td.command {
+      color: #ffeb3b;
+      font-weight: 600;
+    }
+    .cmd-transport td.command {
+      color: #4fc3f7;
+      font-weight: 600;
+    }
+    .cmd-hospital td.command {
+      color: #26c6da;
+      font-weight: 600;
+    }
+    .cmd-offduty td.command {
+      color: #9e9e9e;
+      font-weight: 600;
+    }
+    .cmd-message td.command {
+      color: #f06292;
+      font-weight: 600;
+    }
+
+    @media (max-width: 900px) {
+      .title {
+        font-size: 1.25rem;
+      }
+      table {
+        font-size: 0.9rem;
+      }
+      th, td {
+        padding: 0.4rem 0.45rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="header">
+    <div>
+      <div class="title">Recent Unit Activity</div>
+      <div class="hint">Kiosk view — press F11 for full screen</div>
+    </div>
+    <div class="meta">
+      <div>
+        <span class="label">Last updated:</span>
+        <span id="lastUpdated">—</span>
+      </div>
+      <div>
+        <span class="label">Status:</span>
+        <span id="statusText">Loading…</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 14%;">Time</th>
+          <th style="width: 22%;">Dispatcher</th>
+          <th style="width: 10%;">Unit</th>
+          <th style="width: 18%;">Command</th>
+          <th style="width: 36%;">Message</th>
+        </tr>
+      </thead>
+      <tbody id="activityBody">
+        <tr>
+          <td colspan="5">Loading…</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  // Same proxy URL as your non-kiosk page
+  const FEED_URL = "https://ocems-activity-proxy.onrender.com/ocems-activity";
+
+  const REFRESH_MS = 10000; // 10 seconds
+  const MAX_ROWS = 60;      // kiosk: show fewer rows, keep it readable
+
+  function parseZuercherTime(str) {
+    // "11/13/25 17:05" -> Date
+    if (!str) return new Date(0);
+    try {
+      const [datePart, timePart] = str.split(" ");
+      const [m, d, yy] = datePart.split("/").map(Number);
+      const [hh, mm] = (timePart || "00:00").split(":").map(Number);
+      const year = 2000 + (yy || 0);
+      return new Date(year, (m || 1) - 1, d || 1, hh || 0, mm || 0);
+    } catch (e) {
+      return new Date(0);
+    }
+  }
+
+  function classifyCommand(command) {
+    if (!command) return "";
+    const c = command.toLowerCase();
+
+    if (c.includes("available")) return "cmd-available";
+    if (c.includes("dispatch")) return "cmd-dispatch";
+    if (c.includes("enroute")) return "cmd-enroute";
+    if (c.includes("on scene")) return "cmd-onscene";
+    if (c.includes("to hospital") || c.includes("transport")) return "cmd-transport";
+    if (c.includes("at hospital")) return "cmd-hospital";
+    if (c.includes("off duty") || c.includes("oos") || c.includes("out of service")) return "cmd-offduty";
+    if (c === "message" || c.startsWith("message")) return "cmd-message";
+
+    return "";
+  }
+
+  async function loadActivity() {
+    const statusEl = document.getElementById("statusText");
+    const updatedEl = document.getElementById("lastUpdated");
+    const tbody = document.getElementById("activityBody");
+
+    try {
+      const res = await fetch(FEED_URL, { cache: "no-store" });
+      if (!res.ok) {
+        throw new Error("HTTP " + res.status);
+      }
+
+      const json = await res.json();
+      const records = Array.isArray(json.data) ? json.data : [];
+
+      // Sort newest → oldest
+      records.sort((a, b) => parseZuercherTime(b.Time) - parseZuercherTime(a.Time));
+
+      tbody.innerHTML = "";
+
+      records.slice(0, MAX_ROWS).forEach(rec => {
+        const tr = document.createElement("tr");
+        tr.className = classifyCommand(rec.Command || "");
+
+        const tdTime = document.createElement("td");
+        tdTime.textContent = rec.Time || "";
+
+        const tdDispatcher = document.createElement("td");
+        tdDispatcher.textContent = rec.Operator || "";
+
+        const tdUnit = document.createElement("td");
+        tdUnit.textContent = rec.Units || "";
+
+        const tdCommand = document.createElement("td");
+        tdCommand.className = "command";
+        tdCommand.textContent = rec.Command || "";
+
+        const tdMessage = document.createElement("td");
+        tdMessage.className = "message";
+        tdMessage.textContent = rec.Message || "";
+
+        tr.appendChild(tdTime);
+        tr.appendChild(tdDispatcher);
+        tr.appendChild(tdUnit);
+        tr.appendChild(tdCommand);
+        tr.appendChild(tdMessage);
+
+        tbody.appendChild(tr);
+      });
+
+      updatedEl.textContent = new Date().toLocaleTimeString();
+      statusEl.textContent = "OK (" + records.length + " records)";
+
+    } catch (err) {
+      console.error(err);
+      statusEl.textContent = "Fetch failed";
+      tbody.innerHTML = "<tr><td colspan=\"5\">Error loading data.</td></tr>";
+    }
+  }
+
+  // Initial load & auto-refresh
+  loadActivity();
+  setInterval(loadActivity, REFRESH_MS);
+</script>
+
+</body>
+</html>
