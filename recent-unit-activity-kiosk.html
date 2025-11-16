@@ -11,7 +11,6 @@
       --bg-alt: #151515;
       --border: #333;
       --text: #f5f5f5;
-      --muted: #888;
     }
 
     * {
@@ -24,48 +23,14 @@
       background: var(--bg);
       color: var(--text);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-      overflow: hidden; /* good for kiosk */
-    }
-
-    .wrap {
-      display: flex;
-      flex-direction: column;
       height: 100vh;
-      padding: 0.75rem 1rem 1rem;
-    }
-
-    .header {
       display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      margin-bottom: 0.35rem;
-    }
-
-    .title {
-      font-size: 1.6rem;
-      font-weight: 600;
-    }
-
-    .meta {
-      text-align: right;
-      font-size: 0.95rem;
-      line-height: 1.4;
-    }
-
-    .meta span.label {
-      color: var(--muted);
-    }
-
-    .hint {
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-top: 0.15rem;
     }
 
     .table-container {
       flex: 1;
-      border-radius: 6px;
-      border: 1px solid var(--border);
+      border-radius: 0;
+      border: none;
       background: var(--bg-card);
       overflow-y: auto;
     }
@@ -73,7 +38,7 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 1rem; /* a bit bigger for TVs */
+      font-size: 1rem; /* TV-friendly */
     }
 
     th, td {
@@ -102,7 +67,7 @@
       background: var(--bg-alt);
     }
 
-    /* Command coloring, kiosk-friendly */
+    /* Command coloring for quick glance */
     .cmd-available td.command {
       color: #4caf50;
       font-weight: 600;
@@ -134,9 +99,6 @@
     }
 
     @media (max-width: 900px) {
-      .title {
-        font-size: 1.3rem;
-      }
       table {
         font-size: 0.9rem;
       }
@@ -148,50 +110,31 @@
 </head>
 <body>
 
-<div class="wrap">
-  <div class="header">
-    <div>
-      <div class="title">Recent Unit Activity</div>
-      <div class="hint">Kiosk view — full screen recommended</div>
-    </div>
-    <div class="meta">
-      <div>
-        <span class="label">Last updated:</span>
-        <span id="lastUpdated">—</span>
-      </div>
-      <div>
-        <span class="label">Status:</span>
-        <span id="statusText">Loading…</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="table-container">
-    <table>
-      <thead>
-        <tr>
-          <th style="width: 15%;">Time</th>
-          <th style="width: 24%;">Dispatcher</th>
-          <th style="width: 11%;">Unit</th>
-          <th style="width: 20%;">Command</th>
-          <th style="width: 30%;">Message</th>
-        </tr>
-      </thead>
-      <tbody id="activityBody">
-        <tr>
-          <td colspan="5">Loading…</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 15%;">Time</th>
+        <th style="width: 24%;">Dispatcher</th>
+        <th style="width: 11%;">Unit</th>
+        <th style="width: 20%;">Command</th>
+        <th style="width: 30%;">Message</th>
+      </tr>
+    </thead>
+    <tbody id="activityBody">
+      <tr>
+        <td colspan="5">Loading…</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 <script>
-  // Same proxy URL as before
+  // Proxy URL
   const FEED_URL = "https://ocems-activity-proxy.onrender.com/ocems-activity";
 
   const REFRESH_MS = 10000; // 10 seconds
-  const MAX_ROWS = 10;      // TV dashboard: last 10 events only
+  const MAX_ROWS = 10;      // last 10 events only
 
   function parseZuercherTime(str) {
     // "11/13/25 17:05" -> Date
@@ -224,8 +167,6 @@
   }
 
   async function loadActivity() {
-    const statusEl = document.getElementById("statusText");
-    const updatedEl = document.getElementById("lastUpdated");
     const tbody = document.getElementById("activityBody");
 
     try {
@@ -272,12 +213,8 @@
         tbody.appendChild(tr);
       });
 
-      updatedEl.textContent = new Date().toLocaleTimeString();
-      statusEl.textContent = "OK (" + records.length + " records)";
-
     } catch (err) {
       console.error(err);
-      statusEl.textContent = "Fetch failed";
       tbody.innerHTML = "<tr><td colspan=\"5\">Error loading data.</td></tr>";
     }
   }
