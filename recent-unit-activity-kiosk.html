@@ -24,7 +24,7 @@
       background: var(--bg);
       color: var(--text);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-      overflow: hidden; /* keep it clean for kiosk */
+      overflow: hidden; /* good for kiosk */
     }
 
     .wrap {
@@ -38,7 +38,7 @@
       display: flex;
       align-items: baseline;
       justify-content: space-between;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.35rem;
     }
 
     .title {
@@ -48,7 +48,7 @@
 
     .meta {
       text-align: right;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       line-height: 1.4;
     }
 
@@ -59,7 +59,7 @@
     .hint {
       font-size: 0.8rem;
       color: var(--muted);
-      margin-bottom: 0.4rem;
+      margin-top: 0.15rem;
     }
 
     .table-container {
@@ -73,13 +73,13 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.98rem;
+      font-size: 1rem; /* a bit bigger for TVs */
     }
 
     th, td {
-      padding: 0.5rem 0.6rem;
+      padding: 0.55rem 0.65rem;
       border-bottom: 1px solid var(--border);
-      vertical-align: top;
+      vertical-align: middle;
       white-space: nowrap;
     }
 
@@ -91,7 +91,7 @@
       text-align: left;
       font-size: 0.9rem;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.05em;
     }
 
     td.message {
@@ -135,13 +135,13 @@
 
     @media (max-width: 900px) {
       .title {
-        font-size: 1.25rem;
+        font-size: 1.3rem;
       }
       table {
         font-size: 0.9rem;
       }
       th, td {
-        padding: 0.4rem 0.45rem;
+        padding: 0.45rem 0.5rem;
       }
     }
   </style>
@@ -152,7 +152,7 @@
   <div class="header">
     <div>
       <div class="title">Recent Unit Activity</div>
-      <div class="hint">Kiosk view — press F11 for full screen</div>
+      <div class="hint">Kiosk view — full screen recommended</div>
     </div>
     <div class="meta">
       <div>
@@ -170,11 +170,11 @@
     <table>
       <thead>
         <tr>
-          <th style="width: 14%;">Time</th>
-          <th style="width: 22%;">Dispatcher</th>
-          <th style="width: 10%;">Unit</th>
-          <th style="width: 18%;">Command</th>
-          <th style="width: 36%;">Message</th>
+          <th style="width: 15%;">Time</th>
+          <th style="width: 24%;">Dispatcher</th>
+          <th style="width: 11%;">Unit</th>
+          <th style="width: 20%;">Command</th>
+          <th style="width: 30%;">Message</th>
         </tr>
       </thead>
       <tbody id="activityBody">
@@ -187,11 +187,11 @@
 </div>
 
 <script>
-  // Same proxy URL as your non-kiosk page
+  // Same proxy URL as before
   const FEED_URL = "https://ocems-activity-proxy.onrender.com/ocems-activity";
 
   const REFRESH_MS = 10000; // 10 seconds
-  const MAX_ROWS = 60;      // kiosk: show fewer rows, keep it readable
+  const MAX_ROWS = 10;      // TV dashboard: last 10 events only
 
   function parseZuercherTime(str) {
     // "11/13/25 17:05" -> Date
