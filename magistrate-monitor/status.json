@@ -1,0 +1,11 @@
+{
+  "monitor": "oldham-magistrate-documents",
+  "url": "https://www.oldhamcountyky.gov/magistratedocs2026",
+  "success": false,
+  "changed": null,
+  "summary": "Monitor installed but has not completed its first GitHub Actions browser run.",
+  "checked_at_utc": null,
+  "checked_at_local": null,
+  "counts": null,
+  "changes": null
+}
