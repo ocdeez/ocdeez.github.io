@@ -1,0 +1,13 @@
+{
+  "name": "oldham-magistrate-monitor",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "monitor": "node monitor.mjs",
+    "self-test": "node monitor.mjs --self-test"
+  },
+  "dependencies": {
+    "playwright": "1.54.1"
+  }
+}
