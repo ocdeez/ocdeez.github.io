@@ -1,7 +1,7 @@
 {
   "monitor": "oldham-magistrate-documents",
   "url": "https://www.oldhamcountyky.gov/magistratedocs2026",
-  "captured_at_utc": "2026-07-20T11:13:15.585Z",
+  "captured_at_utc": "2026-07-20T13:25:41.106Z",
   "source": "GitHub Actions Playwright browser",
   "page_title": "Magistrate Documents | Oldham County Fiscal Court",
   "final_url": "https://www.oldhamcountyky.gov/magistratedocs2026",
@@ -12,8 +12,8 @@
         {
           "title": "ALL IN ONE",
           "linked": true,
-          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/All+In+One+Document+07-21-2026.pdf",
-          "filename": "All+In+One+Document+07-21-2026.pdf"
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/All+In+One+Document.pdf",
+          "filename": "All+In+One+Document.pdf"
         },
         {
           "title": "AGENDA",
@@ -29,9 +29,9 @@
         },
         {
           "title": "MINUTES 06/29/26 & 07/14/26",
-          "linked": false,
-          "href": null,
-          "filename": null
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Minutes+DRAFT+062926.pdf",
+          "filename": "Minutes+DRAFT+062926.pdf"
         },
         {
           "title": "PAYABLES",
@@ -90,8 +90,8 @@
         {
           "title": "WASTE TIRE MANAGEMENT PROGRAM AGREEMENT",
           "linked": true,
-          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Waste+Tire+Event+agreement.pdf",
-          "filename": "Waste+Tire+Event+agreement.pdf"
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Waste+Tire+Event+agreement-ae4b116d.pdf",
+          "filename": "Waste+Tire+Event+agreement-ae4b116d.pdf"
         },
         {
           "title": "PERSONNEL ACTIONS",
