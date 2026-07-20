@@ -2,7 +2,7 @@ name: Oldham Magistrate Monitor
 
 on:
   schedule:
-    - cron: "15 */2 * * *"
+    - cron: "*/30 * * * *"
   workflow_dispatch:
   push:
     branches:
