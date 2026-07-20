@@ -1,0 +1,76 @@
+name: Oldham Magistrate Monitor
+
+on:
+  schedule:
+    - cron: "15 */2 * * *"
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/magistrate-monitor.yml"
+      - "magistrate-monitor/**"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: oldham-magistrate-monitor
+  cancel-in-progress: false
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install dependencies
+        working-directory: magistrate-monitor
+        run: npm install --package-lock=false --no-audit --no-fund
+
+      - name: Install Chromium
+        working-directory: magistrate-monitor
+        run: npx playwright install --with-deps chromium
+
+      - name: Test comparison logic
+        working-directory: magistrate-monitor
+        run: npm run self-test
+
+      - name: Run browser monitor
+        working-directory: magistrate-monitor
+        run: npm run monitor
+
+      - name: Upload diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: magistrate-monitor-diagnostics-${{ github.run_id }}
+          path: magistrate-monitor/diagnostics/
+          if-no-files-found: ignore
+          retention-days: 30
+
+      - name: Commit run results
+        if: always() && github.event_name != 'pull_request'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add magistrate-monitor/status.json \
+                  magistrate-monitor/current.json \
+                  magistrate-monitor/runs.jsonl \
+                  magistrate-monitor/changes.jsonl \
+                  magistrate-monitor/latest.log.txt
+          if git diff --cached --quiet; then
+            echo "No monitor output changed."
+            exit 0
+          fi
+          git commit -m "Log magistrate monitor run"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
