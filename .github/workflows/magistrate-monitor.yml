@@ -10,6 +10,7 @@ on:
       - main
     paths:
       - ".github/workflows/magistrate-monitor.yml"
+      - "magistrate-monitor/manual-trigger.txt"
   pull_request:
     paths:
       - ".github/workflows/magistrate-monitor.yml"
