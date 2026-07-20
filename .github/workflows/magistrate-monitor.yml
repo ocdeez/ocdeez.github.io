@@ -2,7 +2,7 @@ name: Oldham Magistrate Monitor
 
 on:
   schedule:
-    - cron: "*/30 * * * *"
+    - cron: "*/5 * * * *"
   workflow_dispatch:
   push:
     branches:
@@ -32,33 +32,72 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Decide whether full monitor is due
+        id: due
+        shell: bash
+        run: |
+          if [[ "${{ github.event_name }}" != "schedule" ]]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+            echo "Non-scheduled event: run immediately."
+            exit 0
+          fi
+
+          node <<'NODE'
+          const fs = require('fs');
+          const path = 'magistrate-monitor/status.json';
+          const thresholdMs = 29 * 60 * 1000;
+          let due = true;
+          let reason = 'No completed status was found.';
+
+          try {
+            const status = JSON.parse(fs.readFileSync(path, 'utf8'));
+            const last = Date.parse(status.checked_at_utc);
+            if (Number.isFinite(last)) {
+              const ageMs = Date.now() - last;
+              due = ageMs >= thresholdMs;
+              reason = `Last completed check is ${Math.floor(ageMs / 60000)} minutes old.`;
+            }
+          } catch (error) {
+            reason = `Status could not be read: ${error.message}`;
+          }
+
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `run=${due}\n`);
+          console.log(`${reason} Full monitor due: ${due}.`);
+          NODE
+
       - name: Set up Node.js
+        if: steps.due.outputs.run == 'true'
         uses: actions/setup-node@v4
         with:
           node-version: "22"
 
       - name: Install dependencies
+        if: steps.due.outputs.run == 'true'
         working-directory: magistrate-monitor
         run: npm install --package-lock=false --no-audit --no-fund
 
       - name: Install Chromium
+        if: steps.due.outputs.run == 'true'
         working-directory: magistrate-monitor
         run: npx playwright install --with-deps chromium
 
-      - name: Test comparison logic
+      - name: Test comparison and dashboard logic
+        if: steps.due.outputs.run == 'true'
         working-directory: magistrate-monitor
         run: npm run self-test
 
       - name: Run browser monitor
+        if: steps.due.outputs.run == 'true'
         working-directory: magistrate-monitor
         run: npm run monitor
 
       - name: Archive linked PDFs
+        if: steps.due.outputs.run == 'true'
         working-directory: magistrate-monitor
         run: npm run archive
 
       - name: Upload diagnostics
-        if: always()
+        if: always() && steps.due.outputs.run == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: magistrate-monitor-diagnostics-${{ github.run_id }}
@@ -67,7 +106,7 @@ jobs:
           retention-days: 30
 
       - name: Commit run results and archived PDFs
-        if: always() && github.event_name != 'pull_request'
+        if: always() && steps.due.outputs.run == 'true' && github.event_name != 'pull_request'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
