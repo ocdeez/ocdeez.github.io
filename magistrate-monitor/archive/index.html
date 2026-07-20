@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Oldham Magistrate PDF Archive</title>
+  <style>
+    :root { color-scheme: light dark; font-family: system-ui, -apple-system, sans-serif; }
+    body { max-width: 1100px; margin: 0 auto; padding: 24px; line-height: 1.45; }
+    header { margin-bottom: 24px; }
+    .summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin: 18px 0; }
+    .card { border: 1px solid #8886; border-radius: 10px; padding: 14px; }
+    .label { font-size: .8rem; opacity: .7; text-transform: uppercase; letter-spacing: .04em; }
+    .value { font-size: 1.25rem; font-weight: 700; margin-top: 4px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; vertical-align: top; padding: 10px; border-bottom: 1px solid #8885; }
+    th { position: sticky; top: 0; background: Canvas; }
+    .small { font-size: .86rem; opacity: .8; }
+    .error { border-left: 4px solid #b00; padding-left: 12px; }
+    a { overflow-wrap: anywhere; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Oldham County Magistrate PDF Archive</h1>
+    <p>Permanent copies downloaded by the GitHub Actions browser monitor. A new copy is retained when a new URL or different file hash is detected.</p>
+    <p><a href="../">Monitor status</a> · <a href="manifest.json">Raw manifest</a> · <a href="status.json">Archive status JSON</a></p>
+  </header>
+
+  <section class="summary" id="summary"></section>
+  <section id="failures"></section>
+  <section>
+    <h2>Archived documents</h2>
+    <table>
+      <thead><tr><th>Meeting / item</th><th>Saved copy</th><th>First seen</th><th>Size / hash</th></tr></thead>
+      <tbody id="documents"><tr><td colspan="4">Loading…</td></tr></tbody>
+    </table>
+  </section>
+
+  <script>
+    const formatBytes = (bytes) => {
+      if (!Number.isFinite(bytes)) return 'Unknown';
+      const units = ['B', 'KB', 'MB', 'GB'];
+      let value = bytes;
+      let unit = 0;
+      while (value >= 1024 && unit < units.length - 1) { value /= 1024; unit += 1; }
+      return `${value.toFixed(unit ? 1 : 0)} ${units[unit]}`;
+    };
+
+    Promise.all([
+      fetch('manifest.json', { cache: 'no-store' }).then((r) => r.json()),
+      fetch('status.json', { cache: 'no-store' }).then((r) => r.json()),
+    ]).then(([manifest, status]) => {
+      const cards = [
+        ['Current linked files', manifest.current_link_count ?? 0],
+        ['Archived versions', manifest.unique_archived_files ?? 0],
+        ['Last archive run', status.checked_at_local ?? 'Not run yet'],
+        ['Last run failures', status.failed_this_run ?? 0],
+      ];
+      document.querySelector('#summary').innerHTML = cards.map(([label, value]) =>
+        `<div class="card"><div class="label">${label}</div><div class="value">${value}</div></div>`
+      ).join('');
+
+      const failures = status.failures ?? [];
+      document.querySelector('#failures').innerHTML = failures.length
+        ? `<div class="error"><h2>Latest download failures</h2><ul>${failures.map((f) => `<li><strong>${f.title}</strong>: ${f.error}</li>`).join('')}</ul></div>`
+        : '';
+
+      const documents = [...(manifest.documents ?? [])].sort((a, b) =>
+        String(b.first_seen_utc).localeCompare(String(a.first_seen_utc))
+      );
+      document.querySelector('#documents').innerHTML = documents.length ? documents.map((doc) => `
+        <tr>
+          <td><strong>${doc.title}</strong><div class="small">${doc.section}</div><div class="small"><a href="${doc.source_url}">Original source</a></div></td>
+          <td><a href="${doc.public_url}">${doc.source_filename}</a>${doc.supersedes_id ? `<div class="small">New version of ${doc.supersedes_id}</div>` : ''}</td>
+          <td>${doc.first_seen_local ?? doc.first_seen_utc}</td>
+          <td>${formatBytes(doc.bytes)}<div class="small"><code>${String(doc.sha256).slice(0, 16)}…</code></div></td>
+        </tr>`).join('') : '<tr><td colspan="4">No files have been archived yet.</td></tr>';
+    }).catch((error) => {
+      document.querySelector('#documents').innerHTML = `<tr><td colspan="4">Unable to load archive data: ${error.message}</td></tr>`;
+    });
+  </script>
+</body>
+</html>
