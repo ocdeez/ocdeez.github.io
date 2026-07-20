@@ -1,19 +1,25 @@
 name: Oldham Magistrate Monitor
 
 on:
-  # Wake frequently, then run the full monitor only when the prior completed check is at least 29 minutes old.
+  # Primary watchdog, intentionally offset from the start of the hour because GitHub
+  # documents that scheduled jobs are more likely to be delayed or dropped near :00.
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "2/5 * * * *"
   workflow_dispatch:
+  repository_dispatch:
+    types:
+      - magistrate-monitor
   push:
     branches:
       - main
     paths:
       - ".github/workflows/magistrate-monitor.yml"
+      - ".github/workflows/magistrate-monitor-backup.yml"
       - "magistrate-monitor/manual-trigger.txt"
   pull_request:
     paths:
       - ".github/workflows/magistrate-monitor.yml"
+      - ".github/workflows/magistrate-monitor-backup.yml"
       - "magistrate-monitor/**"
 
 permissions:
@@ -47,7 +53,9 @@ jobs:
           node <<'NODE'
           const fs = require('fs');
           const path = 'magistrate-monitor/status.json';
-          const thresholdMs = 29 * 60 * 1000;
+          // Two staggered workflows wake every 2-3 minutes. A 27-minute threshold
+          // keeps the next full run close to, and normally no later than, 30 minutes.
+          const thresholdMs = 27 * 60 * 1000;
           let due = true;
           let reason = 'No completed status was found.';
 
