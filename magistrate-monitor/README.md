@@ -1,6 +1,6 @@
 # Oldham County Magistrate Document Monitor
 
-This monitor opens the live Oldham County magistrate-document page in a real Chromium browser every two hours, extracts the meeting sections and document links, compares them with the last successful inventory, and publishes a concise status record.
+This monitor opens the live Oldham County magistrate-document page in a real Chromium browser every 30 minutes, extracts the meeting sections and document links, compares them with the last successful inventory, and publishes a concise status record.
 
 Monitored page:
 
@@ -36,7 +36,7 @@ A timeout, CAPTCHA, blocked browser, missing page section, partial extraction, o
 
 ## Schedule
 
-GitHub Actions uses UTC. The workflow is scheduled at minute 15 of every second UTC hour. GitHub may occasionally start scheduled jobs a few minutes late.
+GitHub Actions uses UTC. The workflow is scheduled at minute 0 and minute 30 of every hour. GitHub may occasionally start scheduled jobs a few minutes late.
 
 The workflow can also be run manually from **Actions > Oldham Magistrate Monitor > Run workflow**.
 
