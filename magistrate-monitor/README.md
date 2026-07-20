@@ -8,18 +8,24 @@ Monitored page:
 
 Public outputs after the workflow runs on the default branch:
 
-- `index.html` - human-readable dashboard
-- `status.json` - latest machine-readable result
-- `latest.log.txt` - latest human-readable log entry
-- `current.json` - latest fully successful inventory
-- `runs.jsonl` - complete rolling run history, including failures
+- `index.html` - human-readable monitor dashboard
+- `status.json` - latest machine-readable monitor result
+- `latest.log.txt` - latest human-readable monitor log entry
+- `current.json` - latest fully successful page inventory
+- `runs.jsonl` - complete rolling monitor history, including failures
 - `changes.jsonl` - rolling history of confirmed page changes
+- `archive/index.html` - human-readable permanent PDF archive
+- `archive/manifest.json` - source URL, meeting section, first-seen time, saved path, file size, and SHA-256 hash for each archived version
+- `archive/status.json` - result of the latest archive run
+- `archive/runs.jsonl` - rolling archive history
 
-Expected public URLs after merge:
+Expected public URLs:
 
 - `https://ocdeez.github.io/magistrate-monitor/`
 - `https://ocdeez.github.io/magistrate-monitor/status.json`
 - `https://ocdeez.github.io/magistrate-monitor/latest.log.txt`
+- `https://ocdeez.github.io/magistrate-monitor/archive/`
+- `https://ocdeez.github.io/magistrate-monitor/archive/manifest.json`
 
 ## What counts as a successful no-change run
 
@@ -34,14 +40,32 @@ The monitor only reports no changes when all of the following succeed:
 
 A timeout, CAPTCHA, blocked browser, missing page section, partial extraction, or comparison problem is reported as a failure rather than as "no changes."
 
+## PDF archive behavior
+
+The archive stores files in:
+
+`magistrate-monitor/archive/files/<meeting-section>/<first-seen-date>/<filename>.pdf`
+
+The archive runs after each successful page inventory. It:
+
+1. Downloads every currently linked PDF that has not been archived before.
+2. Keeps old copies when a source URL changes.
+3. Uses a SHA-256 content hash to avoid overwriting an older version.
+4. Rechecks previously archived URLs once every 24 hours for silent content replacement at the same URL.
+5. Adds a short hash to the saved filename when the same filename contains different content.
+6. Refuses individual files larger than 95 MB because GitHub blocks files at or above 100 MB.
+7. Logs download failures rather than silently treating the file as archived.
+
+The archive is public because this is a public GitHub Pages repository. Moving the archive later is possible by changing `ARCHIVE_ROOT`, `FILES_ROOT`, and the public URL construction in `archive.mjs`. A separate private repository, GitHub Release assets, cloud storage, or an external drive can also be used instead if long-term repository size becomes a concern.
+
 ## Schedule
 
-GitHub Actions uses UTC. The workflow is scheduled at minute 0 and minute 30 of every hour. GitHub may occasionally start scheduled jobs a few minutes late.
+GitHub Actions uses UTC. The workflow is scheduled every 30 minutes, at minute 0 and minute 30. GitHub may occasionally start scheduled jobs a few minutes late.
 
 The workflow can also be run manually from **Actions > Oldham Magistrate Monitor > Run workflow**.
 
 ## Stored evidence
 
-When a change or failure occurs, the workflow attempts to capture a full-page screenshot and HTML snapshot. Those diagnostics are uploaded as a GitHub Actions artifact and retained for 30 days.
+When a page change or page-check failure occurs, the monitor attempts to capture a full-page screenshot and HTML snapshot. Those diagnostics are uploaded as a GitHub Actions artifact and retained for 30 days.
 
-The workflow commits the latest result files back to the default branch after every scheduled or manual run. Pull-request test runs do not commit monitor output.
+The workflow commits the latest monitor results, archive metadata, and downloaded PDFs back to the default branch after every scheduled or manual run. Pull-request test runs download and validate files in the temporary runner but do not commit generated output.

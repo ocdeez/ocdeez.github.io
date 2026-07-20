@@ -24,7 +24,7 @@ concurrency:
 jobs:
   monitor:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
 
     steps:
       - name: Check out repository
@@ -53,6 +53,10 @@ jobs:
         working-directory: magistrate-monitor
         run: npm run monitor
 
+      - name: Archive linked PDFs
+        working-directory: magistrate-monitor
+        run: npm run archive
+
       - name: Upload diagnostics
         if: always()
         uses: actions/upload-artifact@v4
@@ -62,7 +66,7 @@ jobs:
           if-no-files-found: ignore
           retention-days: 30
 
-      - name: Commit run results
+      - name: Commit run results and archived PDFs
         if: always() && github.event_name != 'pull_request'
         run: |
           git config user.name "github-actions[bot]"
@@ -71,11 +75,12 @@ jobs:
                   magistrate-monitor/current.json \
                   magistrate-monitor/runs.jsonl \
                   magistrate-monitor/changes.jsonl \
-                  magistrate-monitor/latest.log.txt
+                  magistrate-monitor/latest.log.txt \
+                  magistrate-monitor/archive/
           if git diff --cached --quiet; then
-            echo "No monitor output changed."
+            echo "No monitor or archive output changed."
             exit 0
           fi
-          git commit -m "Log magistrate monitor run"
+          git commit -m "Log magistrate monitor run and archive PDFs"
           git pull --rebase origin "${GITHUB_REF_NAME}"
           git push origin "HEAD:${GITHUB_REF_NAME}"
