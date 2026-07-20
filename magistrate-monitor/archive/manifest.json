@@ -1,10 +1,10 @@
 {
   "version": 1,
   "archive_root": "magistrate-monitor/archive/files",
-  "updated_at_utc": "2026-07-20T18:53:13.774Z",
-  "updated_at_local": "July 20, 2026 at 2:53:13 PM EDT",
+  "updated_at_utc": "2026-07-20T20:15:10.821Z",
+  "updated_at_local": "July 20, 2026 at 4:15:10 PM EDT",
   "current_link_count": 26,
-  "unique_archived_files": 26,
+  "unique_archived_files": 29,
   "documents": [
     {
       "id": "6d347b18cd19f756",
@@ -42,7 +42,7 @@
       "bytes": 122396,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-20T18:53:13.774Z",
+      "last_seen_utc": "2026-07-20T20:15:10.821Z",
       "last_verified_utc": "2026-07-20T14:09:58.240Z",
       "supersedes_id": null,
       "http": {
@@ -65,7 +65,7 @@
       "bytes": 6328113,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-20T18:53:13.774Z",
+      "last_seen_utc": "2026-07-20T20:15:10.821Z",
       "last_verified_utc": "2026-07-20T14:09:58.240Z",
       "supersedes_id": null,
       "http": {
@@ -88,7 +88,7 @@
       "bytes": 176526,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-20T18:53:13.774Z",
+      "last_seen_utc": "2026-07-20T20:15:10.821Z",
       "last_verified_utc": "2026-07-20T14:09:58.240Z",
       "supersedes_id": null,
       "http": {
@@ -111,7 +111,7 @@
       "bytes": 1886774,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-20T18:53:13.774Z",
+      "last_seen_utc": "2026-07-20T20:15:10.821Z",
       "last_verified_utc": "2026-07-20T14:09:58.240Z",
       "supersedes_id": null,
       "http": {
@@ -134,7 +134,7 @@
       "bytes": 1879460,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-20T18:53:13.774Z",
+      "last_seen_utc": "2026-07-20T20:15:10.821Z",
       "last_verified_utc": "2026-07-20T14:09:58.240Z",
       "supersedes_id": null,
       "http": {
@@ -157,7 +157,7 @@
       "bytes": 1268251,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-20T18:53:13.774Z",
+      "last_seen_utc": "2026-07-20T20:15:10.821Z",
       "last_verified_utc": "2026-07-20T14:09:58.240Z",
       "supersedes_id": null,
       "http": {
@@ -180,7 +180,7 @@
       "bytes": 1252904,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-20T18:53:13.774Z",
+      "last_seen_utc": "2026-07-20T20:15:10.821Z",
       "last_verified_utc": "2026-07-20T14:09:58.240Z",
       "supersedes_id": null,
       "http": {
@@ -203,7 +203,7 @@
       "bytes": 1220873,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-20T18:53:13.774Z",
+      "last_seen_utc": "2026-07-20T20:15:10.821Z",
       "last_verified_utc": "2026-07-20T14:09:58.240Z",
       "supersedes_id": null,
       "http": {
@@ -226,7 +226,7 @@
       "bytes": 2157328,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-20T18:53:13.774Z",
+      "last_seen_utc": "2026-07-20T20:15:10.821Z",
       "last_verified_utc": "2026-07-20T14:09:58.240Z",
       "supersedes_id": null,
       "http": {
@@ -249,7 +249,7 @@
       "bytes": 5586431,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-20T18:53:13.774Z",
+      "last_seen_utc": "2026-07-20T20:15:10.821Z",
       "last_verified_utc": "2026-07-20T14:09:58.240Z",
       "supersedes_id": null,
       "http": {
@@ -272,7 +272,7 @@
       "bytes": 2746490,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-20T18:53:13.774Z",
+      "last_seen_utc": "2026-07-20T20:15:10.821Z",
       "last_verified_utc": "2026-07-20T14:09:58.240Z",
       "supersedes_id": null,
       "http": {
@@ -295,7 +295,7 @@
       "bytes": 7516423,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-20T18:53:13.774Z",
+      "last_seen_utc": "2026-07-20T20:15:10.821Z",
       "last_verified_utc": "2026-07-20T14:09:58.240Z",
       "supersedes_id": null,
       "http": {
@@ -364,7 +364,7 @@
       "bytes": 6249569,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-20T18:53:13.774Z",
+      "last_seen_utc": "2026-07-20T20:15:10.821Z",
       "last_verified_utc": "2026-07-20T14:09:58.240Z",
       "supersedes_id": null,
       "http": {
@@ -387,7 +387,7 @@
       "bytes": 96033,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-20T18:53:13.774Z",
+      "last_seen_utc": "2026-07-20T20:15:10.821Z",
       "last_verified_utc": "2026-07-20T14:09:58.240Z",
       "supersedes_id": null,
       "http": {
@@ -410,7 +410,7 @@
       "bytes": 647846,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-20T18:53:13.774Z",
+      "last_seen_utc": "2026-07-20T20:15:10.821Z",
       "last_verified_utc": "2026-07-20T14:09:58.240Z",
       "supersedes_id": null,
       "http": {
@@ -433,7 +433,7 @@
       "bytes": 1433479,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-20T18:53:13.774Z",
+      "last_seen_utc": "2026-07-20T20:15:10.821Z",
       "last_verified_utc": "2026-07-20T14:09:58.240Z",
       "supersedes_id": null,
       "http": {
@@ -456,7 +456,7 @@
       "bytes": 743983,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-20T18:53:13.774Z",
+      "last_seen_utc": "2026-07-20T20:15:10.821Z",
       "last_verified_utc": "2026-07-20T14:09:58.240Z",
       "supersedes_id": null,
       "http": {
@@ -479,7 +479,7 @@
       "bytes": 3137526,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-20T18:53:13.774Z",
+      "last_seen_utc": "2026-07-20T20:15:10.821Z",
       "last_verified_utc": "2026-07-20T14:09:58.240Z",
       "supersedes_id": null,
       "http": {
@@ -502,7 +502,7 @@
       "bytes": 1185849,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-20T18:53:13.774Z",
+      "last_seen_utc": "2026-07-20T20:15:10.821Z",
       "last_verified_utc": "2026-07-20T14:09:58.240Z",
       "supersedes_id": null,
       "http": {
@@ -525,7 +525,7 @@
       "bytes": 658251,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-20T18:53:13.774Z",
+      "last_seen_utc": "2026-07-20T20:15:10.821Z",
       "last_verified_utc": "2026-07-20T14:09:58.240Z",
       "supersedes_id": null,
       "http": {
@@ -548,7 +548,7 @@
       "bytes": 159832,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-20T18:53:13.774Z",
+      "last_seen_utc": "2026-07-20T20:15:10.821Z",
       "last_verified_utc": "2026-07-20T14:09:58.240Z",
       "supersedes_id": null,
       "http": {
@@ -571,7 +571,7 @@
       "bytes": 576249,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-20T18:53:13.774Z",
+      "last_seen_utc": "2026-07-20T20:15:10.821Z",
       "last_verified_utc": "2026-07-20T14:09:58.240Z",
       "supersedes_id": null,
       "http": {
@@ -594,7 +594,7 @@
       "bytes": 1005789,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-20T18:53:13.774Z",
+      "last_seen_utc": "2026-07-20T20:15:10.821Z",
       "last_verified_utc": "2026-07-20T14:09:58.240Z",
       "supersedes_id": null,
       "http": {
@@ -602,6 +602,75 @@
         "content_type": "application/pdf",
         "etag": "W/\"e7981aed9d1d0270db278e1202e2e52a\"",
         "last_modified": "Fri, 26 Jun 2026 18:07:59 GMT"
+      }
+    },
+    {
+      "id": "56debcb43f7eb275",
+      "section": "July 21, 2026 - REGULAR MEETING",
+      "title": "ALL IN ONE",
+      "source_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/All+In+One+Document-700132d4.pdf",
+      "final_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/All+In+One+Document-700132d4.pdf",
+      "source_filename": "All+In+One+Document-700132d4.pdf",
+      "archive_path": "magistrate-monitor/archive/files/july-21-2026-regular-meeting/2026-07-20/all-in-one-document-700132d4.pdf",
+      "public_url": "https://ocdeez.github.io/magistrate-monitor/archive/files/july-21-2026-regular-meeting/2026-07-20/all-in-one-document-700132d4.pdf",
+      "sha256": "56debcb43f7eb275977a7ab28d06c071ccb27bb017a84486ad38d6570cd5efea",
+      "bytes": 26226772,
+      "first_seen_utc": "2026-07-20T20:15:10.821Z",
+      "first_seen_local": "July 20, 2026 at 4:15:10 PM EDT",
+      "last_seen_utc": "2026-07-20T20:15:10.821Z",
+      "last_verified_utc": "2026-07-20T20:15:10.821Z",
+      "supersedes_id": null,
+      "http": {
+        "status": 200,
+        "content_type": "application/pdf",
+        "etag": "\"1b3e22118d7809ac59cda9fa56bbc61e\"",
+        "last_modified": "Mon, 20 Jul 2026 18:50:13 GMT"
+      }
+    },
+    {
+      "id": "ea38d95476f4c857",
+      "section": "July 21, 2026 - REGULAR MEETING",
+      "title": "WASTE TIRE MANAGEMENT PROGRAM AGREEMENT",
+      "source_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Waste+Tire+Event+agreement-894a0546.pdf",
+      "final_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Waste+Tire+Event+agreement-894a0546.pdf",
+      "source_filename": "Waste+Tire+Event+agreement-894a0546.pdf",
+      "archive_path": "magistrate-monitor/archive/files/july-21-2026-regular-meeting/2026-07-20/waste-tire-event-agreement-894a0546.pdf",
+      "public_url": "https://ocdeez.github.io/magistrate-monitor/archive/files/july-21-2026-regular-meeting/2026-07-20/waste-tire-event-agreement-894a0546.pdf",
+      "sha256": "ea38d95476f4c85729dcfa609fb507933d8b18b3690f2097f8c1da4921babd56",
+      "bytes": 422141,
+      "first_seen_utc": "2026-07-20T20:15:10.821Z",
+      "first_seen_local": "July 20, 2026 at 4:15:10 PM EDT",
+      "last_seen_utc": "2026-07-20T20:15:10.821Z",
+      "last_verified_utc": "2026-07-20T20:15:10.821Z",
+      "supersedes_id": null,
+      "http": {
+        "status": 200,
+        "content_type": "application/pdf",
+        "etag": "W/\"408d7087144ca8f5f56bfa9402c16039\"",
+        "last_modified": "Mon, 20 Jul 2026 18:53:53 GMT"
+      }
+    },
+    {
+      "id": "ea8939804a9f1b9e",
+      "section": "July 21, 2026 - REGULAR MEETING",
+      "title": "PERSONNEL ACTIONS",
+      "source_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/FC+PAR+07-21-26+w+Contracts-c5f3ed99.pdf",
+      "final_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/FC+PAR+07-21-26+w+Contracts-c5f3ed99.pdf",
+      "source_filename": "FC+PAR+07-21-26+w+Contracts-c5f3ed99.pdf",
+      "archive_path": "magistrate-monitor/archive/files/july-21-2026-regular-meeting/2026-07-20/fc-par-07-21-26-w-contracts-c5f3ed99.pdf",
+      "public_url": "https://ocdeez.github.io/magistrate-monitor/archive/files/july-21-2026-regular-meeting/2026-07-20/fc-par-07-21-26-w-contracts-c5f3ed99.pdf",
+      "sha256": "ea8939804a9f1b9e6bf53208c9a41010068e3220849a4325a157e56d1139ac71",
+      "bytes": 798066,
+      "first_seen_utc": "2026-07-20T20:15:10.821Z",
+      "first_seen_local": "July 20, 2026 at 4:15:10 PM EDT",
+      "last_seen_utc": "2026-07-20T20:15:10.821Z",
+      "last_verified_utc": "2026-07-20T20:15:10.821Z",
+      "supersedes_id": null,
+      "http": {
+        "status": 200,
+        "content_type": "application/pdf",
+        "etag": "W/\"8429a892b7728ca9578654b645e96112\"",
+        "last_modified": "Mon, 20 Jul 2026 18:53:10 GMT"
       }
     }
   ]
