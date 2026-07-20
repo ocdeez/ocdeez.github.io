@@ -40,10 +40,13 @@ jobs:
         working-directory: magistrate-monitor
         run: npx playwright install --with-deps chromium
 
-      - name: Run monitor
-        id: monitor
+      - name: Test comparison logic
         working-directory: magistrate-monitor
-        run: node monitor.mjs
+        run: npm run self-test
+
+      - name: Run browser monitor
+        working-directory: magistrate-monitor
+        run: npm run monitor
 
       - name: Upload diagnostics
         if: always()
