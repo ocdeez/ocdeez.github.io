@@ -1,6 +1,7 @@
 name: Oldham Magistrate Monitor
 
 on:
+  # Wake frequently, then run the full monitor only when the prior completed check is at least 29 minutes old.
   schedule:
     - cron: "*/5 * * * *"
   workflow_dispatch:
