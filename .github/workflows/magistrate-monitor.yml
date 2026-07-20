@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: "15 */2 * * *"
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/magistrate-monitor.yml"
   pull_request:
     paths:
       - ".github/workflows/magistrate-monitor.yml"
