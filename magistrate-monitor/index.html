@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Oldham Magistrate Document Monitor</title>
+  <style>
+    :root { color-scheme: light dark; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    body { max-width: 980px; margin: 0 auto; padding: 24px; line-height: 1.45; }
+    header { margin-bottom: 24px; }
+    h1 { margin-bottom: 6px; }
+    .muted { opacity: 0.75; }
+    .card { border: 1px solid currentColor; border-radius: 10px; padding: 16px; margin: 14px 0; }
+    .status { font-size: 1.1rem; font-weight: 700; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+    .metric { border: 1px solid currentColor; border-radius: 8px; padding: 12px; }
+    .metric strong { display: block; font-size: 1.5rem; }
+    ul { padding-left: 22px; }
+    li { margin: 5px 0; }
+    code { overflow-wrap: anywhere; }
+    a { color: inherit; }
+    .error { border-width: 2px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Oldham Magistrate Document Monitor</h1>
+    <div class="muted">Direct Chromium browser checks of the 2026 magistrate documents page every two hours.</div>
+  </header>
+
+  <main id="app" aria-live="polite">
+    <div class="card">Loading the latest monitor result...</div>
+  </main>
+
+  <script>
+    const app = document.getElementById('app');
+    const escapeHtml = (value) => String(value ?? '')
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#039;');
+
+    function renderChange(change) {
+      const type = escapeHtml(change.type ?? 'change');
+      const section = change.section ? ` in ${escapeHtml(change.section)}` : '';
+      const title = change.title ?? change.new_title ?? change.old_title ?? change.item?.title;
+      return `<li><strong>${type}</strong>${section}${title ? `: ${escapeHtml(title)}` : ''}</li>`;
+    }
+
+    function renderSection(section) {
+      const items = (section.items ?? []).map((item) => {
+        const title = escapeHtml(item.title);
+        if (!item.href) return `<li>${title} <span class="muted">(not linked)</span></li>`;
+        return `<li><a href="${escapeHtml(item.href)}">${title}</a><br><code>${escapeHtml(item.filename ?? item.href)}</code></li>`;
+      }).join('');
+      return `<section class="card"><h2>${escapeHtml(section.title)}</h2><ul>${items}</ul></section>`;
+    }
+
+    async function load() {
+      const bust = Date.now();
+      const [statusResponse, inventoryResponse] = await Promise.all([
+        fetch(`status.json?v=${bust}`, { cache: 'no-store' }),
+        fetch(`current.json?v=${bust}`, { cache: 'no-store' }),
+      ]);
+      if (!statusResponse.ok) throw new Error(`status.json returned HTTP ${statusResponse.status}`);
+      if (!inventoryResponse.ok) throw new Error(`current.json returned HTTP ${inventoryResponse.status}`);
+
+      const status = await statusResponse.json();
+      const inventory = await inventoryResponse.json();
+      const statusClass = status.success ? '' : ' error';
+      const counts = status.counts ?? {};
+      const changes = Array.isArray(status.changes) && status.changes.length
+        ? `<div class="card"><h2>Latest changes</h2><ul>${status.changes.map(renderChange).join('')}</ul></div>`
+        : '';
+      const sections = (inventory.sections ?? []).map(renderSection).join('');
+
+      app.innerHTML = `
+        <div class="card${statusClass}">
+          <div class="status">${escapeHtml(status.log_entry ?? status.summary)}</div>
+          <p><strong>Successful check:</strong> ${status.success ? 'Yes' : 'No'}</p>
+          <p><strong>Changes found:</strong> ${status.changed === null ? 'Not determined' : status.changed ? 'Yes' : 'No'}</p>
+          <p><strong>Target:</strong> <a href="${escapeHtml(status.url)}">${escapeHtml(status.url)}</a></p>
+        </div>
+        <div class="grid">
+          <div class="metric"><strong>${escapeHtml(counts.sections ?? '-')}</strong>sections</div>
+          <div class="metric"><strong>${escapeHtml(counts.items ?? '-')}</strong>visible items</div>
+          <div class="metric"><strong>${escapeHtml(counts.linked ?? '-')}</strong>linked documents</div>
+        </div>
+        ${changes}
+        <h2>Latest successful inventory</h2>
+        ${sections || '<div class="card">No successful inventory is available yet.</div>'}
+      `;
+    }
+
+    load().catch((error) => {
+      app.innerHTML = `<div class="card error"><strong>Dashboard load failed.</strong><p>${escapeHtml(error.message)}</p></div>`;
+    });
+  </script>
+</body>
+</html>
