@@ -2,66 +2,15 @@
   "monitor": "oldham-magistrate-documents",
   "url": "https://www.oldhamcountyky.gov/magistratedocs2026",
   "success": true,
-  "changed": true,
-  "summary": "changes detected: 6 item_renamed, 1 item_modified.",
-  "log_entry": "Ran at July 20, 2026 at 3:29:35 AM EDT — changes detected: 6 item_renamed, 1 item_modified.",
-  "checked_at_utc": "2026-07-20T07:29:35.854Z",
-  "checked_at_local": "July 20, 2026 at 3:29:35 AM EDT",
+  "changed": false,
+  "summary": "no changes; no issues running.",
+  "log_entry": "Ran at July 20, 2026 at 7:13:15 AM EDT — no changes; no issues running.",
+  "checked_at_utc": "2026-07-20T11:13:15.585Z",
+  "checked_at_local": "July 20, 2026 at 7:13:15 AM EDT",
   "counts": {
     "sections": 3,
     "items": 27,
     "linked": 25
   },
-  "changes": [
-    {
-      "type": "item_renamed",
-      "section": "July 21, 2026 - REGULAR MEETING",
-      "old_title": "Agenda",
-      "new_title": "AGENDA",
-      "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Agenda+DRAFT+072126.pdf"
-    },
-    {
-      "type": "item_renamed",
-      "section": "July 21, 2026 - REGULAR MEETING",
-      "old_title": "Sheriff Tax Settlement",
-      "new_title": "SHERIFF TAX SETTLEMENT",
-      "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/2025+Sheriff+Tax+Settlement.pdf"
-    },
-    {
-      "type": "item_renamed",
-      "section": "July 21, 2026 - REGULAR MEETING",
-      "old_title": "Payables",
-      "new_title": "PAYABLES",
-      "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/07.21.26+PAYABLES.pdf"
-    },
-    {
-      "type": "item_renamed",
-      "section": "July 21, 2026 - REGULAR MEETING",
-      "old_title": "2nd READING KOC 26-920-5 RELATED TO ZONING TEXT AMENDMENTS OF THE COMPREHENSIVE ZONING ORDINANCE",
-      "new_title": "2ND READING KOC 26-920-5 RELATED TO ZONING TEXT AMENDMENTS OF THE COMPREHENSIVE ZONING ORDINANCE",
-      "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/2nd+Reading+Zoning+Text+Amendment+Info.pdf"
-    },
-    {
-      "type": "item_renamed",
-      "section": "July 21, 2026 - REGULAR MEETING",
-      "old_title": "LARP Funding Agreement",
-      "new_title": "LARP FUNDING AGREEMENT",
-      "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/LARP+Resolution+and+Agreement.pdf"
-    },
-    {
-      "type": "item_renamed",
-      "section": "July 21, 2026 - REGULAR MEETING",
-      "old_title": "Personnel Actions",
-      "new_title": "PERSONNEL ACTIONS",
-      "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/FC+PAR+07-21-26+w+Contracts.pdf"
-    },
-    {
-      "type": "item_modified",
-      "section": "July 21, 2026 - REGULAR MEETING",
-      "old_title": "Minutes 06/29/26 & 07/14/26",
-      "new_title": "MINUTES 06/29/26 & 07/14/26",
-      "old_href": null,
-      "new_href": null
-    }
-  ]
+  "changes": []
 }
