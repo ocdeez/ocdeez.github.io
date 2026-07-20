@@ -1,0 +1,12 @@
+{
+  "success": null,
+  "checked_at_utc": null,
+  "checked_at_local": null,
+  "current_link_count": 0,
+  "archived_this_run": 0,
+  "unchanged_this_run": 0,
+  "failed_this_run": 0,
+  "total_archived_files": 0,
+  "archived": [],
+  "failures": []
+}
