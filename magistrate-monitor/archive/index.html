@@ -38,6 +38,22 @@
   </section>
 
   <script>
+    const escapeHtml = (value) => String(value ?? '')
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#039;');
+
+    const safeUrl = (value) => {
+      try {
+        const url = new URL(String(value), location.href);
+        return ['http:', 'https:'].includes(url.protocol) ? url.href : '#';
+      } catch {
+        return '#';
+      }
+    };
+
     const formatBytes = (bytes) => {
       if (!Number.isFinite(bytes)) return 'Unknown';
       const units = ['B', 'KB', 'MB', 'GB'];
@@ -58,12 +74,12 @@
         ['Last run failures', status.failed_this_run ?? 0],
       ];
       document.querySelector('#summary').innerHTML = cards.map(([label, value]) =>
-        `<div class="card"><div class="label">${label}</div><div class="value">${value}</div></div>`
+        `<div class="card"><div class="label">${escapeHtml(label)}</div><div class="value">${escapeHtml(value)}</div></div>`
       ).join('');
 
       const failures = status.failures ?? [];
       document.querySelector('#failures').innerHTML = failures.length
-        ? `<div class="error"><h2>Latest download failures</h2><ul>${failures.map((f) => `<li><strong>${f.title}</strong>: ${f.error}</li>`).join('')}</ul></div>`
+        ? `<div class="error"><h2>Latest download failures</h2><ul>${failures.map((f) => `<li><strong>${escapeHtml(f.title)}</strong>: ${escapeHtml(f.error)}</li>`).join('')}</ul></div>`
         : '';
 
       const documents = [...(manifest.documents ?? [])].sort((a, b) =>
@@ -71,13 +87,13 @@
       );
       document.querySelector('#documents').innerHTML = documents.length ? documents.map((doc) => `
         <tr>
-          <td><strong>${doc.title}</strong><div class="small">${doc.section}</div><div class="small"><a href="${doc.source_url}">Original source</a></div></td>
-          <td><a href="${doc.public_url}">${doc.source_filename}</a>${doc.supersedes_id ? `<div class="small">New version of ${doc.supersedes_id}</div>` : ''}</td>
-          <td>${doc.first_seen_local ?? doc.first_seen_utc}</td>
-          <td>${formatBytes(doc.bytes)}<div class="small"><code>${String(doc.sha256).slice(0, 16)}…</code></div></td>
+          <td><strong>${escapeHtml(doc.title)}</strong><div class="small">${escapeHtml(doc.section)}</div><div class="small"><a href="${escapeHtml(safeUrl(doc.source_url))}">Original source</a></div></td>
+          <td><a href="${escapeHtml(safeUrl(doc.public_url))}">${escapeHtml(doc.source_filename)}</a>${doc.supersedes_id ? `<div class="small">New version of ${escapeHtml(doc.supersedes_id)}</div>` : ''}</td>
+          <td>${escapeHtml(doc.first_seen_local ?? doc.first_seen_utc)}</td>
+          <td>${escapeHtml(formatBytes(doc.bytes))}<div class="small"><code>${escapeHtml(String(doc.sha256).slice(0, 16))}…</code></div></td>
         </tr>`).join('') : '<tr><td colspan="4">No files have been archived yet.</td></tr>';
     }).catch((error) => {
-      document.querySelector('#documents').innerHTML = `<tr><td colspan="4">Unable to load archive data: ${error.message}</td></tr>`;
+      document.querySelector('#documents').innerHTML = `<tr><td colspan="4">Unable to load archive data: ${escapeHtml(error.message)}</td></tr>`;
     });
   </script>
 </body>
