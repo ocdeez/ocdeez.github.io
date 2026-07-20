@@ -2,43 +2,15 @@
   "monitor": "oldham-magistrate-documents",
   "url": "https://www.oldhamcountyky.gov/magistratedocs2026",
   "success": true,
-  "changed": true,
-  "summary": "changes detected: 3 item_link_changed.",
-  "log_entry": "Ran at July 20, 2026 at 9:25:41 AM EDT — changes detected: 3 item_link_changed.",
-  "checked_at_utc": "2026-07-20T13:25:41.106Z",
-  "checked_at_local": "July 20, 2026 at 9:25:41 AM EDT",
+  "changed": false,
+  "summary": "no changes; no issues running.",
+  "log_entry": "Ran at July 20, 2026 at 9:40:04 AM EDT — no changes; no issues running.",
+  "checked_at_utc": "2026-07-20T13:40:04.012Z",
+  "checked_at_local": "July 20, 2026 at 9:40:04 AM EDT",
   "counts": {
     "sections": 3,
     "items": 27,
     "linked": 26
   },
-  "changes": [
-    {
-      "type": "item_link_changed",
-      "section": "July 21, 2026 - REGULAR MEETING",
-      "title": "ALL IN ONE",
-      "old_href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/All+In+One+Document+07-21-2026.pdf",
-      "new_href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/All+In+One+Document.pdf",
-      "old_linked": true,
-      "new_linked": true
-    },
-    {
-      "type": "item_link_changed",
-      "section": "July 21, 2026 - REGULAR MEETING",
-      "title": "MINUTES 06/29/26 & 07/14/26",
-      "old_href": null,
-      "new_href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Minutes+DRAFT+062926.pdf",
-      "old_linked": false,
-      "new_linked": true
-    },
-    {
-      "type": "item_link_changed",
-      "section": "July 21, 2026 - REGULAR MEETING",
-      "title": "WASTE TIRE MANAGEMENT PROGRAM AGREEMENT",
-      "old_href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Waste+Tire+Event+agreement.pdf",
-      "new_href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Waste+Tire+Event+agreement-ae4b116d.pdf",
-      "old_linked": true,
-      "new_linked": true
-    }
-  ]
+  "changes": []
 }
