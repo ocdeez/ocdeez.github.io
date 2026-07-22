@@ -1,6 +1,6 @@
 # Oldham County Magistrate Document Monitor
 
-This monitor opens the live Oldham County magistrate-document page in a real Chromium browser about every 30 minutes, extracts the meeting sections and document links, compares them with the last successful inventory, and publishes a concise status record.
+This monitor opens the live Oldham County magistrate-document page in a real Chromium browser about every six hours, extracts the meeting sections and document links, compares them with the last successful inventory, and publishes a concise status record.
 
 Monitored page:
 
@@ -75,9 +75,9 @@ The archive is public because this is a public GitHub Pages repository. Moving t
 
 ## Schedule
 
-GitHub Actions wakes the workflow every five minutes. Before installing Chromium or loading the county page, the workflow checks `status.json`. It launches a full browser and archive run when the previous completed browser check is at least 29 minutes old. The concurrency lock prevents overlapping full checks.
+The primary GitHub Actions workflow is scheduled at minute 47 every six hours. The backup workflow is scheduled ten minutes later, at minute 57 every six hours. Both inspect `status.json` and launch a full browser and archive run only when the previous completed browser check is at least 5 hours and 55 minutes old.
 
-This watchdog design is more resistant to a delayed or skipped GitHub cron start than a single `0,30` schedule. GitHub still controls hosted-runner start time, so no GitHub Actions schedule can provide a hard real-time guarantee.
+This design gives the backup workflow a chance to catch a missed primary launch while the shared concurrency lock and due test prevent duplicate full checks. GitHub still controls hosted-runner start time, so scheduled execution can begin later than the stated minute.
 
 The workflow can also be run manually from **Actions > Oldham Magistrate Monitor > Run workflow**.
 
@@ -85,4 +85,4 @@ The workflow can also be run manually from **Actions > Oldham Magistrate Monitor
 
 When a page change or page-check failure occurs, the monitor attempts to capture a full-page screenshot and HTML snapshot. Those diagnostics are uploaded as a GitHub Actions artifact and retained for 30 days.
 
-The workflow commits the latest monitor results, archive metadata, and downloaded PDFs back to the default branch after every full scheduled or manual run. Watchdog wakeups that find the prior run younger than 29 minutes exit without creating a new monitor log entry. Pull-request test runs download and validate files in the temporary runner but do not commit generated output.
+The workflow commits the latest monitor results, archive metadata, and downloaded PDFs back to the default branch after every full scheduled or manual run. Scheduled backup wakeups that find a recent successful primary run exit without creating a new monitor log entry. Pull-request test runs download and validate files in the temporary runner but do not commit generated output.
