@@ -1,8 +1,8 @@
 {
   "version": 1,
   "archive_root": "magistrate-monitor/archive/files",
-  "updated_at_utc": "2026-07-22T00:50:36.446Z",
-  "updated_at_local": "July 21, 2026 at 8:50:36 PM EDT",
+  "updated_at_utc": "2026-07-22T09:14:55.954Z",
+  "updated_at_local": "July 22, 2026 at 5:14:55 AM EDT",
   "current_link_count": 26,
   "unique_archived_files": 29,
   "documents": [
@@ -42,7 +42,7 @@
       "bytes": 122396,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-22T00:50:36.446Z",
+      "last_seen_utc": "2026-07-22T09:14:55.954Z",
       "last_verified_utc": "2026-07-21T14:48:56.163Z",
       "supersedes_id": null,
       "http": {
@@ -65,7 +65,7 @@
       "bytes": 6328113,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-22T00:50:36.446Z",
+      "last_seen_utc": "2026-07-22T09:14:55.954Z",
       "last_verified_utc": "2026-07-21T14:48:56.163Z",
       "supersedes_id": null,
       "http": {
@@ -88,7 +88,7 @@
       "bytes": 176526,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-22T00:50:36.446Z",
+      "last_seen_utc": "2026-07-22T09:14:55.954Z",
       "last_verified_utc": "2026-07-21T14:48:56.163Z",
       "supersedes_id": null,
       "http": {
@@ -111,7 +111,7 @@
       "bytes": 1886774,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-22T00:50:36.446Z",
+      "last_seen_utc": "2026-07-22T09:14:55.954Z",
       "last_verified_utc": "2026-07-21T14:48:56.163Z",
       "supersedes_id": null,
       "http": {
@@ -134,7 +134,7 @@
       "bytes": 1879460,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-22T00:50:36.446Z",
+      "last_seen_utc": "2026-07-22T09:14:55.954Z",
       "last_verified_utc": "2026-07-21T14:48:56.163Z",
       "supersedes_id": null,
       "http": {
@@ -157,7 +157,7 @@
       "bytes": 1268251,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-22T00:50:36.446Z",
+      "last_seen_utc": "2026-07-22T09:14:55.954Z",
       "last_verified_utc": "2026-07-21T14:48:56.163Z",
       "supersedes_id": null,
       "http": {
@@ -180,7 +180,7 @@
       "bytes": 1252904,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-22T00:50:36.446Z",
+      "last_seen_utc": "2026-07-22T09:14:55.954Z",
       "last_verified_utc": "2026-07-21T14:48:56.163Z",
       "supersedes_id": null,
       "http": {
@@ -203,7 +203,7 @@
       "bytes": 1220873,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-22T00:50:36.446Z",
+      "last_seen_utc": "2026-07-22T09:14:55.954Z",
       "last_verified_utc": "2026-07-21T14:48:56.163Z",
       "supersedes_id": null,
       "http": {
@@ -226,7 +226,7 @@
       "bytes": 2157328,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-22T00:50:36.446Z",
+      "last_seen_utc": "2026-07-22T09:14:55.954Z",
       "last_verified_utc": "2026-07-21T14:48:56.163Z",
       "supersedes_id": null,
       "http": {
@@ -249,7 +249,7 @@
       "bytes": 5586431,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-22T00:50:36.446Z",
+      "last_seen_utc": "2026-07-22T09:14:55.954Z",
       "last_verified_utc": "2026-07-21T14:48:56.163Z",
       "supersedes_id": null,
       "http": {
@@ -272,7 +272,7 @@
       "bytes": 2746490,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-22T00:50:36.446Z",
+      "last_seen_utc": "2026-07-22T09:14:55.954Z",
       "last_verified_utc": "2026-07-21T14:48:56.163Z",
       "supersedes_id": null,
       "http": {
@@ -295,7 +295,7 @@
       "bytes": 7516423,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-22T00:50:36.446Z",
+      "last_seen_utc": "2026-07-22T09:14:55.954Z",
       "last_verified_utc": "2026-07-21T14:48:56.163Z",
       "supersedes_id": null,
       "http": {
@@ -364,7 +364,7 @@
       "bytes": 6249569,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-22T00:50:36.446Z",
+      "last_seen_utc": "2026-07-22T09:14:55.954Z",
       "last_verified_utc": "2026-07-21T14:48:56.163Z",
       "supersedes_id": null,
       "http": {
@@ -387,7 +387,7 @@
       "bytes": 96033,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-22T00:50:36.446Z",
+      "last_seen_utc": "2026-07-22T09:14:55.954Z",
       "last_verified_utc": "2026-07-21T14:48:56.163Z",
       "supersedes_id": null,
       "http": {
@@ -410,7 +410,7 @@
       "bytes": 647846,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-22T00:50:36.446Z",
+      "last_seen_utc": "2026-07-22T09:14:55.954Z",
       "last_verified_utc": "2026-07-21T14:48:56.163Z",
       "supersedes_id": null,
       "http": {
@@ -433,7 +433,7 @@
       "bytes": 1433479,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-22T00:50:36.446Z",
+      "last_seen_utc": "2026-07-22T09:14:55.954Z",
       "last_verified_utc": "2026-07-21T14:48:56.163Z",
       "supersedes_id": null,
       "http": {
@@ -456,7 +456,7 @@
       "bytes": 743983,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-22T00:50:36.446Z",
+      "last_seen_utc": "2026-07-22T09:14:55.954Z",
       "last_verified_utc": "2026-07-21T14:48:56.163Z",
       "supersedes_id": null,
       "http": {
@@ -479,7 +479,7 @@
       "bytes": 3137526,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-22T00:50:36.446Z",
+      "last_seen_utc": "2026-07-22T09:14:55.954Z",
       "last_verified_utc": "2026-07-21T14:48:56.163Z",
       "supersedes_id": null,
       "http": {
@@ -502,7 +502,7 @@
       "bytes": 1185849,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-22T00:50:36.446Z",
+      "last_seen_utc": "2026-07-22T09:14:55.954Z",
       "last_verified_utc": "2026-07-21T14:48:56.163Z",
       "supersedes_id": null,
       "http": {
@@ -525,7 +525,7 @@
       "bytes": 658251,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-22T00:50:36.446Z",
+      "last_seen_utc": "2026-07-22T09:14:55.954Z",
       "last_verified_utc": "2026-07-21T14:48:56.163Z",
       "supersedes_id": null,
       "http": {
@@ -548,7 +548,7 @@
       "bytes": 159832,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-22T00:50:36.446Z",
+      "last_seen_utc": "2026-07-22T09:14:55.954Z",
       "last_verified_utc": "2026-07-21T14:48:56.163Z",
       "supersedes_id": null,
       "http": {
@@ -571,7 +571,7 @@
       "bytes": 576249,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-22T00:50:36.446Z",
+      "last_seen_utc": "2026-07-22T09:14:55.954Z",
       "last_verified_utc": "2026-07-21T14:48:56.163Z",
       "supersedes_id": null,
       "http": {
@@ -594,7 +594,7 @@
       "bytes": 1005789,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-22T00:50:36.446Z",
+      "last_seen_utc": "2026-07-22T09:14:55.954Z",
       "last_verified_utc": "2026-07-21T14:48:56.163Z",
       "supersedes_id": null,
       "http": {
@@ -617,7 +617,7 @@
       "bytes": 26226772,
       "first_seen_utc": "2026-07-20T20:15:10.821Z",
       "first_seen_local": "July 20, 2026 at 4:15:10 PM EDT",
-      "last_seen_utc": "2026-07-22T00:50:36.446Z",
+      "last_seen_utc": "2026-07-22T09:14:55.954Z",
       "last_verified_utc": "2026-07-21T21:23:37.694Z",
       "supersedes_id": null,
       "http": {
@@ -640,7 +640,7 @@
       "bytes": 422141,
       "first_seen_utc": "2026-07-20T20:15:10.821Z",
       "first_seen_local": "July 20, 2026 at 4:15:10 PM EDT",
-      "last_seen_utc": "2026-07-22T00:50:36.446Z",
+      "last_seen_utc": "2026-07-22T09:14:55.954Z",
       "last_verified_utc": "2026-07-21T21:23:37.694Z",
       "supersedes_id": null,
       "http": {
@@ -663,7 +663,7 @@
       "bytes": 798066,
       "first_seen_utc": "2026-07-20T20:15:10.821Z",
       "first_seen_local": "July 20, 2026 at 4:15:10 PM EDT",
-      "last_seen_utc": "2026-07-22T00:50:36.446Z",
+      "last_seen_utc": "2026-07-22T09:14:55.954Z",
       "last_verified_utc": "2026-07-21T21:23:37.694Z",
       "supersedes_id": null,
       "http": {
