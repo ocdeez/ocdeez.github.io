@@ -1,10 +1,10 @@
 name: Oldham Magistrate Monitor
 
 on:
-  # Primary watchdog, intentionally offset from the start of the hour because GitHub
+  # Primary six-hour schedule, offset from the start of the hour because GitHub
   # documents that scheduled jobs are more likely to be delayed or dropped near :00.
   schedule:
-    - cron: "2/5 * * * *"
+    - cron: "47 */6 * * *"
   workflow_dispatch:
   repository_dispatch:
     types:
@@ -53,9 +53,10 @@ jobs:
           node <<'NODE'
           const fs = require('fs');
           const path = 'magistrate-monitor/status.json';
-          // Two staggered workflows wake every 2-3 minutes. A 27-minute threshold
-          // keeps the next full run close to, and normally no later than, 30 minutes.
-          const thresholdMs = 27 * 60 * 1000;
+          // The primary and backup schedules are ten minutes apart. A 5-hour,
+          // 55-minute threshold permits the next six-hour check while preventing
+          // the backup from duplicating a successful primary run.
+          const thresholdMs = 355 * 60 * 1000;
           let due = true;
           let reason = 'No completed status was found.';
 
