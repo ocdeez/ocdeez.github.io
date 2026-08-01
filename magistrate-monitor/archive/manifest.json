@@ -1,10 +1,10 @@
 {
   "version": 1,
   "archive_root": "magistrate-monitor/archive/files",
-  "updated_at_utc": "2026-07-31T15:08:26.983Z",
-  "updated_at_local": "July 31, 2026 at 11:08:26 AM EDT",
-  "current_link_count": 26,
-  "unique_archived_files": 29,
+  "updated_at_utc": "2026-08-01T04:04:42.581Z",
+  "updated_at_local": "August 1, 2026 at 12:04:42 AM EDT",
+  "current_link_count": 39,
+  "unique_archived_files": 41,
   "documents": [
     {
       "id": "6d347b18cd19f756",
@@ -42,7 +42,7 @@
       "bytes": 122396,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-31T15:08:26.983Z",
+      "last_seen_utc": "2026-08-01T04:04:42.581Z",
       "last_verified_utc": "2026-07-31T04:05:44.914Z",
       "supersedes_id": null,
       "http": {
@@ -65,7 +65,7 @@
       "bytes": 6328113,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-31T15:08:26.983Z",
+      "last_seen_utc": "2026-08-01T04:04:42.581Z",
       "last_verified_utc": "2026-07-31T04:05:44.914Z",
       "supersedes_id": null,
       "http": {
@@ -88,7 +88,7 @@
       "bytes": 176526,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-31T15:08:26.983Z",
+      "last_seen_utc": "2026-08-01T04:04:42.581Z",
       "last_verified_utc": "2026-07-31T04:05:44.914Z",
       "supersedes_id": null,
       "http": {
@@ -111,7 +111,7 @@
       "bytes": 1886774,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-31T15:08:26.983Z",
+      "last_seen_utc": "2026-08-01T04:04:42.581Z",
       "last_verified_utc": "2026-07-31T04:05:44.914Z",
       "supersedes_id": null,
       "http": {
@@ -134,7 +134,7 @@
       "bytes": 1879460,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-31T15:08:26.983Z",
+      "last_seen_utc": "2026-08-01T04:04:42.581Z",
       "last_verified_utc": "2026-07-31T04:05:44.914Z",
       "supersedes_id": null,
       "http": {
@@ -157,7 +157,7 @@
       "bytes": 1268251,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-31T15:08:26.983Z",
+      "last_seen_utc": "2026-08-01T04:04:42.581Z",
       "last_verified_utc": "2026-07-31T04:05:44.914Z",
       "supersedes_id": null,
       "http": {
@@ -180,7 +180,7 @@
       "bytes": 1252904,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-31T15:08:26.983Z",
+      "last_seen_utc": "2026-08-01T04:04:42.581Z",
       "last_verified_utc": "2026-07-31T04:05:44.914Z",
       "supersedes_id": null,
       "http": {
@@ -203,7 +203,7 @@
       "bytes": 1220873,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-31T15:08:26.983Z",
+      "last_seen_utc": "2026-08-01T04:04:42.581Z",
       "last_verified_utc": "2026-07-31T04:05:44.914Z",
       "supersedes_id": null,
       "http": {
@@ -226,7 +226,7 @@
       "bytes": 2157328,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-31T15:08:26.983Z",
+      "last_seen_utc": "2026-08-01T04:04:42.581Z",
       "last_verified_utc": "2026-07-31T04:05:44.914Z",
       "supersedes_id": null,
       "http": {
@@ -249,7 +249,7 @@
       "bytes": 5586431,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-31T15:08:26.983Z",
+      "last_seen_utc": "2026-08-01T04:04:42.581Z",
       "last_verified_utc": "2026-07-31T04:05:44.914Z",
       "supersedes_id": null,
       "http": {
@@ -272,7 +272,7 @@
       "bytes": 2746490,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-31T15:08:26.983Z",
+      "last_seen_utc": "2026-08-01T04:04:42.581Z",
       "last_verified_utc": "2026-07-31T04:05:44.914Z",
       "supersedes_id": null,
       "http": {
@@ -295,7 +295,7 @@
       "bytes": 7516423,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-31T15:08:26.983Z",
+      "last_seen_utc": "2026-08-01T04:04:42.581Z",
       "last_verified_utc": "2026-07-31T04:05:44.914Z",
       "supersedes_id": null,
       "http": {
@@ -364,7 +364,7 @@
       "bytes": 6249569,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-31T15:08:26.983Z",
+      "last_seen_utc": "2026-08-01T04:04:42.581Z",
       "last_verified_utc": "2026-07-31T04:05:44.914Z",
       "supersedes_id": null,
       "http": {
@@ -387,7 +387,7 @@
       "bytes": 96033,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-31T15:08:26.983Z",
+      "last_seen_utc": "2026-08-01T04:04:42.581Z",
       "last_verified_utc": "2026-07-31T04:05:44.914Z",
       "supersedes_id": null,
       "http": {
@@ -410,7 +410,7 @@
       "bytes": 647846,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-31T15:08:26.983Z",
+      "last_seen_utc": "2026-08-01T04:04:42.581Z",
       "last_verified_utc": "2026-07-31T04:05:44.914Z",
       "supersedes_id": null,
       "http": {
@@ -433,7 +433,7 @@
       "bytes": 1433479,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-31T15:08:26.983Z",
+      "last_seen_utc": "2026-08-01T04:04:42.581Z",
       "last_verified_utc": "2026-07-31T04:05:44.914Z",
       "supersedes_id": null,
       "http": {
@@ -456,7 +456,7 @@
       "bytes": 743983,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-31T15:08:26.983Z",
+      "last_seen_utc": "2026-08-01T04:04:42.581Z",
       "last_verified_utc": "2026-07-31T04:05:44.914Z",
       "supersedes_id": null,
       "http": {
@@ -479,7 +479,7 @@
       "bytes": 3137526,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-31T15:08:26.983Z",
+      "last_seen_utc": "2026-08-01T04:04:42.581Z",
       "last_verified_utc": "2026-07-31T04:05:44.914Z",
       "supersedes_id": null,
       "http": {
@@ -502,7 +502,7 @@
       "bytes": 1185849,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-31T15:08:26.983Z",
+      "last_seen_utc": "2026-08-01T04:04:42.581Z",
       "last_verified_utc": "2026-07-31T04:05:44.914Z",
       "supersedes_id": null,
       "http": {
@@ -525,7 +525,7 @@
       "bytes": 658251,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-31T15:08:26.983Z",
+      "last_seen_utc": "2026-08-01T04:04:42.581Z",
       "last_verified_utc": "2026-07-31T04:05:44.914Z",
       "supersedes_id": null,
       "http": {
@@ -548,7 +548,7 @@
       "bytes": 159832,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-31T15:08:26.983Z",
+      "last_seen_utc": "2026-08-01T04:04:42.581Z",
       "last_verified_utc": "2026-07-31T04:05:44.914Z",
       "supersedes_id": null,
       "http": {
@@ -571,7 +571,7 @@
       "bytes": 576249,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-31T15:08:26.983Z",
+      "last_seen_utc": "2026-08-01T04:04:42.581Z",
       "last_verified_utc": "2026-07-31T04:05:44.914Z",
       "supersedes_id": null,
       "http": {
@@ -594,7 +594,7 @@
       "bytes": 1005789,
       "first_seen_utc": "2026-07-20T14:09:58.240Z",
       "first_seen_local": "July 20, 2026 at 10:09:58 AM EDT",
-      "last_seen_utc": "2026-07-31T15:08:26.983Z",
+      "last_seen_utc": "2026-08-01T04:04:42.581Z",
       "last_verified_utc": "2026-07-31T04:05:44.914Z",
       "supersedes_id": null,
       "http": {
@@ -617,7 +617,7 @@
       "bytes": 26226772,
       "first_seen_utc": "2026-07-20T20:15:10.821Z",
       "first_seen_local": "July 20, 2026 at 4:15:10 PM EDT",
-      "last_seen_utc": "2026-07-31T15:08:26.983Z",
+      "last_seen_utc": "2026-08-01T04:04:42.581Z",
       "last_verified_utc": "2026-07-31T04:05:44.914Z",
       "supersedes_id": null,
       "http": {
@@ -640,7 +640,7 @@
       "bytes": 422141,
       "first_seen_utc": "2026-07-20T20:15:10.821Z",
       "first_seen_local": "July 20, 2026 at 4:15:10 PM EDT",
-      "last_seen_utc": "2026-07-31T15:08:26.983Z",
+      "last_seen_utc": "2026-08-01T04:04:42.581Z",
       "last_verified_utc": "2026-07-31T04:05:44.914Z",
       "supersedes_id": null,
       "http": {
@@ -663,7 +663,7 @@
       "bytes": 798066,
       "first_seen_utc": "2026-07-20T20:15:10.821Z",
       "first_seen_local": "July 20, 2026 at 4:15:10 PM EDT",
-      "last_seen_utc": "2026-07-31T15:08:26.983Z",
+      "last_seen_utc": "2026-08-01T04:04:42.581Z",
       "last_verified_utc": "2026-07-31T04:05:44.914Z",
       "supersedes_id": null,
       "http": {
@@ -671,6 +671,282 @@
         "content_type": "application/pdf",
         "etag": "W/\"8429a892b7728ca9578654b645e96112\"",
         "last_modified": "Mon, 20 Jul 2026 18:53:10 GMT"
+      }
+    },
+    {
+      "id": "3c0b6ed816b451e4",
+      "section": "August 4, 2026 - REGULAR MEETING",
+      "title": "ALL IN ONE",
+      "source_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/OCFC+08-04-2026+All+In+One.pdf",
+      "final_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/OCFC+08-04-2026+All+In+One.pdf",
+      "source_filename": "OCFC+08-04-2026+All+In+One.pdf",
+      "archive_path": "magistrate-monitor/archive/files/august-4-2026-regular-meeting/2026-08-01/ocfc-08-04-2026-all-in-one.pdf",
+      "public_url": "https://ocdeez.github.io/magistrate-monitor/archive/files/august-4-2026-regular-meeting/2026-08-01/ocfc-08-04-2026-all-in-one.pdf",
+      "sha256": "3c0b6ed816b451e477313796be9583d1f2d40562130e06c42f8bccda9ff0b600",
+      "bytes": 8855152,
+      "first_seen_utc": "2026-08-01T04:04:42.581Z",
+      "first_seen_local": "August 1, 2026 at 12:04:42 AM EDT",
+      "last_seen_utc": "2026-08-01T04:04:42.581Z",
+      "last_verified_utc": "2026-08-01T04:04:42.581Z",
+      "supersedes_id": null,
+      "http": {
+        "status": 200,
+        "content_type": "application/pdf",
+        "etag": "W/\"0c445d643bea9c6b5b16858449dd0d02\"",
+        "last_modified": "Fri, 31 Jul 2026 19:32:02 GMT"
+      }
+    },
+    {
+      "id": "cf4c270bad33ea3b",
+      "section": "August 4, 2026 - REGULAR MEETING",
+      "title": "AGENDA",
+      "source_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/OCFC+Agenda+08-04-2026.pdf",
+      "final_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/OCFC+Agenda+08-04-2026.pdf",
+      "source_filename": "OCFC+Agenda+08-04-2026.pdf",
+      "archive_path": "magistrate-monitor/archive/files/august-4-2026-regular-meeting/2026-08-01/ocfc-agenda-08-04-2026.pdf",
+      "public_url": "https://ocdeez.github.io/magistrate-monitor/archive/files/august-4-2026-regular-meeting/2026-08-01/ocfc-agenda-08-04-2026.pdf",
+      "sha256": "cf4c270bad33ea3b9a0aafd2d999b2e8eecf8f071e5bffdd5bf8e4ff11d4af8b",
+      "bytes": 264209,
+      "first_seen_utc": "2026-08-01T04:04:42.581Z",
+      "first_seen_local": "August 1, 2026 at 12:04:42 AM EDT",
+      "last_seen_utc": "2026-08-01T04:04:42.581Z",
+      "last_verified_utc": "2026-08-01T04:04:42.581Z",
+      "supersedes_id": null,
+      "http": {
+        "status": 200,
+        "content_type": "application/pdf",
+        "etag": "W/\"7c4e66aa7af77f5bb42ea37e53d519ae\"",
+        "last_modified": "Fri, 31 Jul 2026 19:32:00 GMT"
+      }
+    },
+    {
+      "id": "534fef9a5a8d69cb",
+      "section": "August 4, 2026 - REGULAR MEETING",
+      "title": "OLDHAM COUNTY GROUP 1 FALL 2026 PAVING BID OPENING",
+      "source_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Bid+Tabulation+Fall+Paving.pdf",
+      "final_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Bid+Tabulation+Fall+Paving.pdf",
+      "source_filename": "Bid+Tabulation+Fall+Paving.pdf",
+      "archive_path": "magistrate-monitor/archive/files/august-4-2026-regular-meeting/2026-08-01/bid-tabulation-fall-paving.pdf",
+      "public_url": "https://ocdeez.github.io/magistrate-monitor/archive/files/august-4-2026-regular-meeting/2026-08-01/bid-tabulation-fall-paving.pdf",
+      "sha256": "534fef9a5a8d69cb8aa0663468847a909dd793b43f56bdaf368bd13dbc1c53d8",
+      "bytes": 891360,
+      "first_seen_utc": "2026-08-01T04:04:42.581Z",
+      "first_seen_local": "August 1, 2026 at 12:04:42 AM EDT",
+      "last_seen_utc": "2026-08-01T04:04:42.581Z",
+      "last_verified_utc": "2026-08-01T04:04:42.581Z",
+      "supersedes_id": null,
+      "http": {
+        "status": 200,
+        "content_type": "application/pdf",
+        "etag": "W/\"80b65181cd3bdd901e0bebfe0a61db6e\"",
+        "last_modified": "Fri, 31 Jul 2026 19:12:01 GMT"
+      }
+    },
+    {
+      "id": "12d8aa3735b7deee",
+      "section": "August 4, 2026 - REGULAR MEETING",
+      "title": "CITY OF PEWEE VALLEY GROUP 2 FALL 2026 PAVING BID OPENING",
+      "source_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Bid+Tabulation+-+City+of+Pewee+Valley+Group+2.pdf",
+      "final_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Bid+Tabulation+-+City+of+Pewee+Valley+Group+2.pdf",
+      "source_filename": "Bid+Tabulation+-+City+of+Pewee+Valley+Group+2.pdf",
+      "archive_path": "magistrate-monitor/archive/files/august-4-2026-regular-meeting/2026-08-01/bid-tabulation-city-of-pewee-valley-group-2.pdf",
+      "public_url": "https://ocdeez.github.io/magistrate-monitor/archive/files/august-4-2026-regular-meeting/2026-08-01/bid-tabulation-city-of-pewee-valley-group-2.pdf",
+      "sha256": "12d8aa3735b7deeedbcc60bf2b39bc15a31d3a99d904f35d55d027a440de0f29",
+      "bytes": 889854,
+      "first_seen_utc": "2026-08-01T04:04:42.581Z",
+      "first_seen_local": "August 1, 2026 at 12:04:42 AM EDT",
+      "last_seen_utc": "2026-08-01T04:04:42.581Z",
+      "last_verified_utc": "2026-08-01T04:04:42.581Z",
+      "supersedes_id": null,
+      "http": {
+        "status": 200,
+        "content_type": "application/pdf",
+        "etag": "W/\"aa8e45ad1b72bed61aba7316f3950df1\"",
+        "last_modified": "Fri, 31 Jul 2026 19:11:59 GMT"
+      }
+    },
+    {
+      "id": "db7fcb0098245471",
+      "section": "August 4, 2026 - REGULAR MEETING",
+      "title": "SCHAMBACK PARK PARKING IMPROVEMENTS BID OPENING",
+      "source_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Bid+Tabulation+-+Schamback+Park+Parking.pdf",
+      "final_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Bid+Tabulation+-+Schamback+Park+Parking.pdf",
+      "source_filename": "Bid+Tabulation+-+Schamback+Park+Parking.pdf",
+      "archive_path": "magistrate-monitor/archive/files/august-4-2026-regular-meeting/2026-08-01/bid-tabulation-schamback-park-parking.pdf",
+      "public_url": "https://ocdeez.github.io/magistrate-monitor/archive/files/august-4-2026-regular-meeting/2026-08-01/bid-tabulation-schamback-park-parking.pdf",
+      "sha256": "db7fcb009824547109973387afd74d5377eceaae638513c9c86d27dcbee1a211",
+      "bytes": 890360,
+      "first_seen_utc": "2026-08-01T04:04:42.581Z",
+      "first_seen_local": "August 1, 2026 at 12:04:42 AM EDT",
+      "last_seen_utc": "2026-08-01T04:04:42.581Z",
+      "last_verified_utc": "2026-08-01T04:04:42.581Z",
+      "supersedes_id": null,
+      "http": {
+        "status": 200,
+        "content_type": "application/pdf",
+        "etag": "W/\"5104f950bdbaa9b39ac16e20bc4003ab\"",
+        "last_modified": "Fri, 31 Jul 2026 19:11:59 GMT"
+      }
+    },
+    {
+      "id": "6444f0610cc6fcb0",
+      "section": "August 4, 2026 - REGULAR MEETING",
+      "title": "CULVERT REPLACEMENT IVO 4109 MYERS AVENUE COUNTY ADMINISTRATION",
+      "source_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Bid+Tabulation+-+Culvert+Replacementpdf.pdf",
+      "final_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Bid+Tabulation+-+Culvert+Replacementpdf.pdf",
+      "source_filename": "Bid+Tabulation+-+Culvert+Replacementpdf.pdf",
+      "archive_path": "magistrate-monitor/archive/files/august-4-2026-regular-meeting/2026-08-01/bid-tabulation-culvert-replacementpdf.pdf",
+      "public_url": "https://ocdeez.github.io/magistrate-monitor/archive/files/august-4-2026-regular-meeting/2026-08-01/bid-tabulation-culvert-replacementpdf.pdf",
+      "sha256": "6444f0610cc6fcb06f8f5190f491945c1d01c36e83788baa0b5e1d8dc843f04f",
+      "bytes": 896019,
+      "first_seen_utc": "2026-08-01T04:04:42.581Z",
+      "first_seen_local": "August 1, 2026 at 12:04:42 AM EDT",
+      "last_seen_utc": "2026-08-01T04:04:42.581Z",
+      "last_verified_utc": "2026-08-01T04:04:42.581Z",
+      "supersedes_id": null,
+      "http": {
+        "status": 200,
+        "content_type": "application/pdf",
+        "etag": "W/\"d2b40167b2be063b10488241436d9ca1\"",
+        "last_modified": "Fri, 31 Jul 2026 19:11:59 GMT"
+      }
+    },
+    {
+      "id": "1dcba552464391dc",
+      "section": "August 4, 2026 - REGULAR MEETING",
+      "title": "PAYABLES",
+      "source_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/08.04.26+PAYABLES.pdf",
+      "final_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/08.04.26+PAYABLES.pdf",
+      "source_filename": "08.04.26+PAYABLES.pdf",
+      "archive_path": "magistrate-monitor/archive/files/august-4-2026-regular-meeting/2026-08-01/08.04.26-payables.pdf",
+      "public_url": "https://ocdeez.github.io/magistrate-monitor/archive/files/august-4-2026-regular-meeting/2026-08-01/08.04.26-payables.pdf",
+      "sha256": "1dcba552464391dc51b3dec4f663d5d3bb2514542a56ea5878a9503ebd55d16c",
+      "bytes": 903280,
+      "first_seen_utc": "2026-08-01T04:04:42.581Z",
+      "first_seen_local": "August 1, 2026 at 12:04:42 AM EDT",
+      "last_seen_utc": "2026-08-01T04:04:42.581Z",
+      "last_verified_utc": "2026-08-01T04:04:42.581Z",
+      "supersedes_id": null,
+      "http": {
+        "status": 200,
+        "content_type": "application/pdf",
+        "etag": "W/\"0ed87a3987c83267590b1f15eb9e467c\"",
+        "last_modified": "Fri, 31 Jul 2026 19:11:59 GMT"
+      }
+    },
+    {
+      "id": "8c084a941cfa7818",
+      "section": "August 4, 2026 - REGULAR MEETING",
+      "title": "1ST READING ORDINANCE RELATING TO THE ANNUAL BUDGET AND AMENDMENT #1",
+      "source_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Budget+Amendment+2027+ORDINANCE.pdf",
+      "final_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Budget+Amendment+2027+ORDINANCE.pdf",
+      "source_filename": "Budget+Amendment+2027+ORDINANCE.pdf",
+      "archive_path": "magistrate-monitor/archive/files/august-4-2026-regular-meeting/2026-08-01/budget-amendment-2027-ordinance.pdf",
+      "public_url": "https://ocdeez.github.io/magistrate-monitor/archive/files/august-4-2026-regular-meeting/2026-08-01/budget-amendment-2027-ordinance.pdf",
+      "sha256": "8c084a941cfa781802d94decaf970625a86059da1b7b096d4c45413fa851dafd",
+      "bytes": 551767,
+      "first_seen_utc": "2026-08-01T04:04:42.581Z",
+      "first_seen_local": "August 1, 2026 at 12:04:42 AM EDT",
+      "last_seen_utc": "2026-08-01T04:04:42.581Z",
+      "last_verified_utc": "2026-08-01T04:04:42.581Z",
+      "supersedes_id": null,
+      "http": {
+        "status": 200,
+        "content_type": "application/pdf",
+        "etag": "W/\"7abfba7cb5623d05813e6852b2f40e0b\"",
+        "last_modified": "Fri, 31 Jul 2026 19:12:01 GMT"
+      }
+    },
+    {
+      "id": "54b3915da5b3787d",
+      "section": "August 4, 2026 - REGULAR MEETING",
+      "title": "1ST READING KOC 26-920-7 ZONING TEXT AMENDMENT-OLDHAM COUNTY COMPREHENSIVE ZONING ORDINANCE CREATING DATA CENTER",
+      "source_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Version+4+approved+by+PC+06+23+2026+CLEAN+COPY+-+Watermark+Copy.pdf",
+      "final_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Version+4+approved+by+PC+06+23+2026+CLEAN+COPY+-+Watermark+Copy.pdf",
+      "source_filename": "Version+4+approved+by+PC+06+23+2026+CLEAN+COPY+-+Watermark+Copy.pdf",
+      "archive_path": "magistrate-monitor/archive/files/august-4-2026-regular-meeting/2026-08-01/version-4-approved-by-pc-06-23-2026-clean-copy-watermark-copy.pdf",
+      "public_url": "https://ocdeez.github.io/magistrate-monitor/archive/files/august-4-2026-regular-meeting/2026-08-01/version-4-approved-by-pc-06-23-2026-clean-copy-watermark-copy.pdf",
+      "sha256": "54b3915da5b3787df274eae5e300d6dec152906f561b030ddee8010ae8446935",
+      "bytes": 697379,
+      "first_seen_utc": "2026-08-01T04:04:42.581Z",
+      "first_seen_local": "August 1, 2026 at 12:04:42 AM EDT",
+      "last_seen_utc": "2026-08-01T04:04:42.581Z",
+      "last_verified_utc": "2026-08-01T04:04:42.581Z",
+      "supersedes_id": null,
+      "http": {
+        "status": 200,
+        "content_type": "application/pdf",
+        "etag": "W/\"f666b7d80c5ae287be34ed0f12dcbb8a\"",
+        "last_modified": "Fri, 31 Jul 2026 19:12:01 GMT"
+      }
+    },
+    {
+      "id": "7df3c46ae1fdae71",
+      "section": "August 4, 2026 - REGULAR MEETING",
+      "title": "KIPDA/PILLAR GRANT UPDATE",
+      "source_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/A+CDBG+Pillar+Documents+for+Approval+and+Signature.+-+Watermark.pdf",
+      "final_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/A+CDBG+Pillar+Documents+for+Approval+and+Signature.+-+Watermark.pdf",
+      "source_filename": "A+CDBG+Pillar+Documents+for+Approval+and+Signature.+-+Watermark.pdf",
+      "archive_path": "magistrate-monitor/archive/files/august-4-2026-regular-meeting/2026-08-01/a-cdbg-pillar-documents-for-approval-and-signature.-watermark.pdf",
+      "public_url": "https://ocdeez.github.io/magistrate-monitor/archive/files/august-4-2026-regular-meeting/2026-08-01/a-cdbg-pillar-documents-for-approval-and-signature.-watermark.pdf",
+      "sha256": "7df3c46ae1fdae71b42282216fbba92839c166804568600e52de41a66efe2471",
+      "bytes": 359846,
+      "first_seen_utc": "2026-08-01T04:04:42.581Z",
+      "first_seen_local": "August 1, 2026 at 12:04:42 AM EDT",
+      "last_seen_utc": "2026-08-01T04:04:42.581Z",
+      "last_verified_utc": "2026-08-01T04:04:42.581Z",
+      "supersedes_id": null,
+      "http": {
+        "status": 200,
+        "content_type": "application/pdf",
+        "etag": "W/\"79308928a0fed8bfbb3f3ae35c601b3b\"",
+        "last_modified": "Fri, 31 Jul 2026 19:11:59 GMT"
+      }
+    },
+    {
+      "id": "8cc062f39b9b3359",
+      "section": "August 4, 2026 - REGULAR MEETING",
+      "title": "RECOMMENDATION TO REQUEST RELEASE BRENTWOOD SECTION 8 EROSION CONTROL SURETY",
+      "source_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/20260727+Rec+to+Rel+EC+Surety+Brentwood+8.pdf",
+      "final_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/20260727+Rec+to+Rel+EC+Surety+Brentwood+8.pdf",
+      "source_filename": "20260727+Rec+to+Rel+EC+Surety+Brentwood+8.pdf",
+      "archive_path": "magistrate-monitor/archive/files/august-4-2026-regular-meeting/2026-08-01/20260727-rec-to-rel-ec-surety-brentwood-8.pdf",
+      "public_url": "https://ocdeez.github.io/magistrate-monitor/archive/files/august-4-2026-regular-meeting/2026-08-01/20260727-rec-to-rel-ec-surety-brentwood-8.pdf",
+      "sha256": "8cc062f39b9b3359f8e913952cd41b2356389c092c1da3263e341f81107d484b",
+      "bytes": 1647607,
+      "first_seen_utc": "2026-08-01T04:04:42.581Z",
+      "first_seen_local": "August 1, 2026 at 12:04:42 AM EDT",
+      "last_seen_utc": "2026-08-01T04:04:42.581Z",
+      "last_verified_utc": "2026-08-01T04:04:42.581Z",
+      "supersedes_id": null,
+      "http": {
+        "status": 200,
+        "content_type": "application/pdf",
+        "etag": "W/\"c335e5d9f0c20d894f237b8971f9050b\"",
+        "last_modified": "Fri, 31 Jul 2026 19:12:01 GMT"
+      }
+    },
+    {
+      "id": "64db0cb030131423",
+      "section": "August 4, 2026 - REGULAR MEETING",
+      "title": "RECOMMENDATION TO REQUEST RELEASE JONES HIGHWAY 393 BASIN EROSION CONTROL SURETY",
+      "source_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/20260727+Jones+Hwy+393+Basin+EC+Surety+Release+Rec+to+FC.pdf",
+      "final_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/20260727+Jones+Hwy+393+Basin+EC+Surety+Release+Rec+to+FC.pdf",
+      "source_filename": "20260727+Jones+Hwy+393+Basin+EC+Surety+Release+Rec+to+FC.pdf",
+      "archive_path": "magistrate-monitor/archive/files/august-4-2026-regular-meeting/2026-08-01/20260727-jones-hwy-393-basin-ec-surety-release-rec-to-fc.pdf",
+      "public_url": "https://ocdeez.github.io/magistrate-monitor/archive/files/august-4-2026-regular-meeting/2026-08-01/20260727-jones-hwy-393-basin-ec-surety-release-rec-to-fc.pdf",
+      "sha256": "64db0cb03013142311183392085dc647d69f72533014ca77888e25f5ec1476b4",
+      "bytes": 2105678,
+      "first_seen_utc": "2026-08-01T04:04:42.581Z",
+      "first_seen_local": "August 1, 2026 at 12:04:42 AM EDT",
+      "last_seen_utc": "2026-08-01T04:04:42.581Z",
+      "last_verified_utc": "2026-08-01T04:04:42.581Z",
+      "supersedes_id": null,
+      "http": {
+        "status": 200,
+        "content_type": "application/pdf",
+        "etag": "W/\"c6db44dc4dea4733b6d6e1a6122d8063\"",
+        "last_modified": "Fri, 31 Jul 2026 19:11:59 GMT"
       }
     }
   ]
