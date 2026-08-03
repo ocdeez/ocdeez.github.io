@@ -1,7 +1,7 @@
 {
   "monitor": "oldham-magistrate-documents",
   "url": "https://www.oldhamcountyky.gov/magistratedocs2026",
-  "captured_at_utc": "2026-08-03T04:20:26.263Z",
+  "captured_at_utc": "2026-08-03T20:17:59.139Z",
   "source": "GitHub Actions Playwright browser",
   "page_title": "Magistrate Documents | Oldham County Fiscal Court",
   "final_url": "https://www.oldhamcountyky.gov/magistratedocs2026",
@@ -10,16 +10,16 @@
       "title": "August 4, 2026 - REGULAR MEETING",
       "items": [
         {
-          "title": "ALL IN ONE",
+          "title": "ALL IN ONE (UPDATE 08-03 @1538)",
           "linked": true,
-          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/OCFC+08-04-2026+All+In+One.pdf",
-          "filename": "OCFC+08-04-2026+All+In+One.pdf"
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/ALLINONE+08-04-2026+V3.pdf",
+          "filename": "ALLINONE+08-04-2026+V3.pdf"
         },
         {
           "title": "AGENDA",
           "linked": true,
-          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/OCFC+Agenda+08-04-2026.pdf",
-          "filename": "OCFC+Agenda+08-04-2026.pdf"
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/OCFC+Agenda+V2+08-04-2026.pdf",
+          "filename": "OCFC+Agenda+V2+08-04-2026.pdf"
         },
         {
           "title": "MINUTES 07/21/2026",
@@ -76,6 +76,12 @@
           "filename": "A+CDBG+Pillar+Documents+for+Approval+and+Signature.+-+Watermark.pdf"
         },
         {
+          "title": "KIPDA/PILLAR GRANT UPDATE. Page 2",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/CDBG+Pillar+Documents+Reduced-fd4f3ea2.pdf",
+          "filename": "CDBG+Pillar+Documents+Reduced-fd4f3ea2.pdf"
+        },
+        {
           "title": "RECOMMENDATION TO REQUEST RELEASE BRENTWOOD SECTION 8 EROSION CONTROL SURETY",
           "linked": true,
           "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/20260727+Rec+to+Rel+EC+Surety+Brentwood+8.pdf",
@@ -86,6 +92,12 @@
           "linked": true,
           "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/20260727+Jones+Hwy+393+Basin+EC+Surety+Release+Rec+to+FC.pdf",
           "filename": "20260727+Jones+Hwy+393+Basin+EC+Surety+Release+Rec+to+FC.pdf"
+        },
+        {
+          "title": "OPIOD ABATEMENT REQUEST RAPHA FARMS",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Rapha+Opioid+Abatement+Request+6.16.26.pdf",
+          "filename": "Rapha+Opioid+Abatement+Request+6.16.26.pdf"
         }
       ]
     },
