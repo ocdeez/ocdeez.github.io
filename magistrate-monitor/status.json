@@ -1,16 +1,12 @@
 {
   "monitor": "oldham-magistrate-documents",
   "url": "https://www.oldhamcountyky.gov/magistratedocs2026",
-  "success": true,
-  "changed": false,
-  "summary": "no changes; no issues running.",
-  "log_entry": "Ran at August 3, 2026 at 12:20:26 AM EDT — no changes; no issues running.",
-  "checked_at_utc": "2026-08-03T04:20:26.263Z",
-  "checked_at_local": "August 3, 2026 at 12:20:26 AM EDT",
-  "counts": {
-    "sections": 4,
-    "items": 40,
-    "linked": 39
-  },
-  "changes": []
+  "success": false,
+  "changed": null,
+  "summary": "check failed: page.goto: net::ERR_CONNECTION_CLOSED at https://www.oldhamcountyky.gov/magistratedocs2026\nCall log:\n  - navigating to \"https://www.oldhamcountyky.gov/magistratedocs2026\", waiting until \"domcontentloaded\"\n Changes could not be determined.",
+  "log_entry": "Ran at August 3, 2026 at 6:26:49 AM EDT — check failed: page.goto: net::ERR_CONNECTION_CLOSED at https://www.oldhamcountyky.gov/magistratedocs2026\nCall log:\n  - navigating to \"https://www.oldhamcountyky.gov/magistratedocs2026\", waiting until \"domcontentloaded\"\n Changes could not be determined.",
+  "checked_at_utc": "2026-08-03T10:26:49.560Z",
+  "checked_at_local": "August 3, 2026 at 6:26:49 AM EDT",
+  "counts": null,
+  "changes": null
 }
