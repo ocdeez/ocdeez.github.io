@@ -1,7 +1,7 @@
 {
   "monitor": "oldham-magistrate-documents",
   "url": "https://www.oldhamcountyky.gov/magistratedocs2026",
-  "captured_at_utc": "2026-08-17T13:25:57.367Z",
+  "captured_at_utc": "2026-08-18T02:05:08.947Z",
   "source": "GitHub Actions Playwright browser",
   "page_title": "Magistrate Documents | Oldham County Fiscal Court",
   "final_url": "https://www.oldhamcountyky.gov/magistratedocs2026",
@@ -10,16 +10,16 @@
       "title": "August 18, 2026 - REGULAR MEETING",
       "items": [
         {
-          "title": "ALL IN ONE",
+          "title": "ALL IN ONE VERSION 3",
           "linked": true,
-          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/All+in+one.pdf",
-          "filename": "All+in+one.pdf"
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/ALLINONE+08-18-2026+UPDATE1.pdf",
+          "filename": "ALLINONE+08-18-2026+UPDATE1.pdf"
         },
         {
-          "title": "AGENDA",
+          "title": "AGENDA VERSION 3",
           "linked": true,
-          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Agenda-8181d303.pdf",
-          "filename": "Agenda-8181d303.pdf"
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/AGENDA+08-18-2026+V3.pdf",
+          "filename": "AGENDA+08-18-2026+V3.pdf"
         },
         {
           "title": "MINUTES 08-04-2026",
@@ -44,6 +44,12 @@
           "linked": true,
           "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/08.18.26+LOWES.pdf",
           "filename": "08.18.26+LOWES.pdf"
+        },
+        {
+          "title": "LOUISVILLE PATHOLOGY PAYABLE",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/ADD+TO+08.18.26+PAYABLES.pdf",
+          "filename": "ADD+TO+08.18.26+PAYABLES.pdf"
         },
         {
           "title": "2ND READING – KOC 26-920-7 ZONING TEXT AMENDMENT – OLDHAM COUNTY COMPREHENSIVE ZONING",
@@ -98,6 +104,18 @@
           "linked": true,
           "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/DPWA+-+Proposed+Contract+with+Oldham+County+Fiscal+Court.pdf",
           "filename": "DPWA+-+Proposed+Contract+with+Oldham+County+Fiscal+Court.pdf"
+        },
+        {
+          "title": "PERSONEL ACTIONS",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/FC+PAR+08-18-26-e058a4cc.pdf",
+          "filename": "FC+PAR+08-18-26-e058a4cc.pdf"
+        },
+        {
+          "title": "BOARD APPOINTMENT PLANNING COMMISSION",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Board+Appointment+Planning+Commission+-+IDavis.pdf",
+          "filename": "Board+Appointment+Planning+Commission+-+IDavis.pdf"
         }
       ]
     },
