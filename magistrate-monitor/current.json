@@ -1,7 +1,7 @@
 {
   "monitor": "oldham-magistrate-documents",
   "url": "https://www.oldhamcountyky.gov/magistratedocs2026",
-  "captured_at_utc": "2026-08-28T12:13:46.570Z",
+  "captured_at_utc": "2026-08-28T22:38:20.022Z",
   "source": "GitHub Actions Playwright browser",
   "page_title": "Magistrate Documents | Oldham County Fiscal Court",
   "final_url": "https://www.oldhamcountyky.gov/magistratedocs2026",
@@ -17,9 +17,9 @@
         },
         {
           "title": "AGENDA",
-          "linked": false,
-          "href": null,
-          "filename": null
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Agenda+DRAFT+090126.pdf",
+          "filename": "Agenda+DRAFT+090126.pdf"
         },
         {
           "title": "MINUTES 08-18-2026",
@@ -29,9 +29,75 @@
         },
         {
           "title": "PAYABLES",
-          "linked": false,
-          "href": null,
-          "filename": null
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/09.01.26-PAYABLES.pdf",
+          "filename": "09.01.26-PAYABLES.pdf"
+        },
+        {
+          "title": "BID TAB HAYFIELD WAY",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Bid+Tab+-+DIP+IVO+4211+Hayfield+Way.pdf",
+          "filename": "Bid+Tab+-+DIP+IVO+4211+Hayfield+Way.pdf"
+        },
+        {
+          "title": "KIPDA PLAN UPDATE",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/KIPDA+-+HMP+Update+Info.pdf",
+          "filename": "KIPDA+-+HMP+Update+Info.pdf"
+        },
+        {
+          "title": "KOC-26-220-9 FY27 BUDGET AMENDMENT",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Budget+Amendment+1.pdf",
+          "filename": "Budget+Amendment+1.pdf"
+        },
+        {
+          "title": "TAX RATE RESOLUTION",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/2026+Tax+Rate+Resolution.pdf",
+          "filename": "2026+Tax+Rate+Resolution.pdf"
+        },
+        {
+          "title": "RURAL SECONDARY PROGRAM",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Rural+Secondary+Road+Pkt+DRAFT.pdf",
+          "filename": "Rural+Secondary+Road+Pkt+DRAFT.pdf"
+        },
+        {
+          "title": "KOC-26-920-38 ZONING ORD AMENDMENTS",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/KOC+Zoning+Ordinance+Proposal+KOC-26-920-38.pdf",
+          "filename": "KOC+Zoning+Ordinance+Proposal+KOC-26-920-38.pdf"
+        },
+        {
+          "title": "KOC-26-920-33 ZONING MAP AMENDMENT",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/26-920-33+ORDINANCE+PACKET_1.pdf",
+          "filename": "26-920-33+ORDINANCE+PACKET_1.pdf"
+        },
+        {
+          "title": "BRENTWOOD SECTION 6",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Brentwood+Sec+6+EC+Bond+Surety+Rel+Rec+Ltr+FC+-+20260827.pdf",
+          "filename": "Brentwood+Sec+6+EC+Bond+Surety+Rel+Rec+Ltr+FC+-+20260827.pdf"
+        },
+        {
+          "title": "BRENTWOOD SECTION 7",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Brentwood+Sec+7+EC+Bond+Surety+Rel+Rec+Ltr+FC+-+20260827.pdf",
+          "filename": "Brentwood+Sec+7+EC+Bond+Surety+Rel+Rec+Ltr+FC+-+20260827.pdf"
+        },
+        {
+          "title": "PERSONNEL ACTIONS",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/FC+PAR+09-01-26.pdf",
+          "filename": "FC+PAR+09-01-26.pdf"
+        },
+        {
+          "title": "BOARD APPOINTMENTS",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Board+Appointments.pdf",
+          "filename": "Board+Appointments.pdf"
         }
       ]
     },
@@ -406,17 +472,6 @@
           "linked": true,
           "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/ALL+IN+ONE+BOARD+APPTS-5c8cee46.pdf",
           "filename": "ALL+IN+ONE+BOARD+APPTS-5c8cee46.pdf"
-        }
-      ]
-    },
-    {
-      "title": "Past Fiscal Court Meetings",
-      "items": [
-        {
-          "title": "2026 ALL IN ONE",
-          "linked": false,
-          "href": null,
-          "filename": null
         }
       ]
     }
