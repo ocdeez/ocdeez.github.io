@@ -1,11 +1,40 @@
 {
   "monitor": "oldham-magistrate-documents",
   "url": "https://www.oldhamcountyky.gov/magistratedocs2026",
-  "captured_at_utc": "2026-08-27T22:35:43.388Z",
+  "captured_at_utc": "2026-08-28T12:13:46.570Z",
   "source": "GitHub Actions Playwright browser",
   "page_title": "Magistrate Documents | Oldham County Fiscal Court",
   "final_url": "https://www.oldhamcountyky.gov/magistratedocs2026",
   "sections": [
+    {
+      "title": "September 1, 2026 - REGULAR MEETING",
+      "items": [
+        {
+          "title": "ALL IN ONE",
+          "linked": false,
+          "href": null,
+          "filename": null
+        },
+        {
+          "title": "AGENDA",
+          "linked": false,
+          "href": null,
+          "filename": null
+        },
+        {
+          "title": "MINUTES 08-18-2026",
+          "linked": false,
+          "href": null,
+          "filename": null
+        },
+        {
+          "title": "PAYABLES",
+          "linked": false,
+          "href": null,
+          "filename": null
+        }
+      ]
+    },
     {
       "title": "August 18, 2026 - REGULAR MEETING",
       "items": [

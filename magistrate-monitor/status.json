@@ -2,15 +2,48 @@
   "monitor": "oldham-magistrate-documents",
   "url": "https://www.oldhamcountyky.gov/magistratedocs2026",
   "success": true,
-  "changed": false,
-  "summary": "no changes; no issues running.",
-  "log_entry": "Ran at August 27, 2026 at 6:35:43 PM EDT — no changes; no issues running.",
-  "checked_at_utc": "2026-08-27T22:35:43.388Z",
-  "checked_at_local": "August 27, 2026 at 6:35:43 PM EDT",
+  "changed": true,
+  "summary": "changes detected: 1 section_added.",
+  "log_entry": "Ran at August 28, 2026 at 8:13:46 AM EDT — changes detected: 1 section_added.",
+  "checked_at_utc": "2026-08-28T12:13:46.570Z",
+  "checked_at_local": "August 28, 2026 at 8:13:46 AM EDT",
   "counts": {
-    "sections": 5,
-    "items": 60,
+    "sections": 6,
+    "items": 64,
     "linked": 58
   },
-  "changes": []
+  "changes": [
+    {
+      "type": "section_added",
+      "section": {
+        "title": "September 1, 2026 - REGULAR MEETING",
+        "items": [
+          {
+            "title": "ALL IN ONE",
+            "linked": false,
+            "href": null,
+            "filename": null
+          },
+          {
+            "title": "AGENDA",
+            "linked": false,
+            "href": null,
+            "filename": null
+          },
+          {
+            "title": "MINUTES 08-18-2026",
+            "linked": false,
+            "href": null,
+            "filename": null
+          },
+          {
+            "title": "PAYABLES",
+            "linked": false,
+            "href": null,
+            "filename": null
+          }
+        ]
+      }
+    }
+  ]
 }
