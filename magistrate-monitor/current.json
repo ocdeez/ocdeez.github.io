@@ -1,7 +1,7 @@
 {
   "monitor": "oldham-magistrate-documents",
   "url": "https://www.oldhamcountyky.gov/magistratedocs2026",
-  "captured_at_utc": "2026-08-31T14:25:48.790Z",
+  "captured_at_utc": "2026-08-31T23:01:35.460Z",
   "source": "GitHub Actions Playwright browser",
   "page_title": "Magistrate Documents | Oldham County Fiscal Court",
   "final_url": "https://www.oldhamcountyky.gov/magistratedocs2026",
@@ -22,10 +22,10 @@
           "filename": "Agenda+DRAFT+090126.pdf"
         },
         {
-          "title": "MINUTES 08-18-2026",
-          "linked": false,
-          "href": null,
-          "filename": null
+          "title": "MINUTES 08-18-2026 & 08-24-2026",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/August+18+Minutes+DRAFT.pdf",
+          "filename": "August+18+Minutes+DRAFT.pdf"
         },
         {
           "title": "PAYABLES",
