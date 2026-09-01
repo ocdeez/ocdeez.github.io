@@ -2,24 +2,15 @@
   "monitor": "oldham-magistrate-documents",
   "url": "https://www.oldhamcountyky.gov/magistratedocs2026",
   "success": true,
-  "changed": true,
-  "summary": "changes detected: 1 item_modified.",
-  "log_entry": "Ran at August 31, 2026 at 7:01:35 PM EDT — changes detected: 1 item_modified.",
-  "checked_at_utc": "2026-08-31T23:01:35.460Z",
-  "checked_at_local": "August 31, 2026 at 7:01:35 PM EDT",
+  "changed": false,
+  "summary": "no changes; no issues running.",
+  "log_entry": "Ran at September 1, 2026 at 1:39:59 AM EDT — no changes; no issues running.",
+  "checked_at_utc": "2026-09-01T05:39:59.510Z",
+  "checked_at_local": "September 1, 2026 at 1:39:59 AM EDT",
   "counts": {
     "sections": 5,
     "items": 74,
     "linked": 72
   },
-  "changes": [
-    {
-      "type": "item_modified",
-      "section": "September 1, 2026 - REGULAR MEETING",
-      "old_title": "MINUTES 08-18-2026",
-      "new_title": "MINUTES 08-18-2026 & 08-24-2026",
-      "old_href": null,
-      "new_href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/August+18+Minutes+DRAFT.pdf"
-    }
-  ]
+  "changes": []
 }
