@@ -1,7 +1,7 @@
 {
   "monitor": "oldham-magistrate-documents",
   "url": "https://www.oldhamcountyky.gov/magistratedocs2026",
-  "captured_at_utc": "2026-09-02T11:43:07.678Z",
+  "captured_at_utc": "2026-09-02T21:17:14.612Z",
   "source": "GitHub Actions Playwright browser",
   "page_title": "Magistrate Documents | Oldham County Fiscal Court",
   "final_url": "https://www.oldhamcountyky.gov/magistratedocs2026",
@@ -11,9 +11,9 @@
       "items": [
         {
           "title": "ALL IN ONE",
-          "linked": false,
-          "href": null,
-          "filename": null
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/All+In+One.pdf",
+          "filename": "All+In+One.pdf"
         },
         {
           "title": "AGENDA",
