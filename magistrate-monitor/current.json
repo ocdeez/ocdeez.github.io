@@ -1,11 +1,112 @@
 {
   "monitor": "oldham-magistrate-documents",
   "url": "https://www.oldhamcountyky.gov/magistratedocs2026",
-  "captured_at_utc": "2026-09-11T11:48:29.091Z",
+  "captured_at_utc": "2026-09-11T21:17:52.242Z",
   "source": "GitHub Actions Playwright browser",
   "page_title": "Magistrate Documents | Oldham County Fiscal Court",
   "final_url": "https://www.oldhamcountyky.gov/magistratedocs2026",
   "sections": [
+    {
+      "title": "September 15, 2026 - REGULAR MEETING",
+      "items": [
+        {
+          "title": "ALL IN ONE",
+          "linked": false,
+          "href": null,
+          "filename": null
+        },
+        {
+          "title": "AGENDA",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Agenda+DRAFT+091526.pdf",
+          "filename": "Agenda+DRAFT+091526.pdf"
+        },
+        {
+          "title": "MINUTES 09-01-2026",
+          "linked": false,
+          "href": null,
+          "filename": null
+        },
+        {
+          "title": "EXTENSION DISTRICT BUDGET/PROGRAM PRESENTATION",
+          "linked": false,
+          "href": null,
+          "filename": null
+        },
+        {
+          "title": "LIBRARY DISTRICT BUDGET/PROGRAM PRESENTATION",
+          "linked": false,
+          "href": null,
+          "filename": null
+        },
+        {
+          "title": "BID OPENING: ERNIE HARRIS PARKWAY PAVEMENT MARKINGS",
+          "linked": false,
+          "href": null,
+          "filename": null
+        },
+        {
+          "title": "PAYABLES",
+          "linked": false,
+          "href": null,
+          "filename": null
+        },
+        {
+          "title": "CONTRACTS & RESOLUTIONS",
+          "linked": false,
+          "href": null,
+          "filename": null
+        },
+        {
+          "title": "MARCO TECHNOLOGIES CONTRACT – COPIERS/PRINTERS",
+          "linked": false,
+          "href": null,
+          "filename": null
+        },
+        {
+          "title": "AT&T PARTICIPATION AGREEMENT – DISPATCH",
+          "linked": false,
+          "href": null,
+          "filename": null
+        },
+        {
+          "title": "WRECKER SERVICE FEE RESOLUTION",
+          "linked": false,
+          "href": null,
+          "filename": null
+        },
+        {
+          "title": "COMMUNITY BUSINESS",
+          "linked": false,
+          "href": null,
+          "filename": null
+        },
+        {
+          "title": "2ND READING – KOC-26-920.33- ZONING MAP AMENDMENT – PARAMONT ESTATES/QUARRY RD/BUCKEYE LANE",
+          "linked": false,
+          "href": null,
+          "filename": null
+        },
+        {
+          "title": "PERSONNEL ACTIONS & BOARD APPOINTMENTS",
+          "linked": false,
+          "href": null,
+          "filename": null
+        },
+        {
+          "title": "SOLID WASTE/RECYCLING/GRANTS",
+          "linked": false,
+          "href": null,
+          "filename": null
+        },
+        {
+          "title": "PLANNING & DEVELOPMENT SERVICES",
+          "linked": false,
+          "href": null,
+          "filename": null
+        }
+      ]
+    },
     {
       "title": "September 1, 2026 - REGULAR MEETING",
       "items": [
