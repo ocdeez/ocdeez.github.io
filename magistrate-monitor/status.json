@@ -2,15 +2,162 @@
   "monitor": "oldham-magistrate-documents",
   "url": "https://www.oldhamcountyky.gov/magistratedocs2026",
   "success": true,
-  "changed": false,
-  "summary": "no changes; no issues running.",
-  "log_entry": "Ran at September 12, 2026 at 7:15:05 AM EDT — no changes; no issues running.",
-  "checked_at_utc": "2026-09-12T11:15:05.937Z",
-  "checked_at_local": "September 12, 2026 at 7:15:05 AM EDT",
+  "changed": true,
+  "summary": "changes detected: 10 item_link_changed, 2 item_modified, 4 item_removed.",
+  "log_entry": "Ran at September 12, 2026 at 4:57:26 PM EDT — changes detected: 10 item_link_changed, 2 item_modified, 4 item_removed.",
+  "checked_at_utc": "2026-09-12T20:57:26.512Z",
+  "checked_at_local": "September 12, 2026 at 4:57:26 PM EDT",
   "counts": {
     "sections": 6,
-    "items": 90,
-    "linked": 74
+    "items": 86,
+    "linked": 85
   },
-  "changes": []
+  "changes": [
+    {
+      "type": "item_link_changed",
+      "section": "September 15, 2026 - REGULAR MEETING",
+      "title": "MINUTES 09-01-2026",
+      "old_href": null,
+      "new_href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Updated+September+1+Minutes+DRAFT.pdf",
+      "old_linked": false,
+      "new_linked": true
+    },
+    {
+      "type": "item_link_changed",
+      "section": "September 15, 2026 - REGULAR MEETING",
+      "title": "EXTENSION DISTRICT BUDGET/PROGRAM PRESENTATION",
+      "old_href": null,
+      "new_href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Extension+District+Presentation+September+15-+2026.pdf",
+      "old_linked": false,
+      "new_linked": true
+    },
+    {
+      "type": "item_link_changed",
+      "section": "September 15, 2026 - REGULAR MEETING",
+      "title": "LIBRARY DISTRICT BUDGET/PROGRAM PRESENTATION",
+      "old_href": null,
+      "new_href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Library+Fiscal+Court+Presentation+2026.pdf",
+      "old_linked": false,
+      "new_linked": true
+    },
+    {
+      "type": "item_link_changed",
+      "section": "September 15, 2026 - REGULAR MEETING",
+      "title": "BID OPENING: ERNIE HARRIS PARKWAY PAVEMENT MARKINGS",
+      "old_href": null,
+      "new_href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Bid+Tab+-+Ernie+Harris+Pky+Pvmnt+Mkg.pdf",
+      "old_linked": false,
+      "new_linked": true
+    },
+    {
+      "type": "item_link_changed",
+      "section": "September 15, 2026 - REGULAR MEETING",
+      "title": "PAYABLES",
+      "old_href": null,
+      "new_href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/09.15.26-+TOTAL+PAYABLES.pdf",
+      "old_linked": false,
+      "new_linked": true
+    },
+    {
+      "type": "item_link_changed",
+      "section": "September 15, 2026 - REGULAR MEETING",
+      "title": "MARCO TECHNOLOGIES CONTRACT – COPIERS/PRINTERS",
+      "old_href": null,
+      "new_href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Marco+Technologies+LLC+Contract.pdf",
+      "old_linked": false,
+      "new_linked": true
+    },
+    {
+      "type": "item_link_changed",
+      "section": "September 15, 2026 - REGULAR MEETING",
+      "title": "AT&T PARTICIPATION AGREEMENT – DISPATCH",
+      "old_href": null,
+      "new_href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/AT-T+Agreement+-+Dispatch.pdf",
+      "old_linked": false,
+      "new_linked": true
+    },
+    {
+      "type": "item_link_changed",
+      "section": "September 15, 2026 - REGULAR MEETING",
+      "title": "WRECKER SERVICE FEE RESOLUTION",
+      "old_href": null,
+      "new_href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Wrecker+Resolution+2026-2027.pdf",
+      "old_linked": false,
+      "new_linked": true
+    },
+    {
+      "type": "item_link_changed",
+      "section": "September 15, 2026 - REGULAR MEETING",
+      "title": "2ND READING – KOC-26-920.33- ZONING MAP AMENDMENT – PARAMONT ESTATES/QUARRY RD/BUCKEYE LANE",
+      "old_href": null,
+      "new_href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/KOC+26+920+33+Staff+Packet.pdf",
+      "old_linked": false,
+      "new_linked": true
+    },
+    {
+      "type": "item_link_changed",
+      "section": "September 15, 2026 - REGULAR MEETING",
+      "title": "PERSONNEL ACTIONS & BOARD APPOINTMENTS",
+      "old_href": null,
+      "new_href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/FC+PAR+09-15-26.pdf",
+      "old_linked": false,
+      "new_linked": true
+    },
+    {
+      "type": "item_modified",
+      "section": "September 15, 2026 - REGULAR MEETING",
+      "old_title": "ALL IN ONE",
+      "new_title": "ALL IN ONE (Update 09-12)",
+      "old_href": null,
+      "new_href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Updated+All+in+One.pdf"
+    },
+    {
+      "type": "item_modified",
+      "section": "September 15, 2026 - REGULAR MEETING",
+      "old_title": "AGENDA",
+      "new_title": "AGENDA (Update 09-12)",
+      "old_href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Agenda+DRAFT+091526.pdf",
+      "new_href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Agenda+09-15-2026+Revised.pdf"
+    },
+    {
+      "type": "item_removed",
+      "section": "September 15, 2026 - REGULAR MEETING",
+      "item": {
+        "title": "CONTRACTS & RESOLUTIONS",
+        "linked": false,
+        "href": null,
+        "filename": null
+      }
+    },
+    {
+      "type": "item_removed",
+      "section": "September 15, 2026 - REGULAR MEETING",
+      "item": {
+        "title": "COMMUNITY BUSINESS",
+        "linked": false,
+        "href": null,
+        "filename": null
+      }
+    },
+    {
+      "type": "item_removed",
+      "section": "September 15, 2026 - REGULAR MEETING",
+      "item": {
+        "title": "SOLID WASTE/RECYCLING/GRANTS",
+        "linked": false,
+        "href": null,
+        "filename": null
+      }
+    },
+    {
+      "type": "item_removed",
+      "section": "September 15, 2026 - REGULAR MEETING",
+      "item": {
+        "title": "PLANNING & DEVELOPMENT SERVICES",
+        "linked": false,
+        "href": null,
+        "filename": null
+      }
+    }
+  ]
 }

@@ -1,7 +1,7 @@
 {
   "monitor": "oldham-magistrate-documents",
   "url": "https://www.oldhamcountyky.gov/magistratedocs2026",
-  "captured_at_utc": "2026-09-12T11:15:05.937Z",
+  "captured_at_utc": "2026-09-12T20:57:26.512Z",
   "source": "GitHub Actions Playwright browser",
   "page_title": "Magistrate Documents | Oldham County Fiscal Court",
   "final_url": "https://www.oldhamcountyky.gov/magistratedocs2026",
@@ -10,100 +10,76 @@
       "title": "September 15, 2026 - REGULAR MEETING",
       "items": [
         {
-          "title": "ALL IN ONE",
-          "linked": false,
-          "href": null,
-          "filename": null
+          "title": "ALL IN ONE (Update 09-12)",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Updated+All+in+One.pdf",
+          "filename": "Updated+All+in+One.pdf"
         },
         {
-          "title": "AGENDA",
+          "title": "AGENDA (Update 09-12)",
           "linked": true,
-          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Agenda+DRAFT+091526.pdf",
-          "filename": "Agenda+DRAFT+091526.pdf"
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Agenda+09-15-2026+Revised.pdf",
+          "filename": "Agenda+09-15-2026+Revised.pdf"
         },
         {
           "title": "MINUTES 09-01-2026",
-          "linked": false,
-          "href": null,
-          "filename": null
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Updated+September+1+Minutes+DRAFT.pdf",
+          "filename": "Updated+September+1+Minutes+DRAFT.pdf"
         },
         {
           "title": "EXTENSION DISTRICT BUDGET/PROGRAM PRESENTATION",
-          "linked": false,
-          "href": null,
-          "filename": null
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Extension+District+Presentation+September+15-+2026.pdf",
+          "filename": "Extension+District+Presentation+September+15-+2026.pdf"
         },
         {
           "title": "LIBRARY DISTRICT BUDGET/PROGRAM PRESENTATION",
-          "linked": false,
-          "href": null,
-          "filename": null
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Library+Fiscal+Court+Presentation+2026.pdf",
+          "filename": "Library+Fiscal+Court+Presentation+2026.pdf"
         },
         {
           "title": "BID OPENING: ERNIE HARRIS PARKWAY PAVEMENT MARKINGS",
-          "linked": false,
-          "href": null,
-          "filename": null
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Bid+Tab+-+Ernie+Harris+Pky+Pvmnt+Mkg.pdf",
+          "filename": "Bid+Tab+-+Ernie+Harris+Pky+Pvmnt+Mkg.pdf"
         },
         {
           "title": "PAYABLES",
-          "linked": false,
-          "href": null,
-          "filename": null
-        },
-        {
-          "title": "CONTRACTS & RESOLUTIONS",
-          "linked": false,
-          "href": null,
-          "filename": null
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/09.15.26-+TOTAL+PAYABLES.pdf",
+          "filename": "09.15.26-+TOTAL+PAYABLES.pdf"
         },
         {
           "title": "MARCO TECHNOLOGIES CONTRACT – COPIERS/PRINTERS",
-          "linked": false,
-          "href": null,
-          "filename": null
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Marco+Technologies+LLC+Contract.pdf",
+          "filename": "Marco+Technologies+LLC+Contract.pdf"
         },
         {
           "title": "AT&T PARTICIPATION AGREEMENT – DISPATCH",
-          "linked": false,
-          "href": null,
-          "filename": null
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/AT-T+Agreement+-+Dispatch.pdf",
+          "filename": "AT-T+Agreement+-+Dispatch.pdf"
         },
         {
           "title": "WRECKER SERVICE FEE RESOLUTION",
-          "linked": false,
-          "href": null,
-          "filename": null
-        },
-        {
-          "title": "COMMUNITY BUSINESS",
-          "linked": false,
-          "href": null,
-          "filename": null
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Wrecker+Resolution+2026-2027.pdf",
+          "filename": "Wrecker+Resolution+2026-2027.pdf"
         },
         {
           "title": "2ND READING – KOC-26-920.33- ZONING MAP AMENDMENT – PARAMONT ESTATES/QUARRY RD/BUCKEYE LANE",
-          "linked": false,
-          "href": null,
-          "filename": null
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/KOC+26+920+33+Staff+Packet.pdf",
+          "filename": "KOC+26+920+33+Staff+Packet.pdf"
         },
         {
           "title": "PERSONNEL ACTIONS & BOARD APPOINTMENTS",
-          "linked": false,
-          "href": null,
-          "filename": null
-        },
-        {
-          "title": "SOLID WASTE/RECYCLING/GRANTS",
-          "linked": false,
-          "href": null,
-          "filename": null
-        },
-        {
-          "title": "PLANNING & DEVELOPMENT SERVICES",
-          "linked": false,
-          "href": null,
-          "filename": null
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/FC+PAR+09-15-26.pdf",
+          "filename": "FC+PAR+09-15-26.pdf"
         }
       ]
     },
