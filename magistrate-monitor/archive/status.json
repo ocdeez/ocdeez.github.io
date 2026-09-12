@@ -1,37 +1,13 @@
 {
   "success": false,
-  "checked_at_utc": "2026-09-11T21:17:56.100Z",
-  "checked_at_local": "September 11, 2026 at 5:17:56 PM EDT",
+  "checked_at_utc": "2026-09-12T05:01:36.106Z",
+  "checked_at_local": "September 12, 2026 at 1:01:36 AM EDT",
   "current_link_count": 74,
-  "archived_this_run": 1,
-  "unchanged_this_run": 72,
+  "archived_this_run": 0,
+  "unchanged_this_run": 73,
   "failed_this_run": 1,
   "total_archived_files": 80,
-  "archived": [
-    {
-      "id": "245793288988fe41",
-      "section": "September 15, 2026 - REGULAR MEETING",
-      "title": "AGENDA",
-      "source_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Agenda+DRAFT+091526.pdf",
-      "final_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Agenda+DRAFT+091526.pdf",
-      "source_filename": "Agenda+DRAFT+091526.pdf",
-      "archive_path": "magistrate-monitor/archive/files/september-15-2026-regular-meeting/2026-09-11/agenda-draft-091526.pdf",
-      "public_url": "https://ocdeez.github.io/magistrate-monitor/archive/files/september-15-2026-regular-meeting/2026-09-11/agenda-draft-091526.pdf",
-      "sha256": "245793288988fe410b185e0535ca77f391b477632ae623aa875a02600a5e02e1",
-      "bytes": 119044,
-      "first_seen_utc": "2026-09-11T21:17:56.100Z",
-      "first_seen_local": "September 11, 2026 at 5:17:56 PM EDT",
-      "last_seen_utc": "2026-09-11T21:17:56.100Z",
-      "last_verified_utc": "2026-09-11T21:17:56.100Z",
-      "supersedes_id": null,
-      "http": {
-        "status": 200,
-        "content_type": "application/pdf",
-        "etag": "W/\"6a5a24313cf740b54eacc5685d148608\"",
-        "last_modified": "Fri, 11 Sep 2026 17:42:03 GMT"
-      }
-    }
-  ],
+  "archived": [],
   "failures": [
     {
       "section": "August 4, 2026 - REGULAR MEETING",
