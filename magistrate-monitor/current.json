@@ -1,7 +1,7 @@
 {
   "monitor": "oldham-magistrate-documents",
   "url": "https://www.oldhamcountyky.gov/magistratedocs2026",
-  "captured_at_utc": "2026-09-14T13:20:59.916Z",
+  "captured_at_utc": "2026-09-14T22:03:11.774Z",
   "source": "GitHub Actions Playwright browser",
   "page_title": "Magistrate Documents | Oldham County Fiscal Court",
   "final_url": "https://www.oldhamcountyky.gov/magistratedocs2026",
@@ -10,16 +10,16 @@
       "title": "September 15, 2026 - REGULAR MEETING",
       "items": [
         {
-          "title": "ALL IN ONE (Update 09-12)",
+          "title": "ALL IN ONE (Update 09-14)",
           "linked": true,
-          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Updated+All+in+One.pdf",
-          "filename": "Updated+All+in+One.pdf"
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/All+in+One+9-14+Revised.pdf",
+          "filename": "All+in+One+9-14+Revised.pdf"
         },
         {
-          "title": "AGENDA (Update 09-12)",
+          "title": "AGENDA (Update 09-14)",
           "linked": true,
-          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Agenda+09-15-2026+Revised.pdf",
-          "filename": "Agenda+09-15-2026+Revised.pdf"
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Agenda+Revised+DRAFT+091526.pdf",
+          "filename": "Agenda+Revised+DRAFT+091526.pdf"
         },
         {
           "title": "MINUTES 09-01-2026",
@@ -70,16 +70,28 @@
           "filename": "Wrecker+Resolution+2026-2027.pdf"
         },
         {
+          "title": "1st READING – KOC-26-920-36 – ZONING MAP AMENDMENT – 2616 SINGLETON LANE",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/26-920-36+ORDINANCE+PACKET.pdf",
+          "filename": "26-920-36+ORDINANCE+PACKET.pdf"
+        },
+        {
           "title": "2ND READING – KOC-26-920.33- ZONING MAP AMENDMENT – PARAMONT ESTATES/QUARRY RD/BUCKEYE LANE",
           "linked": true,
           "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/KOC+26+920+33+Staff+Packet.pdf",
           "filename": "KOC+26+920+33+Staff+Packet.pdf"
         },
         {
-          "title": "PERSONNEL ACTIONS & BOARD APPOINTMENTS",
+          "title": "PERSONNEL ACTIONS",
           "linked": true,
           "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/FC+PAR+09-15-26.pdf",
           "filename": "FC+PAR+09-15-26.pdf"
+        },
+        {
+          "title": "BOARD APPOINTMENTS",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Board+Appointments-f940a709.pdf",
+          "filename": "Board+Appointments-f940a709.pdf"
         }
       ]
     },
