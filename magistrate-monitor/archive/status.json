@@ -1,106 +1,13 @@
 {
   "success": false,
-  "checked_at_utc": "2026-09-14T22:03:16.084Z",
-  "checked_at_local": "September 14, 2026 at 6:03:16 PM EDT",
+  "checked_at_utc": "2026-09-15T05:21:41.087Z",
+  "checked_at_local": "September 15, 2026 at 1:21:41 AM EDT",
   "current_link_count": 87,
-  "archived_this_run": 4,
-  "unchanged_this_run": 82,
+  "archived_this_run": 0,
+  "unchanged_this_run": 86,
   "failed_this_run": 1,
   "total_archived_files": 96,
-  "archived": [
-    {
-      "id": "a53f83cccb180b0a",
-      "section": "September 15, 2026 - REGULAR MEETING",
-      "title": "ALL IN ONE (Update 09-14)",
-      "source_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/All+in+One+9-14+Revised.pdf",
-      "final_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/All+in+One+9-14+Revised.pdf",
-      "source_filename": "All+in+One+9-14+Revised.pdf",
-      "archive_path": "magistrate-monitor/archive/files/september-15-2026-regular-meeting/2026-09-14/all-in-one-9-14-revised.pdf",
-      "public_url": "https://ocdeez.github.io/magistrate-monitor/archive/files/september-15-2026-regular-meeting/2026-09-14/all-in-one-9-14-revised.pdf",
-      "sha256": "a53f83cccb180b0a5857b526706fb6f76a05dcc111d1691362c94a13ab3d7899",
-      "bytes": 37212747,
-      "first_seen_utc": "2026-09-14T22:03:16.084Z",
-      "first_seen_local": "September 14, 2026 at 6:03:16 PM EDT",
-      "last_seen_utc": "2026-09-14T22:03:16.084Z",
-      "last_verified_utc": "2026-09-14T22:03:16.084Z",
-      "supersedes_id": null,
-      "http": {
-        "status": 200,
-        "content_type": "application/pdf",
-        "etag": "\"3d6bb56a310fc653668eadd9249a3c37\"",
-        "last_modified": "Mon, 14 Sep 2026 17:53:51 GMT"
-      }
-    },
-    {
-      "id": "09abfb05e35a4f2a",
-      "section": "September 15, 2026 - REGULAR MEETING",
-      "title": "AGENDA (Update 09-14)",
-      "source_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Agenda+Revised+DRAFT+091526.pdf",
-      "final_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Agenda+Revised+DRAFT+091526.pdf",
-      "source_filename": "Agenda+Revised+DRAFT+091526.pdf",
-      "archive_path": "magistrate-monitor/archive/files/september-15-2026-regular-meeting/2026-09-14/agenda-revised-draft-091526.pdf",
-      "public_url": "https://ocdeez.github.io/magistrate-monitor/archive/files/september-15-2026-regular-meeting/2026-09-14/agenda-revised-draft-091526.pdf",
-      "sha256": "09abfb05e35a4f2a88438301c1da5cb66535da0e5af1c051fe5d72c668489d87",
-      "bytes": 122184,
-      "first_seen_utc": "2026-09-14T22:03:16.084Z",
-      "first_seen_local": "September 14, 2026 at 6:03:16 PM EDT",
-      "last_seen_utc": "2026-09-14T22:03:16.084Z",
-      "last_verified_utc": "2026-09-14T22:03:16.084Z",
-      "supersedes_id": null,
-      "http": {
-        "status": 200,
-        "content_type": "application/pdf",
-        "etag": "W/\"b53f3da31468daa899b5f0a6b5eb03ca\"",
-        "last_modified": "Mon, 14 Sep 2026 17:54:42 GMT"
-      }
-    },
-    {
-      "id": "955c3cbc53be835e",
-      "section": "September 15, 2026 - REGULAR MEETING",
-      "title": "1st READING – KOC-26-920-36 – ZONING MAP AMENDMENT – 2616 SINGLETON LANE",
-      "source_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/26-920-36+ORDINANCE+PACKET.pdf",
-      "final_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/26-920-36+ORDINANCE+PACKET.pdf",
-      "source_filename": "26-920-36+ORDINANCE+PACKET.pdf",
-      "archive_path": "magistrate-monitor/archive/files/september-15-2026-regular-meeting/2026-09-14/26-920-36-ordinance-packet.pdf",
-      "public_url": "https://ocdeez.github.io/magistrate-monitor/archive/files/september-15-2026-regular-meeting/2026-09-14/26-920-36-ordinance-packet.pdf",
-      "sha256": "955c3cbc53be835edd6c1f0d9a5805f04d148a76d35fff2503ffadce48ee313b",
-      "bytes": 11708780,
-      "first_seen_utc": "2026-09-14T22:03:16.084Z",
-      "first_seen_local": "September 14, 2026 at 6:03:16 PM EDT",
-      "last_seen_utc": "2026-09-14T22:03:16.084Z",
-      "last_verified_utc": "2026-09-14T22:03:16.084Z",
-      "supersedes_id": null,
-      "http": {
-        "status": 200,
-        "content_type": "application/pdf",
-        "etag": "\"2279978d4781b2aadda7858f0074c75c\"",
-        "last_modified": "Mon, 14 Sep 2026 17:56:10 GMT"
-      }
-    },
-    {
-      "id": "46bfd7cc7500b2fe",
-      "section": "September 15, 2026 - REGULAR MEETING",
-      "title": "BOARD APPOINTMENTS",
-      "source_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Board+Appointments-f940a709.pdf",
-      "final_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Board+Appointments-f940a709.pdf",
-      "source_filename": "Board+Appointments-f940a709.pdf",
-      "archive_path": "magistrate-monitor/archive/files/september-15-2026-regular-meeting/2026-09-14/board-appointments-f940a709.pdf",
-      "public_url": "https://ocdeez.github.io/magistrate-monitor/archive/files/september-15-2026-regular-meeting/2026-09-14/board-appointments-f940a709.pdf",
-      "sha256": "46bfd7cc7500b2fe0f6a0fc9c9f2ca2655e1c19157790cc533e586a81cd0cf25",
-      "bytes": 130420,
-      "first_seen_utc": "2026-09-14T22:03:16.084Z",
-      "first_seen_local": "September 14, 2026 at 6:03:16 PM EDT",
-      "last_seen_utc": "2026-09-14T22:03:16.084Z",
-      "last_verified_utc": "2026-09-14T22:03:16.084Z",
-      "supersedes_id": null,
-      "http": {
-        "status": 200,
-        "content_type": "application/pdf",
-        "etag": "W/\"c74b8b1684c154b653019c45921657c2\"",
-        "last_modified": "Mon, 14 Sep 2026 17:56:50 GMT"
-      }
-    }
-  ],
+  "archived": [],
   "failures": [
     {
       "section": "August 4, 2026 - REGULAR MEETING",

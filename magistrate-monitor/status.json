@@ -2,59 +2,15 @@
   "monitor": "oldham-magistrate-documents",
   "url": "https://www.oldhamcountyky.gov/magistratedocs2026",
   "success": true,
-  "changed": true,
-  "summary": "changes detected: 1 item_renamed, 2 item_modified, 2 item_added.",
-  "log_entry": "Ran at September 14, 2026 at 6:03:11 PM EDT — changes detected: 1 item_renamed, 2 item_modified, 2 item_added.",
-  "checked_at_utc": "2026-09-14T22:03:11.774Z",
-  "checked_at_local": "September 14, 2026 at 6:03:11 PM EDT",
+  "changed": false,
+  "summary": "no changes; no issues running.",
+  "log_entry": "Ran at September 15, 2026 at 1:21:37 AM EDT — no changes; no issues running.",
+  "checked_at_utc": "2026-09-15T05:21:37.387Z",
+  "checked_at_local": "September 15, 2026 at 1:21:37 AM EDT",
   "counts": {
     "sections": 6,
     "items": 88,
     "linked": 87
   },
-  "changes": [
-    {
-      "type": "item_renamed",
-      "section": "September 15, 2026 - REGULAR MEETING",
-      "old_title": "PERSONNEL ACTIONS & BOARD APPOINTMENTS",
-      "new_title": "PERSONNEL ACTIONS",
-      "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/FC+PAR+09-15-26.pdf"
-    },
-    {
-      "type": "item_modified",
-      "section": "September 15, 2026 - REGULAR MEETING",
-      "old_title": "ALL IN ONE (Update 09-12)",
-      "new_title": "ALL IN ONE (Update 09-14)",
-      "old_href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Updated+All+in+One.pdf",
-      "new_href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/All+in+One+9-14+Revised.pdf"
-    },
-    {
-      "type": "item_modified",
-      "section": "September 15, 2026 - REGULAR MEETING",
-      "old_title": "AGENDA (Update 09-12)",
-      "new_title": "AGENDA (Update 09-14)",
-      "old_href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Agenda+09-15-2026+Revised.pdf",
-      "new_href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Agenda+Revised+DRAFT+091526.pdf"
-    },
-    {
-      "type": "item_added",
-      "section": "September 15, 2026 - REGULAR MEETING",
-      "item": {
-        "title": "1st READING – KOC-26-920-36 – ZONING MAP AMENDMENT – 2616 SINGLETON LANE",
-        "linked": true,
-        "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/26-920-36+ORDINANCE+PACKET.pdf",
-        "filename": "26-920-36+ORDINANCE+PACKET.pdf"
-      }
-    },
-    {
-      "type": "item_added",
-      "section": "September 15, 2026 - REGULAR MEETING",
-      "item": {
-        "title": "BOARD APPOINTMENTS",
-        "linked": true,
-        "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Board+Appointments-f940a709.pdf",
-        "filename": "Board+Appointments-f940a709.pdf"
-      }
-    }
-  ]
+  "changes": []
 }
