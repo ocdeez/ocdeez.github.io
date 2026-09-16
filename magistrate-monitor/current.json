@@ -1,7 +1,7 @@
 {
   "monitor": "oldham-magistrate-documents",
   "url": "https://www.oldhamcountyky.gov/magistratedocs2026",
-  "captured_at_utc": "2026-09-16T05:15:41.790Z",
+  "captured_at_utc": "2026-09-16T12:02:44.967Z",
   "source": "GitHub Actions Playwright browser",
   "page_title": "Magistrate Documents | Oldham County Fiscal Court",
   "final_url": "https://www.oldhamcountyky.gov/magistratedocs2026",
