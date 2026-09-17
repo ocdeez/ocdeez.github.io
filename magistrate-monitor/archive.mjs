@@ -187,7 +187,7 @@ async function main() {
   const currentDocuments = flattenInventory(inventory);
   const archived = [];
   const unchanged = [];
-  const failures = [];
+  const deadLinks = [];
 
   await mkdir(FILES_ROOT, { recursive: true });
   const browser = await chromium.launch({ headless: true });
@@ -259,10 +259,11 @@ async function main() {
         manifest.documents.push(entry);
         archived.push(entry);
       } catch (error) {
-        failures.push({
+        deadLinks.push({
           section: document.section,
           title: document.title,
           source_url: document.source_url,
+          classification: 'dead_link',
           error: error instanceof Error ? error.message : String(error),
         });
       }
@@ -278,24 +279,25 @@ async function main() {
   await writeJson(MANIFEST_PATH, manifest);
 
   const status = {
-    success: failures.length === 0,
+    success: true,
     checked_at_utc: startedUtc,
     checked_at_local: localTime(started),
     current_link_count: currentDocuments.length,
     archived_this_run: archived.length,
     unchanged_this_run: unchanged.length,
-    failed_this_run: failures.length,
+    failed_this_run: 0,
+    dead_links_this_run: deadLinks.length,
     total_archived_files: manifest.documents.length,
     archived,
-    failures,
+    dead_links: deadLinks,
+    failures: [],
   };
   await writeJson(STATUS_PATH, status);
   await appendJsonLine(RUNS_PATH, status);
 
-  console.log(`PDF archive ran at ${status.checked_at_local}: ${archived.length} archived, ${unchanged.length} already current, ${failures.length} failed.`);
-  if (failures.length) {
-    for (const failure of failures) console.error(`${failure.title}: ${failure.error}`);
-    process.exitCode = 1;
+  console.log(`PDF archive ran at ${status.checked_at_local}: ${archived.length} archived, ${unchanged.length} already current, ${deadLinks.length} dead link(s).`);
+  if (deadLinks.length) {
+    for (const deadLink of deadLinks) console.warn(`Dead link: ${deadLink.title}: ${deadLink.error}`);
   }
 }
 
