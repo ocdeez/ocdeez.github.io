@@ -1,0 +1,1 @@
+Manual verification trigger after dead-link handling fix, 2026-09-17.
