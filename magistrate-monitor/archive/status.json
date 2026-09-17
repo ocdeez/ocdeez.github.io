@@ -1,19 +1,22 @@
 {
-  "success": false,
-  "checked_at_utc": "2026-09-17T12:05:17.231Z",
-  "checked_at_local": "September 17, 2026 at 8:05:17 AM EDT",
+  "success": true,
+  "checked_at_utc": "2026-09-17T20:17:27.633Z",
+  "checked_at_local": "September 17, 2026 at 4:17:27 PM EDT",
   "current_link_count": 87,
   "archived_this_run": 0,
   "unchanged_this_run": 86,
-  "failed_this_run": 1,
+  "failed_this_run": 0,
+  "dead_links_this_run": 1,
   "total_archived_files": 96,
   "archived": [],
-  "failures": [
+  "dead_links": [
     {
       "section": "August 4, 2026 - REGULAR MEETING",
       "title": "MINUTES 07/21/2026",
       "source_url": "https://www.oldhamcountyky.gov/",
+      "classification": "dead_link",
       "error": "response was not a PDF (text/html;charset=utf-8) from https://www.oldhamcountyky.gov/"
     }
-  ]
+  ],
+  "failures": []
 }
