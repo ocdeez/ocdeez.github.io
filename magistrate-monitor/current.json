@@ -1,11 +1,106 @@
 {
   "monitor": "oldham-magistrate-documents",
   "url": "https://www.oldhamcountyky.gov/magistratedocs2026",
-  "captured_at_utc": "2026-10-02T13:10:55.505Z",
+  "captured_at_utc": "2026-10-02T22:33:33.497Z",
   "source": "GitHub Actions Playwright browser",
   "page_title": "Magistrate Documents | Oldham County Fiscal Court",
   "final_url": "https://www.oldhamcountyky.gov/magistratedocs2026",
   "sections": [
+    {
+      "title": "October 6, 2026 - REGULAR MEETING",
+      "items": [
+        {
+          "title": "ALL IN ONE",
+          "linked": false,
+          "href": null,
+          "filename": null
+        },
+        {
+          "title": "AGENDA",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Agenda+DRAFT+100626.pdf",
+          "filename": "Agenda+DRAFT+100626.pdf"
+        },
+        {
+          "title": "MINUTES 09-15-2026",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/September+15+Minutes+DRAFT.pdf",
+          "filename": "September+15+Minutes+DRAFT.pdf"
+        },
+        {
+          "title": "OLDHAM COUNTY HEALTH DEPT TAX RATE PRESENTATION",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Oldham+County+Health+Dept+Tax+Rate+Presentation.pdf",
+          "filename": "Oldham+County+Health+Dept+Tax+Rate+Presentation.pdf"
+        },
+        {
+          "title": "PAYABLES",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/10.06.26-PAYABLES.pdf",
+          "filename": "10.06.26-PAYABLES.pdf"
+        },
+        {
+          "title": "COUNTY PHONE SYSTEM – EXTENSION AGREEMENT",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/County+Phone+System+-+Extension+Agreement.pdf",
+          "filename": "County+Phone+System+-+Extension+Agreement.pdf"
+        },
+        {
+          "title": "RECOMMENDATION TO RELEASE EROSION CONTROL SURETY – O’REILLY AUTO PARTS – LAGRANGE",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/EC+Release+O-Reilly+Auto+Parts.pdf",
+          "filename": "EC+Release+O-Reilly+Auto+Parts.pdf"
+        },
+        {
+          "title": "RECOMMENDATION TO RELEASE EROSION CONTROL SURETY – INDEPENDENCE VILLAGE APARTMENTS",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/EC+Release+-+Independence+Village.pdf",
+          "filename": "EC+Release+-+Independence+Village.pdf"
+        },
+        {
+          "title": "RECOMMENDATION TO RELEASE EROSION CONTROL SURETY – OLDHAM COUNTY LIBRARY - GOSHEN",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/EC+Release+-+OC+Library.pdf",
+          "filename": "EC+Release+-+OC+Library.pdf"
+        },
+        {
+          "title": "1ST READING – KOC – 26-920-040 ZONING MAP AMENDMENT – 7511 HWY 329 CRESTWOOD",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/1st+Reading+KOC-26-920-040+Packet.pdf",
+          "filename": "1st+Reading+KOC-26-920-040+Packet.pdf"
+        },
+        {
+          "title": "2ND READING – KOC-26-920-36 ZONING MAP AMENDMENT – 2616 SINGLETON LANE",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/2nd+Reading+KOC+26-920-36+ORDINANCE+PACKET.pdf",
+          "filename": "2nd+Reading+KOC+26-920-36+ORDINANCE+PACKET.pdf"
+        },
+        {
+          "title": "2ND READING – KOC-26-920.38 ZONING MAP AMENDMENT – OC COMPREHENSIVE ZONING ORDINANCE CREATING DATA CENTER REGULATIONS SECTION 250-340",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/2nd+Reading+KOC-26-920-38+Data+Center+Regs+PACKET.pdf",
+          "filename": "2nd+Reading+KOC-26-920-38+Data+Center+Regs+PACKET.pdf"
+        },
+        {
+          "title": "PERSONNEL ACTIONS",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/FC+PAR+10-06-26.pdf",
+          "filename": "FC+PAR+10-06-26.pdf"
+        },
+        {
+          "title": "ADAM BAYER LWOP",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Request+for+Additional+LWOP+-+Bayer.pdf",
+          "filename": "Request+for+Additional+LWOP+-+Bayer.pdf"
+        },
+        {
+          "title": "BOARD APPOINTMENTS",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Board+Appointments-6bca4004.pdf",
+          "filename": "Board+Appointments-6bca4004.pdf"
+        }
+      ]
+    },
     {
       "title": "September 15, 2026 - REGULAR MEETING",
       "items": [
