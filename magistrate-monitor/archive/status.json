@@ -1,84 +1,14 @@
 {
   "success": true,
-  "checked_at_utc": "2026-10-06T13:51:31.342Z",
-  "checked_at_local": "October 6, 2026 at 9:51:31 AM EDT",
+  "checked_at_utc": "2026-10-06T22:48:08.663Z",
+  "checked_at_local": "October 6, 2026 at 6:48:08 PM EDT",
   "current_link_count": 104,
-  "archived_this_run": 3,
-  "unchanged_this_run": 100,
+  "archived_this_run": 0,
+  "unchanged_this_run": 103,
   "failed_this_run": 0,
   "dead_links_this_run": 1,
   "total_archived_files": 113,
-  "archived": [
-    {
-      "id": "d95a353d6e0ffaff",
-      "section": "October 6, 2026 - REGULAR MEETING",
-      "title": "ALL IN ONE",
-      "source_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/All+In+One+%282%29.pdf",
-      "final_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/All+In+One+%282%29.pdf",
-      "source_filename": "All+In+One+(2).pdf",
-      "archive_path": "magistrate-monitor/archive/files/october-6-2026-regular-meeting/2026-10-06/all-in-one-2.pdf",
-      "public_url": "https://ocdeez.github.io/magistrate-monitor/archive/files/october-6-2026-regular-meeting/2026-10-06/all-in-one-2.pdf",
-      "sha256": "d95a353d6e0ffafffabadaf78ee9111738f58026f138fb34d3a73c0d37af9d22",
-      "bytes": 34496556,
-      "first_seen_utc": "2026-10-06T13:51:31.342Z",
-      "first_seen_local": "October 6, 2026 at 9:51:31 AM EDT",
-      "last_seen_utc": "2026-10-06T13:51:31.342Z",
-      "last_verified_utc": "2026-10-06T13:51:31.342Z",
-      "supersedes_id": null,
-      "http": {
-        "status": 200,
-        "content_type": "application/pdf",
-        "etag": "\"cbd0c67d4c78654b8c7030dfd5c2be62\"",
-        "last_modified": "Tue, 06 Oct 2026 13:39:30 GMT"
-      }
-    },
-    {
-      "id": "7dabd2f8e458d9f3",
-      "section": "October 6, 2026 - REGULAR MEETING",
-      "title": "BID OPENING – RECYCLING FACILITY PAVEMENT RECONSTRUCTION",
-      "source_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Bid+Tab+-+Recycling+Center+Pavement+Reconstruction.pdf",
-      "final_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Bid+Tab+-+Recycling+Center+Pavement+Reconstruction.pdf",
-      "source_filename": "Bid+Tab+-+Recycling+Center+Pavement+Reconstruction.pdf",
-      "archive_path": "magistrate-monitor/archive/files/october-6-2026-regular-meeting/2026-10-06/bid-tab-recycling-center-pavement-reconstruction.pdf",
-      "public_url": "https://ocdeez.github.io/magistrate-monitor/archive/files/october-6-2026-regular-meeting/2026-10-06/bid-tab-recycling-center-pavement-reconstruction.pdf",
-      "sha256": "7dabd2f8e458d9f3795de4fc67ba00062ab3f3242659b7839759f21f64a36bf5",
-      "bytes": 79534,
-      "first_seen_utc": "2026-10-06T13:51:31.342Z",
-      "first_seen_local": "October 6, 2026 at 9:51:31 AM EDT",
-      "last_seen_utc": "2026-10-06T13:51:31.342Z",
-      "last_verified_utc": "2026-10-06T13:51:31.342Z",
-      "supersedes_id": null,
-      "http": {
-        "status": 200,
-        "content_type": "application/pdf",
-        "etag": "W/\"9b4073520d6e5834007cb2ea92e7ad29\"",
-        "last_modified": "Tue, 06 Oct 2026 13:40:41 GMT"
-      }
-    },
-    {
-      "id": "0adf96fcd74bd59e",
-      "section": "October 6, 2026 - REGULAR MEETING",
-      "title": "BID OPENING - SALT",
-      "source_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Bid+Tab+-+Bulk+Road+De-Icing+Salt+%28FY26-27%29.pdf",
-      "final_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Bid+Tab+-+Bulk+Road+De-Icing+Salt+%28FY26-27%29.pdf",
-      "source_filename": "Bid+Tab+-+Bulk+Road+De-Icing+Salt+(FY26-27).pdf",
-      "archive_path": "magistrate-monitor/archive/files/october-6-2026-regular-meeting/2026-10-06/bid-tab-bulk-road-de-icing-salt-fy26-27.pdf",
-      "public_url": "https://ocdeez.github.io/magistrate-monitor/archive/files/october-6-2026-regular-meeting/2026-10-06/bid-tab-bulk-road-de-icing-salt-fy26-27.pdf",
-      "sha256": "0adf96fcd74bd59e31364e42e385c09469655636b2d5020f6124780687ca3487",
-      "bytes": 78786,
-      "first_seen_utc": "2026-10-06T13:51:31.342Z",
-      "first_seen_local": "October 6, 2026 at 9:51:31 AM EDT",
-      "last_seen_utc": "2026-10-06T13:51:31.342Z",
-      "last_verified_utc": "2026-10-06T13:51:31.342Z",
-      "supersedes_id": null,
-      "http": {
-        "status": 200,
-        "content_type": "application/pdf",
-        "etag": "W/\"3f6e3410d358f8603d58452efdd4926c\"",
-        "last_modified": "Tue, 06 Oct 2026 13:41:12 GMT"
-      }
-    }
-  ],
+  "archived": [],
   "dead_links": [
     {
       "section": "August 4, 2026 - REGULAR MEETING",
