@@ -1,7 +1,7 @@
 {
   "monitor": "oldham-magistrate-documents",
   "url": "https://www.oldhamcountyky.gov/magistratedocs2026",
-  "captured_at_utc": "2026-10-06T06:51:14.267Z",
+  "captured_at_utc": "2026-10-06T13:51:27.709Z",
   "source": "GitHub Actions Playwright browser",
   "page_title": "Magistrate Documents | Oldham County Fiscal Court",
   "final_url": "https://www.oldhamcountyky.gov/magistratedocs2026",
@@ -11,9 +11,9 @@
       "items": [
         {
           "title": "ALL IN ONE",
-          "linked": false,
-          "href": null,
-          "filename": null
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/All+In+One+%282%29.pdf",
+          "filename": "All+In+One+(2).pdf"
         },
         {
           "title": "AGENDA",
@@ -32,6 +32,18 @@
           "linked": true,
           "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Oldham+County+Health+Dept+Tax+Rate+Presentation.pdf",
           "filename": "Oldham+County+Health+Dept+Tax+Rate+Presentation.pdf"
+        },
+        {
+          "title": "BID OPENING – RECYCLING FACILITY PAVEMENT RECONSTRUCTION",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Bid+Tab+-+Recycling+Center+Pavement+Reconstruction.pdf",
+          "filename": "Bid+Tab+-+Recycling+Center+Pavement+Reconstruction.pdf"
+        },
+        {
+          "title": "BID OPENING - SALT",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Bid+Tab+-+Bulk+Road+De-Icing+Salt+%28FY26-27%29.pdf",
+          "filename": "Bid+Tab+-+Bulk+Road+De-Icing+Salt+(FY26-27).pdf"
         },
         {
           "title": "PAYABLES",
