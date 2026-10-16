@@ -1,11 +1,82 @@
 {
   "monitor": "oldham-magistrate-documents",
   "url": "https://www.oldhamcountyky.gov/magistratedocs2026",
-  "captured_at_utc": "2026-10-16T11:54:19.388Z",
+  "captured_at_utc": "2026-10-16T21:42:50.563Z",
   "source": "GitHub Actions Playwright browser",
   "page_title": "Magistrate Documents | Oldham County Fiscal Court",
   "final_url": "https://www.oldhamcountyky.gov/magistratedocs2026",
   "sections": [
+    {
+      "title": "October 20, 2026 - REGULAR MEETING",
+      "items": [
+        {
+          "title": "ALL IN ONE",
+          "linked": false,
+          "href": null,
+          "filename": null
+        },
+        {
+          "title": "AGENDA",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Agenda+DRAFT+102026.pdf",
+          "filename": "Agenda+DRAFT+102026.pdf"
+        },
+        {
+          "title": "MINUTES 10-06-2026",
+          "linked": false,
+          "href": null,
+          "filename": null
+        },
+        {
+          "title": "PAYABLES",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/10.20.26+PAYABLES.pdf",
+          "filename": "10.20.26+PAYABLES.pdf"
+        },
+        {
+          "title": "BUDGET TRANSFERS",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Budget+Transfers+FY27_Holly.pdf",
+          "filename": "Budget+Transfers+FY27_Holly.pdf"
+        },
+        {
+          "title": "SURPLUS PROPERTY (Revised)",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/RevisedSurplus+Property+Pkt.pdf",
+          "filename": "RevisedSurplus+Property+Pkt.pdf"
+        },
+        {
+          "title": "COMMSCOACH BY GOVWORX QA PROPOSAL",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Oldham+County+Central+Dispatch+%28KY%29+-CommsCoach+Operational.pdf",
+          "filename": "Oldham+County+Central+Dispatch+(KY)+-CommsCoach+Operational.pdf"
+        },
+        {
+          "title": "2027 LITTER ABATEMENT GRANT",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Litter+Grant+App+Pkt.pdf",
+          "filename": "Litter+Grant+App+Pkt.pdf"
+        },
+        {
+          "title": "2ND READING – KOC – 26-920-040 – ZONING MAP AMENDMENT – 7511 HWY 329 CRESTWOOD",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/2nd+Reading+KOC-26-920-040+CompletePacket.pdf",
+          "filename": "2nd+Reading+KOC-26-920-040+CompletePacket.pdf"
+        },
+        {
+          "title": "PERSONNEL ACTIONS",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/FC+PAR+10-20-26.pdf",
+          "filename": "FC+PAR+10-20-26.pdf"
+        },
+        {
+          "title": "BOARD APPOINTMENTS",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Board+Appointments+%281%29.pdf",
+          "filename": "Board+Appointments+(1).pdf"
+        }
+      ]
+    },
     {
       "title": "October 6, 2026 - REGULAR MEETING",
       "items": [
