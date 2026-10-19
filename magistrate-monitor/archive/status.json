@@ -1,15 +1,46 @@
 {
   "success": true,
-  "checked_at_utc": "2026-10-19T13:57:10.101Z",
-  "checked_at_local": "October 19, 2026 at 9:57:10 AM EDT",
-  "current_link_count": 113,
-  "archived_this_run": 0,
-  "unchanged_this_run": 112,
+  "checked_at_utc": "2026-10-19T22:38:14.503Z",
+  "checked_at_local": "October 19, 2026 at 6:38:14 PM EDT",
+  "current_link_count": 114,
+  "archived_this_run": 1,
+  "unchanged_this_run": 111,
   "failed_this_run": 0,
-  "dead_links_this_run": 1,
-  "total_archived_files": 122,
-  "archived": [],
+  "dead_links_this_run": 2,
+  "total_archived_files": 123,
+  "archived": [
+    {
+      "id": "faf23ab5688c2f4a",
+      "section": "October 20, 2026 - REGULAR MEETING",
+      "title": "MINUTES 10-06-2026",
+      "source_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/October+6th+Minutes+DRAFT.pdf",
+      "final_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/October+6th+Minutes+DRAFT.pdf",
+      "source_filename": "October+6th+Minutes+DRAFT.pdf",
+      "archive_path": "magistrate-monitor/archive/files/october-20-2026-regular-meeting/2026-10-19/october-6th-minutes-draft.pdf",
+      "public_url": "https://ocdeez.github.io/magistrate-monitor/archive/files/october-20-2026-regular-meeting/2026-10-19/october-6th-minutes-draft.pdf",
+      "sha256": "faf23ab5688c2f4aa240ae3eae77a2cd212e1a05cbef09770f7cac3617208954",
+      "bytes": 193154,
+      "first_seen_utc": "2026-10-19T22:38:14.503Z",
+      "first_seen_local": "October 19, 2026 at 6:38:14 PM EDT",
+      "last_seen_utc": "2026-10-19T22:38:14.503Z",
+      "last_verified_utc": "2026-10-19T22:38:14.503Z",
+      "supersedes_id": null,
+      "http": {
+        "status": 200,
+        "content_type": "application/pdf",
+        "etag": "W/\"b71c79053a6a62d7ed7b2ff62d8e26f5\"",
+        "last_modified": "Mon, 19 Oct 2026 17:29:14 GMT"
+      }
+    }
+  ],
   "dead_links": [
+    {
+      "section": "October 20, 2026 - REGULAR MEETING",
+      "title": "AGENDA UPDATE 10-19",
+      "source_url": "https://www.oldhamcountyky.gov/",
+      "classification": "dead_link",
+      "error": "response was not a PDF (text/html;charset=utf-8) from https://www.oldhamcountyky.gov/"
+    },
     {
       "section": "August 4, 2026 - REGULAR MEETING",
       "title": "MINUTES 07/21/2026",
