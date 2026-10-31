@@ -1,7 +1,7 @@
 {
   "monitor": "oldham-magistrate-documents",
   "url": "https://www.oldhamcountyky.gov/magistratedocs2026",
-  "captured_at_utc": "2026-10-30T22:39:01.249Z",
+  "captured_at_utc": "2026-10-31T06:16:57.622Z",
   "source": "GitHub Actions Playwright browser",
   "page_title": "Magistrate Documents | Oldham County Fiscal Court",
   "final_url": "https://www.oldhamcountyky.gov/magistratedocs2026",
@@ -16,10 +16,10 @@
           "filename": null
         },
         {
-          "title": "AGENDA",
+          "title": "AGENDA V3",
           "linked": true,
-          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Revised+Agenda+DRAFT+110326.pdf",
-          "filename": "Revised+Agenda+DRAFT+110326.pdf"
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Revised+Agenda+DRAFT+110326+V3.pdf",
+          "filename": "Revised+Agenda+DRAFT+110326+V3.pdf"
         },
         {
           "title": "MINUTES 10-20-2026",
@@ -29,9 +29,9 @@
         },
         {
           "title": "PAYABLES",
-          "linked": false,
-          "href": null,
-          "filename": null
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/11.03.26+PAYABLES.pdf",
+          "filename": "11.03.26+PAYABLES.pdf"
         },
         {
           "title": "KY 22 & CLORE LANE INTERSECTION FINAL DESIGN CONTRACT",
@@ -47,9 +47,9 @@
         },
         {
           "title": "2027 BENEFIT RENEWAL – MEDICAL/DENTAL/VISION PLANS",
-          "linked": false,
-          "href": null,
-          "filename": null
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Benefit+Presentation+Pkt.pdf",
+          "filename": "Benefit+Presentation+Pkt.pdf"
         },
         {
           "title": "RECOMMENDATION TO RELEASE EROSION CONTROL SURETY – SANCTUARY FALLS PHASE 1 SECTION 1",
@@ -74,12 +74,6 @@
           "linked": true,
           "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/KOC+26-920-043+Packet+-+1st+Reading.pdf",
           "filename": "KOC+26-920-043+Packet+-+1st+Reading.pdf"
-        },
-        {
-          "title": "1ST READING – KOC-26-540-10 - PARKING ORDINANCE – OLDHAM COUNTY PARKS",
-          "linked": false,
-          "href": null,
-          "filename": null
         },
         {
           "title": "PERSONNEL ACTIONS",
