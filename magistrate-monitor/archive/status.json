@@ -1,84 +1,14 @@
 {
   "success": true,
-  "checked_at_utc": "2026-10-31T06:17:04.772Z",
-  "checked_at_local": "October 31, 2026 at 2:17:04 AM EDT",
+  "checked_at_utc": "2026-10-31T13:03:34.639Z",
+  "checked_at_local": "October 31, 2026 at 9:03:34 AM EDT",
   "current_link_count": 126,
-  "archived_this_run": 3,
-  "unchanged_this_run": 121,
+  "archived_this_run": 0,
+  "unchanged_this_run": 124,
   "failed_this_run": 0,
   "dead_links_this_run": 2,
   "total_archived_files": 136,
-  "archived": [
-    {
-      "id": "d7adf7580964c793",
-      "section": "November 3, 2026 - REGULAR MEETING",
-      "title": "AGENDA V3",
-      "source_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Revised+Agenda+DRAFT+110326+V3.pdf",
-      "final_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Revised+Agenda+DRAFT+110326+V3.pdf",
-      "source_filename": "Revised+Agenda+DRAFT+110326+V3.pdf",
-      "archive_path": "magistrate-monitor/archive/files/november-3-2026-regular-meeting/2026-10-31/revised-agenda-draft-110326-v3.pdf",
-      "public_url": "https://ocdeez.github.io/magistrate-monitor/archive/files/november-3-2026-regular-meeting/2026-10-31/revised-agenda-draft-110326-v3.pdf",
-      "sha256": "d7adf7580964c79326899bb5b9ded8ac2a986444f74c3242f7b3f987932b44a2",
-      "bytes": 116270,
-      "first_seen_utc": "2026-10-31T06:17:04.772Z",
-      "first_seen_local": "October 31, 2026 at 2:17:04 AM EDT",
-      "last_seen_utc": "2026-10-31T06:17:04.772Z",
-      "last_verified_utc": "2026-10-31T06:17:04.772Z",
-      "supersedes_id": null,
-      "http": {
-        "status": 200,
-        "content_type": "application/pdf",
-        "etag": "W/\"954c0757c78f49338e35d417faacfe5d\"",
-        "last_modified": "Fri, 30 Oct 2026 23:12:04 GMT"
-      }
-    },
-    {
-      "id": "1ae1b7db5398f260",
-      "section": "November 3, 2026 - REGULAR MEETING",
-      "title": "PAYABLES",
-      "source_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/11.03.26+PAYABLES.pdf",
-      "final_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/11.03.26+PAYABLES.pdf",
-      "source_filename": "11.03.26+PAYABLES.pdf",
-      "archive_path": "magistrate-monitor/archive/files/november-3-2026-regular-meeting/2026-10-31/11.03.26-payables.pdf",
-      "public_url": "https://ocdeez.github.io/magistrate-monitor/archive/files/november-3-2026-regular-meeting/2026-10-31/11.03.26-payables.pdf",
-      "sha256": "1ae1b7db5398f2606f21d80ed1fc2855d9bbbaf5e0003c2d6acee0398f06eca5",
-      "bytes": 1347103,
-      "first_seen_utc": "2026-10-31T06:17:04.772Z",
-      "first_seen_local": "October 31, 2026 at 2:17:04 AM EDT",
-      "last_seen_utc": "2026-10-31T06:17:04.772Z",
-      "last_verified_utc": "2026-10-31T06:17:04.772Z",
-      "supersedes_id": null,
-      "http": {
-        "status": 200,
-        "content_type": "application/pdf",
-        "etag": "W/\"4b9247f24c1d51937d686b582aa07afa\"",
-        "last_modified": "Fri, 30 Oct 2026 23:10:29 GMT"
-      }
-    },
-    {
-      "id": "ccb8e83111fd361a",
-      "section": "November 3, 2026 - REGULAR MEETING",
-      "title": "2027 BENEFIT RENEWAL – MEDICAL/DENTAL/VISION PLANS",
-      "source_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Benefit+Presentation+Pkt.pdf",
-      "final_url": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Benefit+Presentation+Pkt.pdf",
-      "source_filename": "Benefit+Presentation+Pkt.pdf",
-      "archive_path": "magistrate-monitor/archive/files/november-3-2026-regular-meeting/2026-10-31/benefit-presentation-pkt.pdf",
-      "public_url": "https://ocdeez.github.io/magistrate-monitor/archive/files/november-3-2026-regular-meeting/2026-10-31/benefit-presentation-pkt.pdf",
-      "sha256": "ccb8e83111fd361a14feb2372856e45365aad9214e712c01b8ff2d9450bd8019",
-      "bytes": 1724848,
-      "first_seen_utc": "2026-10-31T06:17:04.772Z",
-      "first_seen_local": "October 31, 2026 at 2:17:04 AM EDT",
-      "last_seen_utc": "2026-10-31T06:17:04.772Z",
-      "last_verified_utc": "2026-10-31T06:17:04.772Z",
-      "supersedes_id": null,
-      "http": {
-        "status": 200,
-        "content_type": "application/pdf",
-        "etag": "W/\"909bbdaa07c150cc14d2cb76ef2f7fe3\"",
-        "last_modified": "Fri, 30 Oct 2026 23:10:29 GMT"
-      }
-    }
-  ],
+  "archived": [],
   "dead_links": [
     {
       "section": "October 20, 2026 - REGULAR MEETING",

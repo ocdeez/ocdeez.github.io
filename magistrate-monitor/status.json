@@ -2,52 +2,15 @@
   "monitor": "oldham-magistrate-documents",
   "url": "https://www.oldhamcountyky.gov/magistratedocs2026",
   "success": true,
-  "changed": true,
-  "summary": "changes detected: 2 item_link_changed, 1 item_modified, 1 item_removed.",
-  "log_entry": "Ran at October 31, 2026 at 2:16:57 AM EDT — changes detected: 2 item_link_changed, 1 item_modified, 1 item_removed.",
-  "checked_at_utc": "2026-10-31T06:16:57.622Z",
-  "checked_at_local": "October 31, 2026 at 2:16:57 AM EDT",
+  "changed": false,
+  "summary": "no changes; no issues running.",
+  "log_entry": "Ran at October 31, 2026 at 9:03:32 AM EDT — no changes; no issues running.",
+  "checked_at_utc": "2026-10-31T13:03:32.580Z",
+  "checked_at_local": "October 31, 2026 at 9:03:32 AM EDT",
   "counts": {
     "sections": 9,
     "items": 129,
     "linked": 126
   },
-  "changes": [
-    {
-      "type": "item_link_changed",
-      "section": "November 3, 2026 - REGULAR MEETING",
-      "title": "PAYABLES",
-      "old_href": null,
-      "new_href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/11.03.26+PAYABLES.pdf",
-      "old_linked": false,
-      "new_linked": true
-    },
-    {
-      "type": "item_link_changed",
-      "section": "November 3, 2026 - REGULAR MEETING",
-      "title": "2027 BENEFIT RENEWAL – MEDICAL/DENTAL/VISION PLANS",
-      "old_href": null,
-      "new_href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Benefit+Presentation+Pkt.pdf",
-      "old_linked": false,
-      "new_linked": true
-    },
-    {
-      "type": "item_modified",
-      "section": "November 3, 2026 - REGULAR MEETING",
-      "old_title": "AGENDA",
-      "new_title": "AGENDA V3",
-      "old_href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Revised+Agenda+DRAFT+110326.pdf",
-      "new_href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Revised+Agenda+DRAFT+110326+V3.pdf"
-    },
-    {
-      "type": "item_removed",
-      "section": "November 3, 2026 - REGULAR MEETING",
-      "item": {
-        "title": "1ST READING – KOC-26-540-10 - PARKING ORDINANCE – OLDHAM COUNTY PARKS",
-        "linked": false,
-        "href": null,
-        "filename": null
-      }
-    }
-  ]
+  "changes": []
 }
