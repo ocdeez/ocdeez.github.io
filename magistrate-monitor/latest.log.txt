@@ -1,4 +1,1 @@
-Ran at November 2, 2026 at 1:49:03 AM EST — check failed: page.goto: net::ERR_CONNECTION_CLOSED at https://www.oldhamcountyky.gov/magistratedocs2026
-Call log:
-  - navigating to "https://www.oldhamcountyky.gov/magistratedocs2026", waiting until "domcontentloaded"
- Changes could not be determined.
+Ran at November 2, 2026 at 11:46:46 AM EST — changes detected: 1 item_modified, 1 item_added.

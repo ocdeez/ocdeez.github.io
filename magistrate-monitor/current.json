@@ -1,7 +1,7 @@
 {
   "monitor": "oldham-magistrate-documents",
   "url": "https://www.oldhamcountyky.gov/magistratedocs2026",
-  "captured_at_utc": "2026-11-01T22:25:42.075Z",
+  "captured_at_utc": "2026-11-02T16:46:46.461Z",
   "source": "GitHub Actions Playwright browser",
   "page_title": "Magistrate Documents | Oldham County Fiscal Court",
   "final_url": "https://www.oldhamcountyky.gov/magistratedocs2026",
@@ -16,10 +16,10 @@
           "filename": null
         },
         {
-          "title": "AGENDA V3",
+          "title": "AGENDA V4",
           "linked": true,
-          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Revised+Agenda+DRAFT+110326+V3.pdf",
-          "filename": "Revised+Agenda+DRAFT+110326+V3.pdf"
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Revised+Agenda+DRAFT+110326+V4.pdf",
+          "filename": "Revised+Agenda+DRAFT+110326+V4.pdf"
         },
         {
           "title": "MINUTES 10-20-2026",
@@ -44,6 +44,12 @@
           "linked": true,
           "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/FY2025+EMA+PROGRAM+FUNDS+Contract+Modification.pdf",
           "filename": "FY2025+EMA+PROGRAM+FUNDS+Contract+Modification.pdf"
+        },
+        {
+          "title": "COURT FACILITIES LOCAL GOVERNMENT REIMBURSEMENT FORM",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Court+Facilities+Local+Government+Reimbursement+Form+FY27.pdf",
+          "filename": "Court+Facilities+Local+Government+Reimbursement+Form+FY27.pdf"
         },
         {
           "title": "2027 BENEFIT RENEWAL – MEDICAL/DENTAL/VISION PLANS",

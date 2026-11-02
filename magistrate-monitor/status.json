@@ -1,12 +1,35 @@
 {
   "monitor": "oldham-magistrate-documents",
   "url": "https://www.oldhamcountyky.gov/magistratedocs2026",
-  "success": false,
-  "changed": null,
-  "summary": "check failed: page.goto: net::ERR_CONNECTION_CLOSED at https://www.oldhamcountyky.gov/magistratedocs2026\nCall log:\n  - navigating to \"https://www.oldhamcountyky.gov/magistratedocs2026\", waiting until \"domcontentloaded\"\n Changes could not be determined.",
-  "log_entry": "Ran at November 2, 2026 at 1:49:03 AM EST — check failed: page.goto: net::ERR_CONNECTION_CLOSED at https://www.oldhamcountyky.gov/magistratedocs2026\nCall log:\n  - navigating to \"https://www.oldhamcountyky.gov/magistratedocs2026\", waiting until \"domcontentloaded\"\n Changes could not be determined.",
-  "checked_at_utc": "2026-11-02T06:49:03.592Z",
-  "checked_at_local": "November 2, 2026 at 1:49:03 AM EST",
-  "counts": null,
-  "changes": null
+  "success": true,
+  "changed": true,
+  "summary": "changes detected: 1 item_modified, 1 item_added.",
+  "log_entry": "Ran at November 2, 2026 at 11:46:46 AM EST — changes detected: 1 item_modified, 1 item_added.",
+  "checked_at_utc": "2026-11-02T16:46:46.461Z",
+  "checked_at_local": "November 2, 2026 at 11:46:46 AM EST",
+  "counts": {
+    "sections": 9,
+    "items": 130,
+    "linked": 127
+  },
+  "changes": [
+    {
+      "type": "item_modified",
+      "section": "November 3, 2026 - REGULAR MEETING",
+      "old_title": "AGENDA V3",
+      "new_title": "AGENDA V4",
+      "old_href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Revised+Agenda+DRAFT+110326+V3.pdf",
+      "new_href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Revised+Agenda+DRAFT+110326+V4.pdf"
+    },
+    {
+      "type": "item_added",
+      "section": "November 3, 2026 - REGULAR MEETING",
+      "item": {
+        "title": "COURT FACILITIES LOCAL GOVERNMENT REIMBURSEMENT FORM",
+        "linked": true,
+        "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Court+Facilities+Local+Government+Reimbursement+Form+FY27.pdf",
+        "filename": "Court+Facilities+Local+Government+Reimbursement+Form+FY27.pdf"
+      }
+    }
+  ]
 }
