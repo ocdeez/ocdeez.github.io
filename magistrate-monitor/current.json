@@ -1,11 +1,64 @@
 {
   "monitor": "oldham-magistrate-documents",
   "url": "https://www.oldhamcountyky.gov/magistratedocs2026",
-  "captured_at_utc": "2026-11-13T07:17:19.627Z",
+  "captured_at_utc": "2026-11-13T20:02:14.003Z",
   "source": "GitHub Actions Playwright browser",
   "page_title": "Magistrate Documents | Oldham County Fiscal Court",
   "final_url": "https://www.oldhamcountyky.gov/magistratedocs2026",
   "sections": [
+    {
+      "title": "November 17, 2026 - REGULAR MEETING",
+      "items": [
+        {
+          "title": "ALL IN ONE",
+          "linked": false,
+          "href": null,
+          "filename": null
+        },
+        {
+          "title": "AGENDA",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Agenda+DRAFT+111726.pdf",
+          "filename": "Agenda+DRAFT+111726.pdf"
+        },
+        {
+          "title": "MINUTES 11-03-2026",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Nov+3rd+Minutes+DRAFT.pdf",
+          "filename": "Nov+3rd+Minutes+DRAFT.pdf"
+        },
+        {
+          "title": "PAYABLES",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/11.17.26+PAYABLES.pdf",
+          "filename": "11.17.26+PAYABLES.pdf"
+        },
+        {
+          "title": "1st READING – KOC-26-930-48 – ZONING TEXT AMENDMENT – GRAVEL ROAD STANDARDS",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/KOC-26-930-48+1st+Reading.pdf",
+          "filename": "KOC-26-930-48+1st+Reading.pdf"
+        },
+        {
+          "title": "2nd READING – KOC-26-920-045 – ZONING MAP AMENDMENT – 3000 BLOCK OF COMMERCE PKWY",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/KOC-26-920-045+Staff+Packet.pdf",
+          "filename": "KOC-26-920-045+Staff+Packet.pdf"
+        },
+        {
+          "title": "2nd READING – KOC-26-920-043 – ZONING MAP AMENDMENT – 2706 S HWY 393",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/KOC-26-920-43+Staff+Packet.pdf",
+          "filename": "KOC-26-920-43+Staff+Packet.pdf"
+        },
+        {
+          "title": "BOARD APPOINTMENTS AMBULANCE TAXING DISTRICT",
+          "linked": true,
+          "href": "https://irp.cdn-website.com/fd0fc3bd/files/uploaded/Board+Appointments-9b797214.pdf",
+          "filename": "Board+Appointments-9b797214.pdf"
+        }
+      ]
+    },
     {
       "title": "November 3, 2026 - REGULAR MEETING",
       "items": [
